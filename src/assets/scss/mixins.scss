@@ -1,0 +1,115 @@
+@import './vars.scss';
+
+@mixin link {
+	// text-decoration: none;
+	color: $link-color;
+	font-weight: 300;
+
+	&:link,
+	&:visited,
+	&:hover {
+		color: $link-color;
+	}
+}
+
+@mixin button($bg-color: transparent) {
+	border-radius: $border-radius;
+	background-color: $bg-color;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+@mixin action-button(
+	$color: $cta-color,
+	$s-color: transparent,
+	$hoverActive: 'yes'
+) {
+	@include button($s-color);
+	border: 1px solid $color;
+	color: $color;
+	padding: 10px;
+	transition: background-color 1s;
+
+	&.cb-unactive {
+		opacity: 0.5;
+	}
+
+	@if ($hoverActive == 'yes') {
+		&:hover {
+			color: #fff;
+			background-color: $color;
+			transition: background-color 1s;
+		}
+	}
+}
+
+@mixin tag {
+	width: max-content;
+	font-size: 0.9em;
+	border-radius: 40px;
+	background-color: $tag-background-color;
+	padding: 5px 10px;
+
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+@keyframes box {
+	0% {
+		opacity: 0.7;
+	}
+	50% {
+		opacity: 0.3;
+	}
+	100% {
+		opacity: 0.7;
+	}
+}
+
+@mixin loading-animation-text() {
+	animation: box 2s linear infinite;
+}
+
+@mixin input-error {
+	border: 1px solid red;
+}
+
+@mixin avatar {
+	border-radius: 50%;
+	width: $avatar-size-m;
+	height: $avatar-size-m;
+}
+
+@mixin avatar-custom($size) {
+	border-radius: 50%;
+	width: $size;
+	height: $size;
+}
+
+@mixin data-block {
+	border-radius: $border-radius;
+	background-color: #fff;
+}
+
+@mixin beauty-input {
+	&,
+	&:hover,
+	&:active,
+	&:focus {
+		outline: none;
+		width: 100%;
+		height: 35px;
+		border: 1px solid $main-color;
+		border-radius: $border-radius;
+		padding: $break;
+	}
+}
+
+@mixin beauty-textarea {
+	@include beauty-input;
+	min-height: 150px;
+	resize: vertical;
+}

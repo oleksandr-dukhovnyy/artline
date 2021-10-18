@@ -1,0 +1,14 @@
+@import '@/assets/scss/normalize.scss';
+
+* {
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+.main {
+	padding: 0 40px;
+}
+
+.router-link-active {
+	color: unset;
+}

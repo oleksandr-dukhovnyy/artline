@@ -1,18 +1,60 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<section class="home">
+    	<div class="home-content"
+			v-if="!articlesLoading"
+		>
+			<Feed />
+			<PopularTags />
+		</div>
+		<div class="home-loader"
+			v-else
+		>
+			<Loader />
+		</div>
+	</section>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import {mapGetters, mapActions} from 'vuex';
+
+import Feed from '@/components/feed/Feed.vue';
+import PopularTags from '@/components/popular_tags/Popular_tags.vue'
+
+import Loader from '@/components/loader/LoaderLines.vue';
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+	name: 'Home',
+	components: { Feed, PopularTags, Loader },
+	methods: {
+		...mapActions(['loadArticles'])
+	},
+	computed: {
+		...mapGetters(['articlesLoading', 'articles'])
+	},
+	mounted(){
+		this.loadArticles();
+	}
+};
 </script>
+
+<style lang="scss" scoped>
+	@import '@/assets/scss/vars.scss';
+
+	.home {
+		&-content {
+			display: grid;
+			grid-template-columns: 4fr 1fr;
+			grid-gap: 30px;
+			padding: 0px 3%;
+			max-width: $max-width;
+		}
+
+		&-loader {
+			height: 84vh;
+			width: 600px;
+			display: flex;
+			// justify-content: center;
+			align-items: center;
+		}
+	}
+</style>
