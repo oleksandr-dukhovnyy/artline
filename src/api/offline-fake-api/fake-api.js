@@ -1,5 +1,6 @@
 import defaultDB from '@/api/offline-fake-api/DB.js';
 import { config } from '@/api/offline-fake-api/config.fakeapi.js';
+import initDBTools from '@/api/offline-fake-api/DBTools.js';
 
 let DataBase;
 let tokeList = [];
@@ -12,6 +13,40 @@ function generateToken(n = config.tokenLength) {
 	} while (token.length <= n);
 
 	return token.slice(n * -1);
+}
+
+function generateArticleID(articles) {
+	const maxArticlesID = articles.reduce(
+		(a, c) => (c.id > a ? c.id : a),
+		-Infinity
+	);
+
+	return maxArticlesID + Math.floor(Math.random() * 1000);
+}
+
+function getCurrentTime(format) {
+	const d = new Date();
+	const f = (t) => (t < 10 ? '0' + t : t);
+
+	const replaceTable = {
+		'[d]': () => f(d.getDate()),
+		'[sy]': () => `${d.getFullYear()}`.slice(-2),
+		// '[y]': () => d.getFullYear(),
+		'[mt]': () => f(d.getMonth() + 1),
+		'[h]': () => f(d.getHours()),
+		'[m]': () => f(d.getMinutes()),
+		'[s]': () => f(d.getSeconds()),
+	};
+
+	format.split(/[^\[\w\]]/g).forEach((variable) => {
+		const fixedVar = variable.replace(/\s/g, '');
+
+		if (replaceTable[variable] !== undefined) {
+			format = format.replace(variable, replaceTable[fixedVar]());
+		}
+	});
+
+	return format;
 }
 
 function saveDataBase(db) {
@@ -68,6 +103,7 @@ function initServer() {
 	}
 
 	const parsedDB = JSON.parse(DataBase);
+	const DBTools = initDBTools(parsedDB);
 
 	const log = (...m) => {
 		if (config.showLogs === true) {
@@ -300,6 +336,126 @@ function initServer() {
 			saveDataBase(parsedDB);
 			return response;
 		},
+		'/new-article': ({ articleData, token, userID }) => {
+			const response = {
+				success: null,
+				msg: '',
+			};
+
+			const accessIsValid = checkPairTokenAndId(token, userID);
+
+			if (accessIsValid === true) {
+				const newArticle = {
+					title: articleData.title,
+					body: articleData.content,
+					img: articleData.img,
+					tags: articleData.tags,
+					comments: [],
+					id: generateArticleID(parsedDB.articles),
+					creationDate: getCurrentTime('[d]:[mt]:[sy], at: [h]:[m]'),
+				};
+
+				const author = parsedDB.users.find((u) => u.id === userID);
+
+				newArticle.author = {
+					id: author.id,
+					name: author.name,
+					avatar: author.avatar,
+					login: author.login,
+				};
+
+				// checks
+				const checks = [
+					[articleData.title.length > 2, 'to short title length'],
+					[articleData.tags.length > 0, 'need 1+ tags'],
+					[articleData.content.length > 99, 'to short article body length'],
+				];
+
+				const failed = [];
+
+				const articleIsValide = checks.every((r) => {
+					if (r[0] === false) {
+						failed.push(r[1]);
+					}
+
+					return r[0];
+				});
+
+				if (articleIsValide) {
+					response.success = true;
+					response.msg = 'ok';
+					response.newArticleID = newArticle.id;
+
+					parsedDB.articles.unshift(newArticle);
+					parsedDB.users.forEach((user) => {
+						if (user.id === userID) {
+							user.posts.unshift(newArticle.id);
+						}
+					});
+
+					saveDataBase(parsedDB);
+				} else {
+					response.success = false;
+					response.msg = `failed validation: ${failed.join(', ')}`;
+				}
+			} else {
+				response.success = false;
+				response.msg = 'Auth error: "token-id" pair not found. Access denied';
+			}
+
+			return response;
+		},
+		'/write-comment': ({ commentBody, articleID, token, userID }) => {
+			const response = {
+				success: null,
+				msg: '',
+			};
+
+			const accessIsValid = checkPairTokenAndId(token, userID);
+
+			if (accessIsValid === true) {
+				if (commentBody.length === 0 || /^\s{0,}$/g.test(commentBody)) {
+					response.success = false;
+					response.msg = 'Uncurrect comment body. Comment empty.';
+				} else {
+					const article = DBTools.getArticle(articleID);
+
+					if (article !== undefined) {
+						const user = DBTools.getUser(userID);
+
+						if (user !== undefined) {
+							user.commented.unshift(articleID);
+							article.comments.push({
+								author: {
+									id: user.id,
+									name: user.name,
+									avatar: user.avatar,
+									login: user.login,
+								},
+								commentBody,
+								time: getCurrentTime('[d]:[mt]:[sy], at: [h]:[m]'),
+							});
+
+							saveDataBase(parsedDB);
+
+							response.success = true;
+							response.msg = 'ok';
+						} else {
+							response.success = false;
+							response.msg = 'Cannot find user';
+						}
+					} else {
+						response.success = false;
+						response.msg = 'Cannot find article';
+					}
+				}
+			} else {
+				response.success = false;
+				response.msg = 'Auth error: "token-id" pair not found. Access denied';
+			}
+
+			return response;
+		},
 	};
 
 	const deleteApi = {
@@ -309,6 +465,7 @@ function initServer() {
 
 			const response = {
 				success: null,
+				msg: '',
 			};
 
 			const accessIsValid = checkPairTokenAndId(token, id);
@@ -351,7 +508,11 @@ function initServer() {
 						});
 					} else {
 						logCallback(true, timing);
-						resolve(response);
+						if (typeof response === 'object') {
+							resolve(JSON.parse(JSON.stringify(response)));
+						} else {
+							resolve(response);
+						}
 					}
 				}, timing);
 			} else {

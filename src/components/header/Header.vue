@@ -6,9 +6,15 @@
 			>
 		</div>
 
-		<nav v-if="user !== null && user !== undefined">
+		<nav v-if="user !== null && user !== undefined"
+			class="header-navbar"
+		>
 			<router-link class="header-navbar-link" :to="{ name: 'account', query: { id: user.id } }">
 				{{ isCurrectUsername ? user.name : user.login }}
+			</router-link>
+
+			<router-link class="header-navbar-new_article" :to="{ name: 'new-article' }">
+				new article
 			</router-link>
 		</nav>
 
@@ -49,13 +55,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/mixins.scss';
-// imported: $header-height;
 
 .header {
 	width: 100%;
 	height: $header-height;
 	z-index: 11;
-	// border: 1px solid black;
 	background-color: $main-color;
 
 	display: grid;
@@ -85,6 +89,24 @@ export default {
 			@include link();
 
 			color: #fff !important;
+		}
+
+		&-new_article {
+			@include action-button(#fff);
+
+			height: 20px;
+			line-height: 20px;
+			
+			padding: 5px;
+			font-size: 0.75em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+		
+			&:hover {
+				color: $cta-color;
+			}
 		}
 	}
 

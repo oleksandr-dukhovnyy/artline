@@ -27,9 +27,8 @@
 				height="450"
 			/>
 			<div v-else class="article-picture_placeholder"></div>
-			<p>
-				{{ article.body }}
-			</p>
+			
+			<p v-html="article.body" class="article-body"></p>
 
 			<div class="article-line"></div>
 
@@ -56,7 +55,7 @@
 				v-for="(comment, i) in article.comments"
 				:key="i"
 				class="comments-comment"
-				:class="{loading: comment.loading}"
+				:class="{loading: comment.loading, err: comment.status === 'err'}"
 			>
 				<div class="comments-comment-author">
 					<img
@@ -74,7 +73,8 @@
 							{{ comment.author.name !== '' ? comment.author.name : comment.author.login }}
 						</router-link>
 					</strong>
-					<div class="comments-comment-author-time">at {{ comment.time }}</div>
+					<div class="comments-comment-author-time" v-if="!comment.loading">at {{ comment.time }}</div>
+					<div v-else class="comments-comment-author-time">loading...</div>
 				</div>
 				<p>
 					{{ comment.commentBody }}
@@ -82,7 +82,7 @@
 			</div>
 		</div>
 
-		<div v-if="article !== undefined" class="write_comment">
+		<div v-if="article !== undefined && user !== undefined && user !== null" class="write_comment">
 			<h4>
 				Write a comment:
 			</h4>
@@ -107,8 +107,16 @@
 				submit
 			</button>
 		</div>
+		<div v-else-if="article !== undefined"
+			class="write_comment-unlogged"
+		>
+			<router-link :to="{name: 'registration'}">Register</router-link>
+			or
+			<router-link :to="{name: 'login'}">login</router-link>
+			to leave a comment
+		</div>
+
 		<div v-else class="loader">
-			<!-- Loading... -->
 			<Loader />
 		</div>
 	</div>
@@ -135,7 +143,7 @@ export default {
 		}
 	}),
 	methods: {
-		...mapActions(['loadArticles']),
+		...mapActions(['loadArticles', 'sendComment']),
 		loadArticle(){
 
 			const promise = API.core.get('/article', this.$route.params.id);
@@ -146,23 +154,38 @@ export default {
 
 			promise.catch(e => {
 				console.log('[Article.vue > loadArticle]: err', e);
-				this.$router.push({name: 'page404'});
+				this.$router.replace({name: 'page404'});
 			});
 		},
 		submitComment(){
 
-			const newComment = {
-				author: {
-					id: this.user.id,
-					avatar: this.user.avatar,
-					name: this.user.name
-				},
+			const localComment = {
+				articleID: this.article.id,
 				commentBody: this.comment,
+				author: {
+					...this.user
+				},
+				loading: true,
+				status: '',
 				time: getDate()
 			}
 
-			console.log(`comment`, newComment);
-			
+			const newComment = {
+				articleID: this.article.id,
+				commentBody: this.comment,
+				done: () => {
+					localComment.loading = false;
+				},
+				failed(){
+					localComment.status = 'err';
+				}
+			}
+
+			this.comment = '';
+
+			this.insertCommentToArticleComments(localComment);
+
+			this.sendComment(newComment);
 		},
 		insertCommentToArticleComments(comment){
 			this.article.comments.push(comment);
@@ -221,6 +244,7 @@ $article-width: 820px;
 
 	&-title {
 		margin: $break 0px;
+		word-wrap: break-word;
 
 		&-link {
 			@include link;
@@ -243,7 +267,7 @@ $article-width: 820px;
 	&-data {
 		display: grid;
 		width: max-content;
-		grid-template-columns: 90px 1fr;
+		grid-template-columns: 110px 1fr;
 		align-items: center;
 		grid-gap: $break;
 		padding: 0px 0px 10px;
@@ -291,6 +315,10 @@ $article-width: 820px;
 		background-color: $home_background-color;
 		margin: 10px auto;
 	}
+	
+	&-body {
+		word-wrap: break-word;
+	}
 }
 
 .comments {
@@ -327,6 +355,15 @@ $article-width: 820px;
 		&.loading {
 			opacity: 0.7;
 		}
+
+		&.err {
+			&::after {
+				content: 'Error! No comment was sent!';
+				color: $red;
+				font-style: italic;
+				opacity: 1;
+			}
+		}
 	}
 
 	&-title {
@@ -361,6 +398,12 @@ $article-width: 820px;
 		@include action-button;
 		border: 1px solid $cta-color;
 		color: $cta-color;
+	}
+
+	&-unlogged {
+		@include data-block;
+		padding: 25px $break;
+		margin-bottom: 25px;
 	}
 }
 </style>

@@ -159,7 +159,7 @@ export default {
 		API.getUser(this.$route.params.id).then((user) => {
 			this.user = user;
 			if (user === undefined || user.id === undefined) {
-				this.$router.push({ name: 'page404' });
+				this.$router.replace({ name: 'page404' });
 			} else {
 				this.loadArticles([...this.user.posts, ...this.user.commented]);
 			}

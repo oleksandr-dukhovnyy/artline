@@ -7,6 +7,7 @@ import Registration from '@/views/Registration.vue';
 import Article from '@/views/Article.vue';
 import User from '@/views/User.vue';
 import Account from '@/views/Account.vue';
+import writeArticle from '@/views/New_article.vue';
 
 import Page404 from '@/views/Page_404.vue';
 
@@ -62,6 +63,11 @@ const routes = [
 		component: Home,
 	},
 	{
+		path: '/write-article',
+		name: 'new-article',
+		component: writeArticle,
+	},
+	{
 		path: '/404',
 		name: 'page404',
 		component: Page404,
@@ -78,7 +84,7 @@ const router = new VueRouter({
 	routes,
 });
 
-const upBeforeScroll = ['user', 'page404', 'article', 'account'];
+const upBeforeScroll = ['user', 'page404', 'article', 'account', 'new-article'];
 
 router.beforeEach((to, from, next) => {
 	if (upBeforeScroll.includes(to.name)) {

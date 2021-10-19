@@ -70,8 +70,6 @@
 			</div>
 		</div>
 
-
-
 		<div class="activity" v-if="userNotNullAndUndf">
 			<h2>Activity:</h2>
 			<div class="activity-controlls">
@@ -88,13 +86,6 @@
 					@click="showUserActions('comments')"
 				>
 					My commented ({{ userComments !== null ? userComments.length : '...' }})
-				</button>
-				<button
-					class="activity-controlls-select_settings"
-					:class="{ active: showNow === 'settings' }"
-					@click="showUserActions('settings')"
-				>
-					More
 				</button>
 			</div>
 			<div class="activity-data">
@@ -178,24 +169,6 @@
 					class="empty"
 				>
 					{{ userComments === null ? 'loading...' : 'The user has not left comments on the articles yet' }}
-				</div>
-
-				<div
-					class="activity-data-account_settings"
-					v-if="showNow === 'settings'"
-				>
-					<button
-						class="activity-data-account_settings-logout"
-						@click="_logout"
-					>
-						log out
-					</button>
-					<button
-						class="activity-data-account_settings-delete_accout"
-						@click="_deleteAccount"
-					>
-						delete account
-					</button>
 				</div>
 			</div>
 		</div>
@@ -327,28 +300,22 @@ export default {
 				
 				this.userDataSted = true;
 				const resolve = (articles) => {
-					this.userPosts = [];
 					this.userComments = [];
 					
 					this.userPosts = articles.filter((a) => a.author.id === this.user.id);					
 
 					articles.forEach(article => {
-						if (article.author.id === this.user.id) {
-							this.userPosts.push(article);
-						} else {
-							const comments = article.comments.filter(comment => comment.author.id === this.user.id);
+						const comments = article.comments.filter(comment => comment.author.id === this.user.id);
 
-							comments.forEach((comment) => {
-								this.userComments.push({
-									comment,
-									article: {
-										id: article.id,
-										title: article.title
-									}
-								})
-							});
-							
-						}
+						comments.forEach((comment) => {
+							this.userComments.push({
+								comment,
+								article: {
+									id: article.id,
+									title: article.title
+								}
+							})
+						});
 					});
 
 				}
@@ -360,10 +327,6 @@ export default {
 		},
 		chooseAPhoto(){
 			this.modals.showPrompt = true;
-		},
-		_logout(){
-			this.logout();
-			// this.$router.push({name: 'home'});
 		},
 		showUserActions(newCondition = 'posts'){
 			this.showNow = newCondition;
@@ -380,8 +343,6 @@ export default {
 				});
 			}
 		},
-
-
 		_deleteAccount(){
 			this.modals.showConfirm = true;
 		},
@@ -405,11 +366,13 @@ export default {
 		showMoreActions(){
 			this.modals.showMoreActions = true;
 		},
-		handleMoreActionsClick(field){
-			if(field === 'deleteAccount'){
+		handleMoreActionsClick(action){
+			console.log('handleMoreActionsClick', action);
+			if(action === 'deleteAccount'){
 				this._deleteAccount();
-			} else if(field === 'setAvatar'){
-				this.modals.showPrompt = true;
+			} else if(action === 'logOut'){
+				this.modals.showMoreActions = false;
+				this.logout();
 			}
 		}
 	}

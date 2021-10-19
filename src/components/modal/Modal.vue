@@ -5,7 +5,7 @@
 	>
 		<div
 			v-if="modalType === 'confirm'"
-			class="modal-confirm"
+			class="modal-confirm animate__animated animate__fadeInUp"
 		>
 			<p class="modal-confirm-text"
 				v-html="text"
@@ -26,7 +26,7 @@
 
 		<div
 			v-if="modalType === 'prompt'"
-			class="modal-prompt"
+			class="modal-prompt animate__animated animate__fadeInUp"
 		>
 			<p class="modal-prompt-text"
 				v-html="text"
@@ -50,7 +50,9 @@
 			
 		</div>
 
-		<div class="modal-actions">
+		<div class="modal-actions animate__animated animate__fadeInUp"
+			v-if="modalType === 'actions'"
+		>
 			<button
 				v-for="(button, i) in buttons"
 				:key="i"

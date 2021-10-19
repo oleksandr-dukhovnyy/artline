@@ -1,7 +1,7 @@
 export const config = {
 	timing: {
-		maxWait: 100,
-		minWait: 100 - 1,
+		maxWait: 5000,
+		minWait: 5000 - 1,
 	},
 	prefix: '[server]: ',
 	showLogs: true,

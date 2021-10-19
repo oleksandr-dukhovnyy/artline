@@ -135,16 +135,55 @@ export default {
 				console.error(res.msg, res);
 			});
 		},
-		async sendComment({ commit, state }, { commentBody, articleID }) {
-			// ...
-			/*
-				запрос к API(token, articleID, commentBody)
-					удачно:
-						показываем коммент (при след перезагрузке он сам подтянется, а пока просто пушим)
-					ошибка:
-						показываем ошибку
-					
-			*/
+		async sendComment(
+			{ commit, state },
+			{ commentBody, articleID, done, failed }
+		) {
+			const commentSending = API.sendComment({
+				commentBody,
+				articleID,
+				token: state.token,
+				userID: state.user.id,
+			});
+
+			commit('setLoading', true);
+
+			commentSending.then((res) => {
+				commit('setLoading', false);
+
+				if (res.success === true) {
+					done();
+				} else {
+					failed();
+				}
+			});
+
+			commentSending.catch((res) => {
+				commit('setLoading', false);
+				failed();
+			});
+		},
+		async sendNewArticle({ commit, state }, article) {
+			const newArticleRequest = API.writeNewArticle(
+				article,
+				state.token,
+				state.user.id
+			);
+
+			commit('setLoading', true);
+			commit('setSendNewArticleLoadingStatus', 'send');
+
+			newArticleRequest.then((res) => {
+				commit('setSendNewArticleLoadingStatus', `done:${res.newArticleID}`);
+				commit('setLoading', false);
+				console.log('new article ok', res);
+			});
+
+			newArticleRequest.catch((res) => {
+				commit('setSendNewArticleLoadingStatus', 'failed');
+				commit('setLoading', false);
+				console.log('new article error', res);
+			});
 		},
 	},
 	mutations: {
@@ -163,6 +202,9 @@ export default {
 		},
 		setUserDataLoaded(state, payload) {
 			state.conditions.userDataLoaded = payload;
+		},
+		setSendNewArticleLoadingStatus(state, payload) {
+			state.conditions.sendNewArticleLoadingStatus = payload;
 		},
 		// setLoaded(state, payload = true) {
 		// 	state.conditions.loaded = payload;
@@ -187,6 +229,7 @@ export default {
 			errorRes: null,
 			UALoading: false,
 			userDataLoaded: false,
+			sendNewArticleLoadingStatus: '',
 		},
 	},
 	getters: {
@@ -197,6 +240,7 @@ export default {
 		currentLoggedUser: (s) => s.user,
 		UALoading: (s) => s.conditions.UALoading,
 		userDataLoaded: (s) => s.conditions.userDataLoaded,
-		// authLoaded: (s) => s.conditions.loaded,
+		sendNewArticleLoadingStatus: (s) =>
+			s.conditions.sendNewArticleLoadingStatus,
 	},
 };

@@ -41,6 +41,16 @@ const API = {
 
 		return fakeAPI.post('/edit-account', postData);
 	},
+	writeNewArticle(article, token, userID) {
+		return fakeAPI.post('/new-article', {
+			articleData: JSON.parse(JSON.stringify(article)),
+			token,
+			userID,
+		});
+	},
+	sendComment(params) {
+		return fakeAPI.post('/write-comment', params);
+	},
 	core: fakeAPI,
 };
 

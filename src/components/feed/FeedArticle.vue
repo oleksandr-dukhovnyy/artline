@@ -33,9 +33,9 @@
 			v-else
 			class="article-picture_placeholder"
 		></div>
-		<p>
-			{{ body | getFirstFewRows }}
-		</p>
+		<p v-html="body.slice(0, 300)"
+			class="article-preview"
+		></p>
 		<router-link :to="{ name: 'article', params: { id: articleId }}">
 			<button class="article-read_more">
 				read more...
@@ -92,6 +92,11 @@ export default {
 		background-color: #fff;
 		padding: $break 10px;
 		border-radius: $border-radius;
+		width: 820px;
+
+		&-preview {
+			word-wrap: break-word;
+		}
 
 		&-title{
 			margin: $break 0px;
@@ -117,7 +122,7 @@ export default {
 		&-data {
 			display: grid;
 			width: max-content;
-			grid-template-columns: 90px 1fr;
+			grid-template-columns: 110px 1fr;
 			grid-gap: $break;
 			padding: 0px 0px 10px;
 			font-size: 0.8em;
