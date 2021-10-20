@@ -206,13 +206,26 @@
 					text: 'Log out',
 					value: 'logOut',
 					style: 'red'
+				}]"
+		/>
+		<!-- <Modal
+			v-if="modals.showMoreActions"
+			modalType="actions"
+			
+			@actionClick="handleMoreActionsClick"
+			@clickOutside="modals.showMoreActions = false"
+
+			:buttons="[{
+					text: 'Log out',
+					value: 'logOut',
+					style: 'red'
 				},
 				{
 					text: 'Delete accout',
 					value: 'deleteAccount',
 					style: 'red'
 			}]"
-		/>
+		/> -->
 	</section>
 </template>
 
