@@ -120,13 +120,21 @@ function initServer() {
 			return user;
 		},
 		'/articles': ({ from = 0, to = 10, arrOfId = null }) => {
+			const response = {
+				success: null,
+				articles: [],
+				paginationPages: Math.ceil((parsedDB.articles.length - from) / 10),
+			};
+
 			if (arrOfId !== null) {
-				return parsedDB.articles.filter((article) => {
+				response.articles = parsedDB.articles.filter((article) => {
 					return arrOfId.includes(article.id);
 				});
 			} else {
-				return parsedDB.articles;
+				response.articles = parsedDB.articles.slice(from, to);
 			}
+
+			return response;
 		},
 		'/article': (id) =>
 			parsedDB.articles.find((article) => Number(article.id) === Number(id)),

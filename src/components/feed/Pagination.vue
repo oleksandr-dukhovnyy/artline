@@ -1,6 +1,6 @@
 <template>
 
-	<div class="pagination">
+	<div class="pagination" v-if="paginationPages !== undefined && paginationPages > 0">
 		<div class="pagination-wrapper">
 			<div class="pagination-wrapper-page"
 				v-for="(page, i) in pages"
@@ -12,10 +12,8 @@
 				<router-link class="pagination-wrapper-page-link" :to="{name: 'home'}">
 					{{ page }}
 				</router-link>
-				
 			</div>
 		</div>
-		
 	</div>
 
 </template>
@@ -24,24 +22,25 @@
 
 export default {
 	name: 'Pagination',
+	props: {
+		currentPage: {
+			type: Number,
+			default: 1
+		},
+		paginationPages: {
+			type: Number,
+			default: 1
+		}
+	},
 	data: () => ({
-		paginationPages: [
-			1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-		],
-		currentPage: 0,
+		// paginationPages: [
+		// 	1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+		// ],
+		// currentPage: 0,
 		rangeStart: 0
 	}),
 	computed: {
 		pages(){
-			// let res = this.paginationPages.slice(this.rangeStart);
-
-			// if( this.paginationPages.length - this.rangeStart > 9 && this.paginationPages.length / this.rangeStart > 0.5 ){
-			// 	res = res.filter((item, i, arr)=> i < 6 || i === arr.length-1);
-			// 	res[res.length-2] = '...';
-			// }
-
-			// return res;
-
 			return this.paginationPages;
 		}
 	},

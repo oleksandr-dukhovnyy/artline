@@ -6,7 +6,7 @@ export default {
 			const getArticlesByTagCount = API.getArticlesByTagCount(tag);
 
 			getArticlesByTagCount.then((count) => {
-				console.log('count', count);
+				// console.log('count', count);
 				commit('setArticlesByTagCount', count);
 			});
 
@@ -14,27 +14,33 @@ export default {
 				console.error(res);
 			});
 		},
-		async loadArticles({ commit }) {
+		async loadArticles({ commit }, { from = 0, to = 10 } = {}) {
 			commit('setArticlesLoading', true);
 
 			API.getArticles(
-				(articles) => {
-					commit('setArticlesLoading', false);
+				({ articles, paginationPages }) => {
+					console.log(articles, paginationPages);
 					commit('setArticles', articles);
+					commit('setPagination', paginationPages);
+
+					commit('setArticlesLoading', false);
 				},
 				(err) => {
 					commit('setArticlesLoading', false);
 					console.log('error', err);
-				}
+				},
+				{ from, to }
 			);
 		},
 		async loadArticlesByTag({ commit }, { tag, from = 0, to = 10 }) {
 			commit('setArticlesByTagLoading', true);
 			const articles = API.getArticlesByTag({ tag, from, to });
 
-			articles.then((articles) => {
-				commit('setArticlesByTagLoading', false);
+			articles.then(({ articles, paginationPages }) => {
+				commit('setPagination', paginationPages);
 				commit('setArticlesByTag', articles);
+
+				commit('setArticlesByTagLoading', false);
 			});
 
 			articles.catch((res) => {
@@ -59,12 +65,16 @@ export default {
 		setArticlesByTagCount(state, payload) {
 			state.data.articlesByTagCount = payload;
 		},
+		setPagination(state, payload) {
+			state.data.pagination = payload;
+		},
 	},
 	state: {
 		data: {
 			articles: [],
 			articlesByTag: [],
 			articlesByTagCount: null,
+			pagination: [],
 		},
 		conditions: {
 			articlesLoading: false,
@@ -82,5 +92,6 @@ export default {
 		articlesLoaded: (state) => state.data.articles.length > 0,
 		articlesByTag: (state) => state.data.articlesByTag,
 		articlesByTagCount: (state) => state.data.articlesByTagCount,
+		paginationItems: (state) => state.data.pagination,
 	},
 };

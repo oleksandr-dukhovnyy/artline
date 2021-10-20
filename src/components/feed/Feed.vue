@@ -12,28 +12,57 @@
 			:articleId="article.id"
 			:tags="article.tags"
 		/>
-		<!-- <Pagination /> -->
+		<Pagination
+			:items="paginationItems"
+
+			@selectPage="_loadArticles"
+		/>
 	</div>
 </template>
 
 <script>
-// import {mapGetters} from 'vuex';
+import {mapGetters, mapActions} from 'vuex';
 
 import FeedArticle from '@/components/feed/FeedArticle.vue';
 import Pagination from '@/components/feed/Pagination.vue';
 
 export default {
 	name: 'Feed',
-	props: ['articles'],
-	// computed: {
-	// 	...mapGetters(['articles'])
+	// data(){
+	// 	return {
+			
+	// 	}
 	// },
+	props: {
+		articles: Array,
+		from: {
+      		type: Number,
+      		default: 0
+    	},
+		to: {
+      		type: Number,
+      		default: 10
+    	},
+	},
+	computed: {
+		...mapGetters(['paginationItems'])
+	},
+	methods: {
+		...mapActions(['loadArticles']),
+		_loadArticles(from = 0, to = 10){
+			this.loadArticles({
+				from, to
+			});
+		}
+	},
 	components: {
 		FeedArticle,
 		Pagination
 	},
 	mounted(){
-		// this.loadArticles();
+		if(this.articles === undefined){
+			this._loadArticles();
+		}
 	}
 }
 </script>

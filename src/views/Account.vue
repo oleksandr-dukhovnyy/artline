@@ -380,7 +380,7 @@ export default {
 			this.modals.showMoreActions = true;
 		},
 		handleMoreActionsClick(action){
-			console.log('handleMoreActionsClick', action);
+			// console.log('handleMoreActionsClick', action);
 			if(action === 'deleteAccount'){
 				this._deleteAccount();
 			} else if(action === 'logOut'){

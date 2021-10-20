@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex';
+import {mapGetters} from 'vuex';
 
 import Feed from '@/components/feed/Feed.vue';
 import PopularTags from '@/components/popular_tags/Popular_tags.vue'
@@ -27,14 +27,11 @@ import Loader from '@/components/loader/LoaderLines.vue';
 export default {
 	name: 'Home',
 	components: { Feed, PopularTags, Loader },
-	methods: {
-		...mapActions(['loadArticles'])
-	},
+	// methods: {
+		
+	// },
 	computed: {
 		...mapGetters(['articlesLoading', 'articles'])
-	},
-	mounted(){
-		this.loadArticles();
 	}
 };
 </script>

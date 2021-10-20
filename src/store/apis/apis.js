@@ -176,7 +176,6 @@ export default {
 			newArticleRequest.then((res) => {
 				commit('setSendNewArticleLoadingStatus', `done:${res.newArticleID}`);
 				commit('setLoading', false);
-				console.log('new article ok', res);
 			});
 
 			newArticleRequest.catch((res) => {

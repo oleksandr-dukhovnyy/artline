@@ -68,8 +68,6 @@ export default {
 	},
 	watch: {
 		user: function() {
-			console.log('user updated', this.isAuthError);
-
 			if (this.isAuthError === false) {
 				this.redirect();
 				this.data = {
