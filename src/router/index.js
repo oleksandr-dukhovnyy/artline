@@ -8,6 +8,7 @@ import Article from '@/views/Article.vue';
 import User from '@/views/User.vue';
 import Account from '@/views/Account.vue';
 import writeArticle from '@/views/New_article.vue';
+import Tag from '@/views/Tag.vue';
 
 import Page404 from '@/views/Page_404.vue';
 
@@ -66,6 +67,11 @@ const routes = [
 		path: '/write-article',
 		name: 'new-article',
 		component: writeArticle,
+	},
+	{
+		path: '/articles/tag/:tag',
+		name: 'tag',
+		component: Tag,
 	},
 	{
 		path: '/404',

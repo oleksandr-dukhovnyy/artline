@@ -3,7 +3,9 @@
     	<div class="home-content"
 			v-if="!articlesLoading"
 		>
-			<Feed />
+			<Feed
+				:articles="articles"
+			/>
 			<PopularTags />
 		</div>
 		<div class="home-loader"

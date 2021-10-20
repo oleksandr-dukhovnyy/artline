@@ -8,6 +8,9 @@ const API = {
 	getArticles(resolve, reject, params) {
 		return fakeAPI.get('/articles', params).then(resolve, reject);
 	},
+	getArticlesByTag(p) {
+		return fakeAPI.get('/articles-by-tag', p);
+	},
 	getArticle(resolve, reject, id) {
 		return fakeAPI.get('/article', id).then(resolve, reject);
 	},
@@ -50,6 +53,12 @@ const API = {
 	},
 	sendComment(params) {
 		return fakeAPI.post('/write-comment', params);
+	},
+	getArticlesByTagCount(tag) {
+		return fakeAPI.get('/articles-by-tag-count', tag);
+	},
+	getPopularTags() {
+		return fakeAPI.get('/popular-tags');
 	},
 	core: fakeAPI,
 };

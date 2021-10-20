@@ -130,6 +130,39 @@ function initServer() {
 		},
 		'/article': (id) =>
 			parsedDB.articles.find((article) => Number(article.id) === Number(id)),
+		'/articles-by-tag': ({ tag, from = 0, to = 10 }) => {
+			const articles = parsedDB.articles.reduce((acc, curr) => {
+				if (curr.tags.includes(tag)) {
+					acc.push(curr);
+				}
+
+				return acc;
+			}, []);
+
+			return articles.filter((a, i) => from >= i - 1 && i - 1 <= to);
+		},
+		'/articles-by-tag-count': (tag) => {
+			return parsedDB.articles.filter((a) => a.tags.includes(tag)).length;
+		},
+		'/popular-tags': () => {
+			return parsedDB.articles
+				.reduce((acc, article) => {
+					article.tags.forEach((tag) => {
+						let tagInAcc = acc.find((t) => t[0] === tag);
+
+						if (tagInAcc === undefined) {
+							acc.push([tag, 1]);
+						} else {
+							tagInAcc[1]++;
+						}
+					});
+
+					return acc;
+				}, [])
+				.sort((a, b) => b[1] - a[1])
+				.map((t) => t[0])
+				.filter((t, i) => i < 10);
+		},
 	};
 
 	const postApi = {

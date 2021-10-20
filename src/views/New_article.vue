@@ -194,8 +194,8 @@ export default {
 		tagsStr(){
 			this.article.tags = this.tagsStr
 				.split(',')
-				.filter(t => t !== '' && !/^\s{0,}$/g.test(t))
-				.map(t => t.toLowerCase());
+				.filter(t => t !== '' && !/^\s{0,}$/g.test(t));
+				// .map(t => t.toLowerCase());
 
 			this.updateLocalStorage();
 		},

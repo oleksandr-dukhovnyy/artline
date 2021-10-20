@@ -88,11 +88,11 @@ export default {
 	@import '@/assets/scss/mixins.scss';
 
 	.article {
-		margin: 0 0 30px 0;
 		background-color: #fff;
 		padding: $break 10px;
 		border-radius: $border-radius;
 		width: 820px;
+		margin-bottom: $break;
 
 		&-preview {
 			word-wrap: break-word;

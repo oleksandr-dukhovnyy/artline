@@ -12,21 +12,22 @@
 			:articleId="article.id"
 			:tags="article.tags"
 		/>
-		<Pagination />
+		<!-- <Pagination /> -->
 	</div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+// import {mapGetters} from 'vuex';
 
 import FeedArticle from '@/components/feed/FeedArticle.vue';
 import Pagination from '@/components/feed/Pagination.vue';
 
 export default {
 	name: 'Feed',
-	computed: {
-		...mapGetters(['articles'])
-	},
+	props: ['articles'],
+	// computed: {
+	// 	...mapGetters(['articles'])
+	// },
 	components: {
 		FeedArticle,
 		Pagination
@@ -42,5 +43,8 @@ export default {
 
 	.feed {
 		padding: 25px 0;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 	}
 </style>

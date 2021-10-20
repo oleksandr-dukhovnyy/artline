@@ -7,37 +7,49 @@
 		<div class="home-popular_tags-contain">
 			<div
 				class="home-popular_tags-contain-tag"
-				v-for="(tag, i) in tags"
+				v-for="(tag, i) in popularTags"
 				:key="i"
 			>
-				<router-link class="link" :to="{name: 'page404'}">
+				<router-link class="link" :to="{name: 'tag', params: {tag}}">
 					{{ tag }}
 				</router-link>
 			</div>
 		</div>
-		
 
 	</div>
 
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex';
 
 export default {
 	name: 'PopularTags',
-	data: () => ({
-		tags: [
-			'JavaScript',
-			'JS',
-			'CSS',
-			'Math',
-			'Games',
-			'History',
-			'Crazy Code',
-			'blog',
-			'Microsoft Blog',
-		]
-	})
+	computed: {
+		...mapGetters(['popularTags', 'popularTagsLoaded'])
+	},
+	methods: {
+		...mapActions(['loadPopularTags'])
+	},
+	created(){
+		if(this.popularTagsLoaded === false){
+			this.loadPopularTags();
+		}
+		
+	}
+	// data: () => ({
+		// popularTags: [
+		// 	'JavaScript',
+		// 	'JS',
+		// 	'CSS',
+		// 	'Math',
+		// 	'Games',
+		// 	'History',
+		// 	'Crazy Code',
+		// 	'blog',
+		// 	'Microsoft Blog',
+		// ]
+	// })
 }
 
 </script>
