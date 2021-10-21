@@ -2,6 +2,8 @@
 
 (vue.js, vue-cli, webpack, vuex, vue-router, vue-quill-editor)
 
+### [live-demo](https://aleksandr-js-developer.github.io/artline/)
+
 ## Project setup
 ```
 npm install
