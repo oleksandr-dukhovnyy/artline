@@ -1,7 +1,0 @@
-Article Structure
-	title
-	creation date
-	author
-	body
-	img
-	id
