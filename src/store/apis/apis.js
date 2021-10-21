@@ -205,11 +205,6 @@ export default {
 		setSendNewArticleLoadingStatus(state, payload) {
 			state.conditions.sendNewArticleLoadingStatus = payload;
 		},
-		// setLoaded(state, payload = true) {
-		// 	state.conditions.loaded = payload;
-		// },
-
-		// user data
 		setUserData(state, userData) {
 			state.user = userData;
 		},
@@ -224,7 +219,6 @@ export default {
 		conditions: {
 			error: false,
 			loading: false,
-			// loaded: false,
 			errorRes: null,
 			UALoading: false,
 			userDataLoaded: false,

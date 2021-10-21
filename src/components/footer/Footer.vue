@@ -50,10 +50,4 @@ export default {
 		}
 	}
 
-	// .link {
-	// 	@include link;
-
-	// 	color: #fff;
-	// }
-
 </style>

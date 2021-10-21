@@ -18,7 +18,7 @@
 					v-for="(item, i) in tags"
 					:key="i"
 				>
-					<router-link class="link" :to="{name: 'page404'}">
+					<router-link class="link" :to="{name: 'tag', params: {tag: item}}">
 						{{ item }}
 					</router-link>
 				</div>
@@ -47,17 +47,6 @@
 </template>
 
 <script>
-/*
-Article Structure
-	title
-	creation date
-	author
-	body
-	img
-	id
-*/
-
-// import {mapGetters} from 'vuex';
 
 export default {
 	props: [
@@ -69,9 +58,6 @@ export default {
 		'articleId',
 		'tags'
 	],
-	// computed: {
-	// 	...mapGetters(['articles'])
-	// },
 	name: 'FeedArticle',
 	filters: {
 		getFirstFewRows( t ){

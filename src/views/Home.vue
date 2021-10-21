@@ -27,9 +27,6 @@ import Loader from '@/components/loader/LoaderLines.vue';
 export default {
 	name: 'Home',
 	components: { Feed, PopularTags, Loader },
-	// methods: {
-		
-	// },
 	computed: {
 		...mapGetters(['articlesLoading', 'articles'])
 	}
@@ -52,7 +49,6 @@ export default {
 			height: 84vh;
 			width: 600px;
 			display: flex;
-			// justify-content: center;
 			align-items: center;
 		}
 	}

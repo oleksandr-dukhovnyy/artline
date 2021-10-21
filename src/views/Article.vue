@@ -12,7 +12,7 @@
 						v-for="(item, i) in article.tags"
 						:key="i"
 					>
-						<router-link class="link" :to="{ name: 'page404' }">
+						<router-link class="link" :to="{ name: 'tag', params: {tag: item} }">
 							{{ item }}
 						</router-link>
 					</div>
@@ -214,7 +214,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/assets/scss/mixins.scss';
 
 // local vars
@@ -318,6 +318,9 @@ $article-width: 820px;
 	
 	&-body {
 		word-wrap: break-word;
+		img {
+			max-width: 100%;
+		}
 	}
 }
 
@@ -380,7 +383,6 @@ $article-width: 820px;
 
 	&-text_area {
 		width: 100%;
-		// height: max-content;
 		resize: vertical;
 
 		&.loading {

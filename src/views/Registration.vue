@@ -87,7 +87,6 @@ export default {
 			this.register(this.data);
 		},
 		redirect() {
-			// console.log( 'redirect' );
 			this.$router.push({ name: 'home' });
 		},
 	},

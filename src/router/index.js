@@ -1,16 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+// lazy components:
+// import Login from '@/views/Login.vue';
+// import User from '@/views/User.vue';
+// import writeArticle from '@/views/New_article.vue';
+// import Page404 from '@/views/Page_404.vue';
+
 import Home from '@/views/Home.vue';
-import Login from '@/views/Login.vue';
 import Registration from '@/views/Registration.vue';
 import Article from '@/views/Article.vue';
-import User from '@/views/User.vue';
 import Account from '@/views/Account.vue';
-import writeArticle from '@/views/New_article.vue';
 import Tag from '@/views/Tag.vue';
-
-import Page404 from '@/views/Page_404.vue';
 
 Vue.use(VueRouter);
 
@@ -24,19 +25,11 @@ const routes = [
 		name: 'home',
 		component: Home,
 	},
-	// {
-	// 	path: '/about',
-	// 	name: 'About',
-	// 	// route level code-splitting
-	// 	// this generates a separate chunk (about.[hash].js) for this route
-	// 	// which is lazy-loaded when the route is visited.
-	// 	component: () =>
-	// 		import(/* webpackChunkName: "about" */ '../views/About.vue'),
-	// },
 	{
 		path: '/login',
 		name: 'login',
-		component: Login,
+		// component: Login,
+		component: () => import('../views/Login.vue'),
 	},
 	{
 		path: '/registration',
@@ -51,7 +44,8 @@ const routes = [
 	{
 		path: '/user/:id',
 		name: 'user',
-		component: User,
+		// component: User,
+		component: () => import('../views/User.vue'),
 	},
 	{
 		path: '/article/:id',
@@ -66,7 +60,8 @@ const routes = [
 	{
 		path: '/write-article',
 		name: 'new-article',
-		component: writeArticle,
+		// component: writeArticle,
+		component: () => import('../views/New_article.vue'),
 	},
 	{
 		path: '/articles/tag/:tag',
@@ -76,7 +71,8 @@ const routes = [
 	{
 		path: '/404',
 		name: 'page404',
-		component: Page404,
+		// component: Page404,
+		component: () => import('../views/Page_404.vue'),
 	},
 	{
 		path: '*',

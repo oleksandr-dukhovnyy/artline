@@ -6,7 +6,6 @@ export default {
 			const getArticlesByTagCount = API.getArticlesByTagCount(tag);
 
 			getArticlesByTagCount.then((count) => {
-				// console.log('count', count);
 				commit('setArticlesByTagCount', count);
 			});
 
@@ -19,7 +18,6 @@ export default {
 
 			API.getArticles(
 				({ articles, paginationPages }) => {
-					// console.log(articles, paginationPages);
 					commit('setArticles', articles);
 					commit('setPagination', paginationPages);
 

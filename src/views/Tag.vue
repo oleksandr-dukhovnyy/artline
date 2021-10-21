@@ -62,6 +62,10 @@ export default {
 <style lang="scss" scoped>
 	@import '@/assets/scss/mixins.scss';
 
+	.wrapper {
+		min-height: 83vh;
+	}
+
 	.tag {
 		width: 850px;
 		padding: $break;
@@ -82,12 +86,6 @@ export default {
 				text-align: center;
 			}
 		}
-
-		// &-articles {
-			// @include data-block;
-
-			// text-align: center;
-		// }
 	}
 
 </style>

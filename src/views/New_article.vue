@@ -66,7 +66,7 @@
 			>
 				<h1 class="write-title-preview-text">
 					<span v-if="article.title.length > 0">
-						article.title
+						{{ article.title }}
 					</span>
 					<span v-else
 						class="muted"
@@ -86,6 +86,7 @@
 			<quill-editor
 				v-model="article.content"
 				:options="editorOption"
+				:readOnly="true"
 				@change="updateLocalStorage"
 			/>
 		</div>
@@ -194,8 +195,10 @@ export default {
 		tagsStr(){
 			this.article.tags = this.tagsStr
 				.split(',')
+				.map(tag => {
+					return tag.replace(/^\s|\s$/, '')
+				})
 				.filter(t => t !== '' && !/^\s{0,}$/g.test(t));
-				// .map(t => t.toLowerCase());
 
 			this.updateLocalStorage();
 		},
@@ -235,10 +238,14 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	@import '@/assets/scss/mixins.scss';
 
 	$article-width: 830px;
+
+	.write-preview img {
+		max-width: 100%;
+	}
 
 	.empty {
 		color: #c2c2c2;

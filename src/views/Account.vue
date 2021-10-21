@@ -380,7 +380,6 @@ export default {
 			this.modals.showMoreActions = true;
 		},
 		handleMoreActionsClick(action){
-			// console.log('handleMoreActionsClick', action);
 			if(action === 'deleteAccount'){
 				this._deleteAccount();
 			} else if(action === 'logOut'){
@@ -417,7 +416,6 @@ export default {
 
 		&-header {
 			padding: $break;
-			// border-bottom: 1px solid $muted-text-color;
 			margin-bottom: $break;
 
 			display: grid;

@@ -16,6 +16,8 @@
 			:paginationPages="paginationItems"
 
 			@selectPage="_loadArticles"
+
+			v-if="paginationItems > 1 && articles !== undefined && articles.length > 0"
 		/>
 	</div>
 </template>
@@ -28,11 +30,6 @@ import Pagination from '@/components/feed/Pagination.vue';
 
 export default {
 	name: 'Feed',
-	// data(){
-	// 	return {
-	// 		currentPaginationPage: 1
-	// 	}
-	// },
 	props: {
 		articles: Array,
 	},
@@ -79,7 +76,7 @@ export default {
 		Pagination
 	},
 	created(){
-		if(this.articles.length === 0 && !this.articlesLoading){
+		if(this.articles !== undefined && this.articles.length === 0 && !this.articlesLoading){
 			this.loadCurrentArticles();
 		}
 	}
@@ -90,7 +87,6 @@ export default {
 	@import '@/assets/scss/vars.scss';
 
 	.feed {
-		padding: 25px 0;
 		display: flex;
 		justify-content: center;
 		flex-direction: column;

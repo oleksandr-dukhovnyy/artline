@@ -37,19 +37,6 @@ export default {
 		}
 		
 	}
-	// data: () => ({
-		// popularTags: [
-		// 	'JavaScript',
-		// 	'JS',
-		// 	'CSS',
-		// 	'Math',
-		// 	'Games',
-		// 	'History',
-		// 	'Crazy Code',
-		// 	'blog',
-		// 	'Microsoft Blog',
-		// ]
-	// })
 }
 
 </script>
@@ -60,13 +47,7 @@ export default {
 	.home-popular_tags {
 		margin-top: 26px;
 		background-color: #fff;
-		// height: 70vh;
 		height: max-content;
-		// position: fixed;
-		// width: 100%;
-		// right: 0px;
-		// overflow: hidden;
-
 		padding: $break;
 		border-radius: $border-radius;
 

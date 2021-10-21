@@ -154,16 +154,23 @@ function initServer() {
 		},
 		'/article': (id) =>
 			parsedDB.articles.find((article) => Number(article.id) === Number(id)),
-		'/articles-by-tag': ({ tag, from = 0, to = 30 }) => {
+		'/articles-by-tag': ({ tag, from = 0, to = 10 }) => {
 			const articles = parsedDB.articles.reduce((acc, curr) => {
 				if (curr.tags.includes(tag)) {
 					acc.push(curr);
 				}
 
 				return acc;
-			}, []);
+			}, [])
+			.slice(from, to);
 
-			return articles.filter((a, i) => from >= i - 1 && i - 1 <= to);
+			const response = {
+				success: true,
+				articles,
+				paginationPages: Math.ceil(articles.length / 10),
+			}
+			
+			return response;
 		},
 		'/articles-by-tag-count': (tag) => {
 			return parsedDB.articles.filter((a) => a.tags.includes(tag)).length;
