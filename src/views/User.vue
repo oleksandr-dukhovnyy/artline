@@ -170,7 +170,7 @@ export default {
 			this.showNow = acrionType;
 		},
 		loadArticles(articlesIDs) {
-			API.getArticles('', '', { arrOfId: articlesIDs }).then((articles) => {
+			API.getArticles('', '', { arrOfId: articlesIDs }).then(({articles}) => {
 				const userArticles = [];
 				const userComments = [];
 

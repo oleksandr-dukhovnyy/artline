@@ -19,7 +19,7 @@ export default {
 
 			API.getArticles(
 				({ articles, paginationPages }) => {
-					console.log(articles, paginationPages);
+					// console.log(articles, paginationPages);
 					commit('setArticles', articles);
 					commit('setPagination', paginationPages);
 
@@ -74,7 +74,7 @@ export default {
 			articles: [],
 			articlesByTag: [],
 			articlesByTagCount: null,
-			pagination: [],
+			pagination: null,
 		},
 		conditions: {
 			articlesLoading: false,

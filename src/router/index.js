@@ -90,7 +90,14 @@ const router = new VueRouter({
 	routes,
 });
 
-const upBeforeScroll = ['user', 'page404', 'article', 'account', 'new-article'];
+const upBeforeScroll = [
+	'user',
+	'page404',
+	'article',
+	'account',
+	'new-article',
+	'home',
+];
 
 router.beforeEach((to, from, next) => {
 	if (upBeforeScroll.includes(to.name)) {

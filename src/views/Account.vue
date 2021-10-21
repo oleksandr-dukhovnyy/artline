@@ -312,7 +312,7 @@ export default {
 				this.setNewDataToDefault();
 				
 				this.userDataSted = true;
-				const resolve = (articles) => {
+				const resolve = ({articles}) => {
 					this.userComments = [];
 					
 					this.userPosts = articles.filter((a) => a.author.id === this.user.id);					

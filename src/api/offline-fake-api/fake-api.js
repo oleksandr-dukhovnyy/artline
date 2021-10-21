@@ -120,10 +120,11 @@ function initServer() {
 			return user;
 		},
 		'/articles': ({ from = 0, to = 10, arrOfId = null }) => {
+			// prod
 			const response = {
 				success: null,
 				articles: [],
-				paginationPages: Math.ceil((parsedDB.articles.length - from) / 10),
+				paginationPages: Math.ceil(parsedDB.articles.length / 10),
 			};
 
 			if (arrOfId !== null) {
@@ -134,11 +135,26 @@ function initServer() {
 				response.articles = parsedDB.articles.slice(from, to);
 			}
 
+			// test pagination
+			// const response = {
+			// 	success: null,
+			// 	articles: [],
+			// 	paginationPages: 200,
+			// };
+
+			// if (arrOfId !== null) {
+			// 	response.articles = parsedDB.articles.filter((article) => {
+			// 		return arrOfId.includes(article.id);
+			// 	});
+			// } else {
+			// 	response.articles = parsedDB.articles.slice(0, 10);
+			// }
+
 			return response;
 		},
 		'/article': (id) =>
 			parsedDB.articles.find((article) => Number(article.id) === Number(id)),
-		'/articles-by-tag': ({ tag, from = 0, to = 10 }) => {
+		'/articles-by-tag': ({ tag, from = 0, to = 30 }) => {
 			const articles = parsedDB.articles.reduce((acc, curr) => {
 				if (curr.tags.includes(tag)) {
 					acc.push(curr);

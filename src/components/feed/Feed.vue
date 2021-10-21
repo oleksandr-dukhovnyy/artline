@@ -13,7 +13,7 @@
 			:tags="article.tags"
 		/>
 		<Pagination
-			:items="paginationItems"
+			:paginationPages="paginationItems"
 
 			@selectPage="_loadArticles"
 		/>
@@ -30,38 +30,57 @@ export default {
 	name: 'Feed',
 	// data(){
 	// 	return {
-			
+	// 		currentPaginationPage: 1
 	// 	}
 	// },
 	props: {
 		articles: Array,
-		from: {
-      		type: Number,
-      		default: 0
-    	},
-		to: {
-      		type: Number,
-      		default: 10
-    	},
 	},
 	computed: {
-		...mapGetters(['paginationItems'])
+		...mapGetters(['paginationItems', 'articlesLoading'])
 	},
 	methods: {
 		...mapActions(['loadArticles']),
-		_loadArticles(from = 0, to = 10){
-			this.loadArticles({
-				from, to
-			});
+		_loadArticles(page){
+			if (page !== undefined && !isNaN(page)) {
+				this.$router.push({name: this.$route.name, query: {page}});
+				this.loadCurrentArticles();
+			}
+		},
+		loadCurrentArticles(){
+			let queryPage = (+this.$route.query.page) - 1 || 0;
+
+			if(queryPage < 0){
+				queryPage = 0;
+				this.$router.push({name: this.$route.name, query: {page: this.paginationItems}});
+			}
+
+			if(queryPage > this.paginationItems && this.paginationItems !== null){
+				console.log('queryPage > this.paginationItems', this.paginationItems);
+				this.$router.push({name: this.$route.name, query: {page: this.paginationItems}});
+				queryPage = this.paginationItems;
+			}
+
+			if (isNaN(queryPage)) {
+				console.log('load1', 0, 10);
+				this.loadArticles({
+					from: 0, to: 10
+				});
+			} else {
+				console.log('load2', queryPage * 10, (queryPage+1) * 10);
+				this.loadArticles({
+					from: queryPage * 10, to: (queryPage+1) * 10
+				});
+			}
 		}
 	},
 	components: {
 		FeedArticle,
 		Pagination
 	},
-	mounted(){
-		if(this.articles === undefined){
-			this._loadArticles();
+	created(){
+		if(this.articles.length === 0 && !this.articlesLoading){
+			this.loadCurrentArticles();
 		}
 	}
 }
