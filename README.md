@@ -1,6 +1,6 @@
 # Artline
 
-(vue.js, vue-cli, webpack, vuex, vue-router, vue-quill-editor)
+(vue.js, vue-cli, webpack, vuex, vue-router, vue-quill-editor, scss)
 
 ### [live-demo](https://aleksandr-js-developer.github.io/artline/)
 
