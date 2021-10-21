@@ -1,4 +1,6 @@
-# artline
+# Artline
+
+(vue.js, vue-cli, webpack, vuex, vue-router, vue-quill-editor)
 
 ## Project setup
 ```
