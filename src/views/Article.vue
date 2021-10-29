@@ -218,15 +218,29 @@ export default {
 @import '@/assets/scss/mixins.scss';
 
 // local vars
-$article-width: 820px;
+$article-width-desktop: 820px;
+$article-width-tablet: 820px;
+$article-width-mobile: 320px;
 // /local vars
+@mixin block-width {
+	@include desktop {
+		width: $article-width-desktop;
+	}
+	@include tablet {
+		width: $article-width-tablet;
+	}
+	@include mobile {
+		width: $article-width-mobile;
+	}
+}
 
 .link {
 	@include link();
 }
 
 .loader {
-	width: $article-width;
+	// width: $article-width;
+	@include block-width;
 	height: 84vh;
 	display: flex;
 	padding: auto;
@@ -238,7 +252,7 @@ $article-width: 820px;
 .article {
 	margin: 30px 0;
 	padding: $break 10px;
-	width: $article-width;
+	@include block-width;
 
 	@include data-block;
 
@@ -255,11 +269,15 @@ $article-width: 820px;
 	}
 
 	&-picture_placeholder {
-		width: 800px;
+		@include block-width;
 		height: 450px;
 	}
 
 	&-img {
+		@include mobile {
+			width: 300px;
+			height: 168.75%;
+		}
 		margin: 0 auto;
 		border-radius: $border-radius;
 	}
@@ -271,8 +289,37 @@ $article-width: 820px;
 		align-items: center;
 		grid-gap: $break;
 		padding: 0px 0px 10px;
-		font-size: 0.8em;
+		font-size: $font-size-s;
 		font-style: italic;
+
+		&-tags {
+			display: grid;
+			grid-auto-flow: dense;
+			grid-template-columns: repeat(5, auto);
+			grid-column-gap: 5px;
+			grid-template-rows: 1fr;
+
+			&-tag {
+				@include tag;
+
+				overflow: hidden;
+
+				@include mobile {
+					max-width: 75px;
+				}
+			}
+
+			@include mobile {
+				grid-template-columns: repeat(4, auto);
+				grid-row-gap: 10px;
+			}
+		}
+
+		@include mobile {
+			grid-template-rows: 25px 1fr;
+			grid-template-columns: unset;
+
+		}
 	}
 
 	&-read_more {
@@ -282,18 +329,6 @@ $article-width: 820px;
 		color: $main-color;
 
 		@include button();
-	}
-
-	&-data-tags {
-		display: grid;
-		grid-auto-flow: dense;
-		grid-template-columns: repeat(5, auto);
-		grid-column-gap: 5px;
-		grid-template-rows: 1fr;
-
-		&-tag {
-			@include tag;
-		}
 	}
 
 	&-author {
@@ -325,7 +360,7 @@ $article-width: 820px;
 }
 
 .comments {
-	width: $article-width;
+	@include block-width;
 	margin-bottom: 25px;
 	padding: $break;
 	@include data-block;
@@ -350,7 +385,7 @@ $article-width: 820px;
 
 			&-time {
 				font-style: italic;
-				font-size: 0.8em;
+				font-size: $font-size-s;
 				color: $muted-text-color;
 			}
 		}
@@ -375,7 +410,7 @@ $article-width: 820px;
 }
 
 .write_comment {
-	width: $article-width;
+	@include block-width;
 	padding: $break;
 	margin-bottom: 25px;
 

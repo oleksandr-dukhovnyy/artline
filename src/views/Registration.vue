@@ -124,10 +124,10 @@ export default {
 
 		&-input {
 			width: 100%;
-			height: 10vh;
+			height: 35px;
 			padding: 1.5vh;
 			margin-bottom: $break;
-			font-size: 1em;
+			font-size: $font-size-m;
 		}
 
 		&-submit {

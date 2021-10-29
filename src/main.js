@@ -9,11 +9,16 @@ import VueQuillEditor from 'vue-quill-editor';
 import 'quill/dist/quill.snow.css';
 
 import 'animate.css';
+
+// import setDeviceType from '@/js/setDeviceType.js';
 // /libs
 
-Vue.config.productionTip = false;
-
+//  libs setup
+// setDeviceType();
 Vue.use(VueQuillEditor /* { default global options } */);
+// /libs setup
+
+Vue.config.productionTip = false;
 
 new Vue({
 	router,

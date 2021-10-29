@@ -24,6 +24,11 @@ export default {
   },
   created(){
     this.autoLogin();
+
+    // if(confirm('delete-database?')){
+    //   localStorage.clear();
+    //   location.reload();
+    // }
   }
 }
 </script>
@@ -34,11 +39,12 @@ export default {
   @import '@/assets/scss/vars.scss';
 
   .main {
-    padding-top: $header-height;
+    padding: 40px 0 0 0;
     background-color: $home_background-color;
 
     display: flex;
     justify-content: center;
+    // width: 100vw;
   }
 
 
