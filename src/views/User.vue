@@ -237,7 +237,7 @@ $article-width-mobile: 300px;
 	padding: auto;
 	align-items: center;
 	justify-content: center;
-	margin-left: -343px;
+	// margin-left: -343px;
 }
 
 .empty {

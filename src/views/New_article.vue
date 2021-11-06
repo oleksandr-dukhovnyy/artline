@@ -272,9 +272,22 @@ $article-desktop-width: 830px;
 		}
 
 		&-image {
-			@include mobile {
-				width: 90vw;
-				height: calc(90vw * .5625);
+			@include mobile-portrait {
+				width: 92vw;
+				height: calc(92vw * .5625);
+			}
+			@include mobile-landscape {
+				width: 95.5vw;
+				height: calc(95.5vw * .5625);
+			}
+
+			@include tablet-portrait {
+				width: 92vw;
+				height: calc(92vw * .5625);
+			}
+			@include tablet-landscape {
+				width: 95.5vw;
+				height: calc(95.5vw * .5625);
 			}
 		}
 	}

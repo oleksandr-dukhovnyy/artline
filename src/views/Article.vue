@@ -220,7 +220,7 @@ export default {
 // local vars
 $article-width-desktop: 820px;
 $article-width-tablet: 700px;
-$article-width-mobile: 320px;
+$article-width-mobile: 100%;
 // /local vars
 @mixin block-width {
 	@include desktop {
@@ -246,7 +246,7 @@ $article-width-mobile: 320px;
 	padding: auto;
 	align-items: center;
 	justify-content: center;
-	margin-left: -343px;
+	// margin-left: -343px;
 }
 
 .article {
@@ -255,6 +255,10 @@ $article-width-mobile: 320px;
 	@include block-width;
 
 	@include data-block;
+
+	@include mobile {
+		margin-top: 0px;
+	}
 
 	&-title {
 		margin: $break 0px;
@@ -275,8 +279,8 @@ $article-width-mobile: 320px;
 
 	&-img {
 		@include mobile {
-			width: 300px;
-			height: 168.75%;
+			width: 94vw;
+			height: calc(94vw * .5625);
 		}
 		@include tablet {
 			width: 680px;

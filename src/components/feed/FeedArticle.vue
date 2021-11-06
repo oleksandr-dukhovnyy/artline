@@ -129,15 +129,15 @@ export default {
 			height: calc(295px * 0.5625);
 		}
 
-		@include tablet-portrait {
+		@include tablet {
 			width: 480px;
 			height: calc(480px * 0.5625);
 		}
 
-		@include tablet-landscape {
-			width: 719px;
-			height: calc(719px * 0.5625);
-		}
+		// @include tablet-landscape {
+		// 	width: 719px;
+		// 	height: calc(719px * 0.5625);
+		// }
 	}
 
 	&-data {

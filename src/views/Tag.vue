@@ -20,8 +20,8 @@
 		
 		</section>
 
-		<div v-else>
-			Loading...
+		<div v-else class="loader">
+			<Loader />
 		</div>
 	</div>
 	
@@ -31,11 +31,12 @@
 <script>
 import {mapGetters, mapActions} from 'vuex';
 import Articles from '@/components/feed/Feed';
+import Loader from '@/components/loader/LoaderLines.vue';
 
 export default {
 	name: 'Tag',
 	components: {
-		Articles
+		Articles, Loader
 	},
 	data: () => ({
 		articlesWidthTag: 120
@@ -62,12 +63,30 @@ export default {
 <style lang="scss" scoped>
 	@import '@/assets/scss/mixins.scss';
 
+	.loader {
+		width: 100%;
+		height: 100%;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.wrapper {
 		min-height: 83vh;
 	}
 
 	.tag {
 		width: 850px;
+
+		@include mobile {
+			width: 100%;
+		}
+
+		@include tablet {
+			width: 530px;
+		}
+
 		padding: $break;
 
 		&-header {
