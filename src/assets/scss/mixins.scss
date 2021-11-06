@@ -1,4 +1,5 @@
 @import './vars.scss';
+@import './media.scss';
 
 @mixin link {
 	// text-decoration: none;
@@ -15,10 +16,7 @@
 @mixin button($bg-color: transparent) {
 	border-radius: $border-radius;
 	background-color: $bg-color;
-
-	&:hover {
-		cursor: pointer;
-	}
+	cursor: pointer;
 }
 
 @mixin action-button(
@@ -37,10 +35,24 @@
 	}
 
 	@if ($hoverActive == 'yes') {
-		&:hover {
-			color: #fff;
-			background-color: $color;
-			transition: background-color 1s;
+		@include desktop {
+			&:hover {
+				color: #fff;
+				background-color: $color;
+				transition: background-color 1s;
+			}
+		}
+
+		@include mobile {
+			&:hover {
+				color: $color;
+			}
+		}
+
+		@include tablet {
+			&:hover {
+				color: $color;
+			}
 		}
 	}
 }

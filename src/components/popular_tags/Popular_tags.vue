@@ -1,6 +1,6 @@
 <template>
 
-	<div class="home-popular_tags animate__animated animate__fadeInRight">
+	<div class="home-popular_tags">
 		<strong>
 			Popular tags:
 		</strong>
@@ -45,20 +45,40 @@ export default {
 	@import '@/assets/scss/mixins.scss';
 
 	.home-popular_tags {
-		margin-top: 26px;
+		margin-top: $break;
 		background-color: #fff;
 		height: max-content;
 		padding: $break;
 		border-radius: $border-radius;
 
+		@include mobile {
+			& {
+				grid-row: 1;
+			}
+		}
+
+		@include desktop-s {
+			& {
+				display: none;
+			}
+		}
+
 		&-contain {
 			display: grid;
 			grid-auto-flow: dense;
 			grid-gap: 5px;
-			grid-template-rows: repeat(10, max-content);
+			grid-template-rows: repeat(10, auto);
 			grid-template-columns: 1fr 1fr;
 			margin-top: $break;
 			width: 100%;
+
+			@include mobile {
+				& {
+					grid-template-columns: repeat(3, 1fr);
+					grid-template-rows: minmax(1fr, max-content);
+					grid-template-rows: auto;
+				}
+			}
 
 			&-tag {
 				width: max-content;
@@ -74,7 +94,7 @@ export default {
 	.link {
 		@include link();
 		font-style: italic;
-		font-size: 0.9em;
+		font-size: $font-size-sm;
 	}
 
 </style>

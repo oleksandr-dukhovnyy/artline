@@ -60,6 +60,7 @@
 									alt="_article_img"
 									width="800"
 									height="450"
+									class="user-actions-content-articles-article-img-img"
 								/>
 							</div>
 							<div class="user-actions-content-articles-article-header">
@@ -136,7 +137,6 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex';
 import Loader from '@/components/loader/LoaderLines.vue';
 import API from '@/api/index.api.js';
 import { mapGetters } from 'vuex';
@@ -210,17 +210,34 @@ export default {
 @import '@/assets/scss/mixins.scss';
 
 // local vars
-$user_page-width: 820px;
+// $user_page-width: 820px;
 // /local vars
 
+// local vars
+$article-width-desktop: 820px;
+$article-width-tablet: 650px;
+$article-width-mobile: 300px;
+// /local vars
+@mixin block-width {
+	@include desktop {
+		width: $article-width-desktop;
+	}
+	@include tablet {
+		width: $article-width-tablet;
+	}
+	@include mobile {
+		width: $article-width-mobile;
+	}
+}
+
 .loader {
-	width: $user_page-width;
-	height: 84vh;
+	@include block-width;
+	height: 90vh;
 	display: flex;
 	padding: auto;
 	align-items: center;
 	justify-content: center;
-	margin-left: -343px;
+	// margin-left: -343px;
 }
 
 .empty {
@@ -230,12 +247,16 @@ $user_page-width: 820px;
 
 .user {
 	margin: $break 0;
-	padding: 0 25px 25px 25px;
-	width: $user_page-width;
+	padding: 0 $break $break $break;
 	@include data-block;
+	@include block-width;
+
+	&-contain {
+		min-height: 90vh;
+	}
 
 	&-header {
-		padding: 25px 0;
+		padding: $break 0;
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: $avatar-size-l 20px 1fr;
@@ -250,11 +271,11 @@ $user_page-width: 820px;
 		}
 
 		&-name {
-			font-size: 1.1em;
+			font-size: $font-size-m;
 			margin: 0 auto;
 
 			&-editbttn {
-				font-size: 0.7em;
+				font-size: $font-size-s;
 				color: $muted-text-color;
 			}
 		}
@@ -271,6 +292,22 @@ $user_page-width: 820px;
 
 				&.active {
 					border-bottom: 1px solid transparent;
+				}
+
+				@include mobile {
+					font-size: $font-size-s;
+					&:hover {
+						background-color: #fff;
+						color: $cta-color;
+					}
+				}
+
+				@include tablet {
+					font-size: $font-size-s;
+					&:hover {
+						background-color: #fff;
+						color: $cta-color;
+					}
 				}
 			}
 		}
@@ -298,7 +335,7 @@ $user_page-width: 820px;
 						align-items: center;
 						grid-template-columns: $avatar-size-m max-content 1fr;
 						grid-gap: 10px;
-						font-size: 0.9em;
+						font-size: $font-size-sm;
 
 						&-img {
 							@include avatar;
@@ -311,13 +348,13 @@ $user_page-width: 820px;
 						&-time {
 							font-style: italic;
 							margin-top: 0.1em;
-							font-size: 0.9em;
+							font-size: $font-size-sm;
 							opacity: 0.5;
 						}
 					}
 
 					&-article_title {
-						font-size: 0.9em;
+						font-size: $font-size-sm;
 
 						&-link {
 							font-style: italic;
@@ -345,8 +382,18 @@ $user_page-width: 820px;
 					padding: $break 0;
 
 					&-img {
-						& > img {
-							width: 100%;
+						display: none;
+						&-img {
+							// width: 100%;
+							@include mobile {
+								width: 285px;
+								height: calc(285px * 0.5625); // x * 9 / 16 === x * 0.5625 (image format 16:9)
+							}
+
+							@include tablet {
+								width: 620px;
+								height: calc(620px * 0.5625);
+							}
 						}
 					}
 

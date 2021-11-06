@@ -84,7 +84,7 @@ export default {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			font-size: 0.8em;
+			font-size: $font-size-s;
 
 			@include link();
 
@@ -98,7 +98,7 @@ export default {
 			line-height: 20px;
 			
 			padding: 5px;
-			font-size: 0.75em;
+			font-size: $font-size-s;
 			display: flex;
 			align-items: center;
 			justify-content: center;

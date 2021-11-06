@@ -405,6 +405,16 @@ export default {
 	
 	margin: 25px 0;
 
+	@include mobile {
+		margin: 0;
+		margin-bottom: 25px;
+	}
+
+	@include tablet-portrait {
+		margin: 0;
+		margin-bottom: 25px;
+	}
+
 	@include data-block;
 	background-color: transparent;
 
@@ -457,7 +467,7 @@ export default {
 
 			&-name {
 				&-title {
-					font-size: 0.8em;
+					font-size: $font-size-s;
 					font-weight: 700;
 				}
 				&-input {
@@ -471,7 +481,7 @@ export default {
 
 			&-about {
 				&-title {
-					font-size: 0.8em;
+					font-size: $font-size-s;
 					font-weight: 700;
 				}
 				&-input {
@@ -564,6 +574,16 @@ export default {
 					&-img {
 						& > img {
 							width: 100%;
+
+							@include mobile {
+								width: 91vw;
+								height: calc(91vw * 0.5625);
+							}
+
+							// @include tablet {
+							// 	width: 95.8vw;
+							// 	height: calc(95.8vw * 0.5625);
+							// }
 						}
 					}
 
@@ -600,7 +620,7 @@ export default {
 						align-items: center;
 						grid-template-columns: $avatar-size-m max-content 1fr;
 						grid-gap: 10px;
-						font-size: 0.9em;
+						font-size: $font-size-sm;
 
 						&-img {
 							@include avatar;
@@ -613,13 +633,13 @@ export default {
 						&-time {
 							font-style: italic;
 							margin-top: 0.1em;
-							font-size: 0.9em;
+							font-size: $font-size-sm;
 							opacity: 0.5;
 						}
 					}
 
 					&-article_title {
-						font-size: 0.9em;
+						font-size: $font-size-sm;
 
 						&-link {
 							font-style: italic;
