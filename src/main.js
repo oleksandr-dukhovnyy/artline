@@ -15,7 +15,7 @@ import 'animate.css';
 
 //  libs setup
 // setDeviceType();
-Vue.use(VueQuillEditor /* { default global options } */);
+Vue.use(VueQuillEditor);
 // /libs setup
 
 Vue.config.productionTip = false;

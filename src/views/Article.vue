@@ -219,7 +219,7 @@ export default {
 
 // local vars
 $article-width-desktop: 820px;
-$article-width-tablet: 820px;
+$article-width-tablet: 700px;
 $article-width-mobile: 320px;
 // /local vars
 @mixin block-width {
@@ -278,6 +278,11 @@ $article-width-mobile: 320px;
 			width: 300px;
 			height: 168.75%;
 		}
+		@include tablet {
+			width: 680px;
+			height: calc(680px * 0.5625);
+		}
+
 		margin: 0 auto;
 		border-radius: $border-radius;
 	}

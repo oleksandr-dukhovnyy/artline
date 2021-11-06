@@ -405,6 +405,16 @@ export default {
 	
 	margin: 25px 0;
 
+	@include mobile {
+		margin: 0;
+		margin-bottom: 25px;
+	}
+
+	@include tablet-portrait {
+		margin: 0;
+		margin-bottom: 25px;
+	}
+
 	@include data-block;
 	background-color: transparent;
 
@@ -564,6 +574,16 @@ export default {
 					&-img {
 						& > img {
 							width: 100%;
+
+							@include mobile {
+								width: 91vw;
+								height: calc(91vw * 0.5625);
+							}
+
+							// @include tablet {
+							// 	width: 95.8vw;
+							// 	height: calc(95.8vw * 0.5625);
+							// }
 						}
 					}
 

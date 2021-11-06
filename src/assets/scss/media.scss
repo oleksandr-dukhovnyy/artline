@@ -3,8 +3,8 @@ $media-mobile-s: 320px;
 $media-mobile-m: 640px;
 $media-mobile-l: 1080px;
 
-$media-tablet-s: 1200px;
-$media-tablet-m: 1400px;
+$media-tablet-s: 600px;
+$media-tablet-m: 1000px;
 $media-tablet-l: 1600px;
 
 $media-desktop-s: 1200px;
@@ -47,9 +47,10 @@ $media-desktop-l: 2200px;
 // mobile
 @mixin mobile {
 	html.mobile & {
-		@include media-mx($media-mobile-l) {
-			@content;
-		}
+		// @include media-mx($media-mobile-l) {
+		// 	@content;
+		// }
+		@content;
 	}
 }
 @mixin mobile-landscape {
@@ -138,9 +139,10 @@ $media-desktop-l: 2200px;
 // tablet
 @mixin tablet() {
 	html.tablet & {
-		@include media-mn-mx($media-tablet-s, $media-tablet-l) {
-			@content;
-		}
+		// @include media-mn-mx($media-tablet-s, $media-tablet-l) {
+		// 	@content;
+		// }
+		@content;
 	}
 }
 @mixin tablet-landscape() {
@@ -227,9 +229,10 @@ $media-desktop-l: 2200px;
 // desktop
 @mixin desktop() {
 	html.desktop & {
-		@include media-mn-mx($media-desktop-s, $media-desktop-l) {
-			@content;
-		}
+		// @include media-mn-mx($media-desktop-s, $media-desktop-l) {
+		// 	@content;
+		// }
+		@content;
 	}
 }
 @mixin desktop-landscape() {

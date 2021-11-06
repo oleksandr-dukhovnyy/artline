@@ -87,10 +87,10 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/mixins.scss';
 
-$modal-width: 400px;
+$modal-width: 320px;
 $modal-height: 300px;
 
-$buttons-width: 370px;
+$buttons-width: 290px;
 
 .modal {
 	width: 100vw;
@@ -184,7 +184,7 @@ $buttons-width: 370px;
 
 		grid-gap: $break;
 
-		width: 360px;
+		width: 320px;
 		height: max-content;
 
 		&-button {

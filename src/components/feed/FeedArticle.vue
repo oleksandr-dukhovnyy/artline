@@ -81,11 +81,11 @@ export default {
 		width: 100%;
 	}
 
-	@include tablet-s-landscape {
+	@include tablet-landscape {
 		width: 100%;
 	}
 
-	@include tablet-s-portrait {
+	@include tablet-portrait {
 		width: 500px;
 	}
 
@@ -126,12 +126,17 @@ export default {
 
 		@include mobile-m {
 			width: 295px;
-			height: 165px;
+			height: calc(295px * 0.5625);
 		}
 
-		@include tablet-s-portrait {
+		@include tablet-portrait {
 			width: 480px;
-			height: 270px;
+			height: calc(480px * 0.5625);
+		}
+
+		@include tablet-landscape {
+			width: 719px;
+			height: calc(719px * 0.5625);
 		}
 	}
 

@@ -57,11 +57,11 @@ export default {
 			}
 		}
 
-		// @include mobile-m {
-		// 	& {
-		// 		display: none;
-		// 	}
-		// }
+		@include desktop-s {
+			& {
+				display: none;
+			}
+		}
 
 		&-contain {
 			display: grid;

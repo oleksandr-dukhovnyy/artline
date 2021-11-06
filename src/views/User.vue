@@ -60,6 +60,7 @@
 									alt="_article_img"
 									width="800"
 									height="450"
+									class="user-actions-content-articles-article-img-img"
 								/>
 							</div>
 							<div class="user-actions-content-articles-article-header">
@@ -136,7 +137,6 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex';
 import Loader from '@/components/loader/LoaderLines.vue';
 import API from '@/api/index.api.js';
 import { mapGetters } from 'vuex';
@@ -215,8 +215,8 @@ export default {
 
 // local vars
 $article-width-desktop: 820px;
-$article-width-tablet: 820px;
-$article-width-mobile: 320px;
+$article-width-tablet: 650px;
+$article-width-mobile: 300px;
 // /local vars
 @mixin block-width {
 	@include desktop {
@@ -231,8 +231,8 @@ $article-width-mobile: 320px;
 }
 
 .loader {
-	@include block-width;;
-	height: 84vh;
+	@include block-width;
+	height: 90vh;
 	display: flex;
 	padding: auto;
 	align-items: center;
@@ -248,8 +248,12 @@ $article-width-mobile: 320px;
 .user {
 	margin: $break 0;
 	padding: 0 $break $break $break;
-	@include block-width;;
 	@include data-block;
+	@include block-width;
+
+	&-contain {
+		min-height: 90vh;
+	}
 
 	&-header {
 		padding: $break 0;
@@ -288,6 +292,22 @@ $article-width-mobile: 320px;
 
 				&.active {
 					border-bottom: 1px solid transparent;
+				}
+
+				@include mobile {
+					font-size: $font-size-s;
+					&:hover {
+						background-color: #fff;
+						color: $cta-color;
+					}
+				}
+
+				@include tablet {
+					font-size: $font-size-s;
+					&:hover {
+						background-color: #fff;
+						color: $cta-color;
+					}
 				}
 			}
 		}
@@ -362,11 +382,17 @@ $article-width-mobile: 320px;
 					padding: $break 0;
 
 					&-img {
-						& > img {
+						display: none;
+						&-img {
 							// width: 100%;
 							@include mobile {
-								width: 290px;
-								height: calc(290px * 0.5625); // x * 9 / 16 === x * 0.5625
+								width: 285px;
+								height: calc(285px * 0.5625); // x * 9 / 16 === x * 0.5625 (image format 16:9)
+							}
+
+							@include tablet {
+								width: 620px;
+								height: calc(620px * 0.5625);
 							}
 						}
 					}

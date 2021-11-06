@@ -53,6 +53,14 @@ export default {
 		@include mobile-m {
 			width: 335px;
 		}
+
+		@include desktop {
+			width: 850px;
+		}
+
+		@include desktop-s {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	&-loader {
