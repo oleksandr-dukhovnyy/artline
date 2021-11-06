@@ -227,7 +227,21 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/mixins.scss';
 
-$article-width: 830px;
+$article-mobile-width: 100%;
+$article-tablet-width: $media-tablet-s;
+$article-desktop-width: 830px;
+
+@mixin block-width {
+	@include mobile {
+		width: $article-mobile-width;
+	}
+	@include tablet {
+		width: $article-mobile-width;
+	}
+	@include desktop {
+		width: $article-desktop-width;
+	}
+}
 
 .write-preview img {
 	max-width: 100%;
@@ -240,9 +254,14 @@ $article-width: 830px;
 
 .write {
 	margin: $break;
-	width: $article-width;
+	
+	@include block-width;
 	@include data-block;
 	padding: $break;
+
+	@include mobile {
+		margin: 0px;
+	}
 
 	&-image {
 		padding: $break 0;
@@ -250,6 +269,13 @@ $article-width: 830px;
 		&-title {
 			font-size: $font-size-s;
 			font-weight: 700;
+		}
+
+		&-image {
+			@include mobile {
+				width: 90vw;
+				height: calc(90vw * .5625);
+			}
 		}
 	}
 

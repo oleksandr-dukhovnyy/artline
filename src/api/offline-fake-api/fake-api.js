@@ -155,21 +155,22 @@ function initServer() {
 		'/article': (id) =>
 			parsedDB.articles.find((article) => Number(article.id) === Number(id)),
 		'/articles-by-tag': ({ tag, from = 0, to = 10 }) => {
-			const articles = parsedDB.articles.reduce((acc, curr) => {
-				if (curr.tags.includes(tag)) {
-					acc.push(curr);
-				}
+			const articles = parsedDB.articles
+				.reduce((acc, curr) => {
+					if (curr.tags.includes(tag)) {
+						acc.push(curr);
+					}
 
-				return acc;
-			}, [])
-			.slice(from, to);
+					return acc;
+				}, [])
+				.slice(from, to);
 
 			const response = {
 				success: true,
 				articles,
 				paginationPages: Math.ceil(articles.length / 10),
-			}
-			
+			};
+
 			return response;
 		},
 		'/articles-by-tag-count': (tag) => {
@@ -416,7 +417,7 @@ function initServer() {
 					tags: articleData.tags,
 					comments: [],
 					id: generateArticleID(parsedDB.articles),
-					creationDate: getCurrentTime('[d]:[mt]:[sy], at: [h]:[m]'),
+					creationDate: getCurrentTime('[d].[mt].[sy], at: [h]:[m]'),
 				};
 
 				const author = parsedDB.users.find((u) => u.id === userID);
