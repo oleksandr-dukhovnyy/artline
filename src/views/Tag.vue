@@ -8,7 +8,7 @@
 					Articles width tag "<span class="tag-header-title-cta">{{ $route.params.tag }}</span>"
 				</h1>
 				<div class="tag-header-articles_width_tag">
-					Articles width tag: {{ articlesByTagCount !== null ? articlesByTagCount : 'loading...' }}
+					Articles with tag: {{ articlesByTagCount !== null ? articlesByTagCount : 'loading...' }}
 				</div>
 			</div>
 
