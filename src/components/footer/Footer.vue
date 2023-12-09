@@ -16,8 +16,7 @@
 
 <script>
   export default {
-    name: 'Footer',
-    mount() {},
+    name: 'TheFooter',
   };
 </script>
 

@@ -45,7 +45,7 @@
     ></div>
     <p
       class="article-preview"
-      v-html="body.slice(0, 300)"
+      v-purify-html="body.slice(0, 300)"
     ></p>
     <router-link :to="{ name: 'article', params: { id: articleId } }">
       <button class="article-read_more"> read more... </button>
@@ -63,15 +63,36 @@
         return sliced.join('') + '...';
       },
     },
-    props: [
-      'title',
-      'creationDate',
-      'author',
-      'body',
-      'img',
-      'articleId',
-      'tags',
-    ],
+    props: {
+      title: {
+        type: String,
+        default: '',
+      },
+      creationDate: {
+        type: String,
+        default: '',
+      },
+      author: {
+        type: Object,
+        default: () => {},
+      },
+      body: {
+        type: String,
+        default: '',
+      },
+      img: {
+        type: String,
+        default: '',
+      },
+      articleId: {
+        type: Number,
+        default: -1,
+      },
+      tags: {
+        type: Array,
+        default: () => [],
+      },
+    },
   };
 </script>
 

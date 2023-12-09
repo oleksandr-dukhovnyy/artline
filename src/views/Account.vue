@@ -1,8 +1,8 @@
 <template>
   <section class="contain">
     <div
-      class="account"
       v-if="userNotNullAndUndf"
+      class="account"
     >
       <div class="account-header">
         <div class="account-header-avatar">
@@ -28,9 +28,9 @@
         <div class="account-info-name">
           <div class="account-info-name-title">Name:</div>
           <input
+            v-model="newData.name"
             type="text"
             class="account-info-name-input"
-            v-model="newData.name"
             placeholder="Name"
           />
         </div>
@@ -38,8 +38,8 @@
         <div class="account-info-about">
           <div class="account-info-about-title"> About user: </div>
           <textarea
-            class="account-info-about-input"
             v-model="newData.about"
+            class="account-info-about-input"
             placeholder="Write something about yourself"
           >
           </textarea>
@@ -71,20 +71,20 @@
     </div>
 
     <div
-      class="activity"
       v-if="userNotNullAndUndf"
+      class="activity"
     >
       <h2>Activity:</h2>
-      <div class="activity-controlls">
+      <div class="activity-controls">
         <button
-          class="activity-controlls-select_posts"
+          class="activity-controls-select_posts"
           :class="{ active: showNow === 'posts' }"
           @click="showUserActions('posts')"
         >
           My articles ({{ userPosts !== null ? userPosts.length : '...' }})
         </button>
         <button
-          class="activity-controlls-select_comments"
+          class="activity-controls-select_comments"
           :class="{ active: showNow === 'comments' }"
           @click="showUserActions('comments')"
         >
@@ -95,15 +95,15 @@
       </div>
       <div class="activity-data">
         <div
-          class="activity-data-posts animate__animated animate__fadeInUp"
           v-if="
             showNow === 'posts' && userPosts !== null && userPosts.length > 0
           "
+          class="activity-data-posts animate__animated animate__fadeInUp"
         >
           <div
-            class="activity-data-posts-article"
             v-for="(article, i) in userPosts"
             :key="i"
+            class="activity-data-posts-article"
           >
             <div class="activity-data-posts-article-img">
               <img
@@ -140,17 +140,17 @@
         </div>
 
         <div
-          class="activity-data-comments"
           v-if="
             showNow === 'comments' &&
             userComments !== null &&
             userComments.length > 0
           "
+          class="activity-data-comments"
         >
           <div
-            class="activity-data-comments-comment animate__animated animate__zoomIn"
             v-for="(comment, i) in userComments"
             :key="i"
+            class="activity-data-comments-comment animate__animated animate__zoomIn"
           >
             <h3 class="activity-data-comments-comment-article_title">
               <router-link
@@ -197,14 +197,14 @@
     <div v-if="!userNotNullAndUndf"> loading... </div>
     <Modal
       v-if="modals.showConfirm"
-      modalType="confirm"
+      modal-type="confirm"
       :text="modals.deleteAccountText"
       @confirm="confirmResult"
       @clickOutside="closeConfirm"
     />
     <Modal
       v-if="modals.showPrompt"
-      modalType="prompt"
+      modal-type="prompt"
       :text="modals.inputImageUrlText"
       placeholder="url"
       @prompt="promptResult"
@@ -213,9 +213,7 @@
     />
     <Modal
       v-if="modals.showMoreActions"
-      modalType="actions"
-      @actionClick="handleMoreActionsClick"
-      @clickOutside="modals.showMoreActions = false"
+      modal-type="actions"
       :buttons="[
         {
           text: 'Log out',
@@ -223,6 +221,8 @@
           style: 'red',
         },
       ]"
+      @actionClick="handleMoreActionsClick"
+      @clickOutside="modals.showMoreActions = false"
     />
     <!-- <Modal
 			v-if="modals.showMoreActions"
@@ -254,7 +254,7 @@
   const actions = ['logout', 'deleteAccount', 'editAccount'];
 
   export default {
-    name: 'Account',
+    name: 'MyAccount',
     components: {
       Modal,
     },
@@ -272,7 +272,8 @@
         submitAccountEditsBttText: 'update user data',
         modals: {
           showConfirm: false,
-          deleteAccountText: `You are realy watn to <span style="color: #f00;">delete</span> your account?<br>We <strong>cannot</strong> undo this action.<br>All your posts and comments does not deleted.`,
+          deleteAccountText:
+            'You are realy watn to <span style="color: #f00;">delete</span> your account?<br>We <strong>cannot</strong> undo this action.<br>All your posts and comments does not deleted.',
 
           inputImageUrlText: 'Enter url',
           showPrompt: false,
@@ -280,6 +281,16 @@
           showMoreActions: false,
         },
       };
+    },
+    computed: {
+      ...mapGetters(getters),
+      dataEdited() {
+        const fields = Object.keys(this.newData);
+        return fields.some((field) => this.newData[field] !== this.user[field]);
+      },
+      userNotNullAndUndf() {
+        return this.user !== undefined && this.user !== null;
+      },
     },
     watch: {
       authLoading() {
@@ -309,16 +320,7 @@
         this.$router.push({ name: 'registration' });
       }
     },
-    computed: {
-      ...mapGetters(getters),
-      dataEdited() {
-        const fields = Object.keys(this.newData);
-        return fields.some((field) => this.newData[field] !== this.user[field]);
-      },
-      userNotNullAndUndf() {
-        return this.user !== undefined && this.user !== null;
-      },
-    },
+
     methods: {
       ...mapActions(actions),
       setUserData() {
@@ -542,7 +544,7 @@
 
       padding: $break;
 
-      &-controlls {
+      &-controls {
         padding-left: 5px;
 
         &-select {

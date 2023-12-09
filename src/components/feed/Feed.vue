@@ -4,11 +4,11 @@
       v-for="(article, i) in articles"
       :key="i"
       :title="article.title"
-      :creationDate="article.creationDate"
+      :creation-date="article.creationDate"
       :author="article.author"
       :body="article.body"
       :img="article.img"
-      :articleId="article.id"
+      :article-id="article.id"
       :tags="article.tags"
     />
     <!-- <Pagination
@@ -28,12 +28,29 @@
   import Pagination from '@/components/feed/Pagination.vue';
 
   export default {
-    name: 'Feed',
+    name: 'NewsFeed',
+    components: {
+      FeedArticle,
+      // Pagination,
+    },
     props: {
-      articles: Array,
+      articles: {
+        type: Array,
+        default: () => [],
+      },
     },
     computed: {
       ...mapGetters(['paginationItems', 'articlesLoading']),
+    },
+
+    created() {
+      if (
+        this.articles !== undefined &&
+        this.articles.length === 0 &&
+        !this.articlesLoading
+      ) {
+        this.loadCurrentArticles();
+      }
     },
     methods: {
       ...mapActions(['loadArticles']),
@@ -74,19 +91,6 @@
           });
         }
       },
-    },
-    components: {
-      FeedArticle,
-      Pagination,
-    },
-    created() {
-      if (
-        this.articles !== undefined &&
-        this.articles.length === 0 &&
-        !this.articlesLoading
-      ) {
-        this.loadCurrentArticles();
-      }
     },
   };
 </script>

@@ -6,19 +6,19 @@
   >
     <div class="write-image">
       <div
-        class="write-image-title"
         v-if="!conditions.previewON"
+        class="write-image-title"
       >
         Image:
       </div>
       <img
         class="write-image-image"
         :src="article.img"
-        @click="modals.showImagePicker = true"
         width="800"
         height="450"
         title="choose a photo"
         alt="article image"
+        @click="modals.showImagePicker = true"
       />
     </div>
 
@@ -27,26 +27,26 @@
       :class="{ 'write-tags-muted': !conditions.previewON }"
     >
       <div
-        class="write-tags-title"
         v-if="!conditions.previewON"
+        class="write-tags-title"
       >
         Tags:
       </div>
       <input
         v-if="!conditions.previewON"
+        v-model="tagsStr"
         class="write-tags-input"
         type="text"
         placeholder="tags, comma separated"
-        v-model="tagsStr"
       />
       <div
-        class="write-tags-preview"
         v-else
+        class="write-tags-preview"
       >
         <div
-          class="write-tags-preview-tag"
           v-for="(tag, i) in article.tags"
           :key="i"
+          class="write-tags-preview-tag"
         >
           {{ tag }}
         </div>
@@ -55,21 +55,21 @@
 
     <div class="write-title">
       <div
-        class="write-tags-title"
         v-if="!conditions.previewON"
+        class="write-tags-title"
       >
         Article title:
       </div>
       <input
         v-if="!conditions.previewON"
+        v-model="article.title"
         class="write-title-input"
         type="text"
         placeholder="Article title"
-        v-model="article.title"
       />
       <div
-        class="write-title-preview"
         v-else
+        class="write-title-preview"
       >
         <h1 class="write-title-preview-text">
           <span v-if="article.title.length > 0">
@@ -86,27 +86,27 @@
     </div>
 
     <div
-      class="write-editor"
       v-if="!conditions.previewON"
+      class="write-editor"
     >
       <div class="write-editor-title"> Content: </div>
       <quill-editor
         v-model="article.content"
         :options="editorOption"
-        :readOnly="true"
+        :read-only="true"
         @change="updateLocalStorage"
       />
     </div>
 
     <div
-      class="write-preview"
       v-else
-      v-html="preview"
+      class="write-preview"
+      v-purify-html="preview"
     ></div>
 
-    <div class="write-controlls">
+    <div class="write-controls">
       <button
-        class="write-controlls-submit"
+        class="write-controls-submit"
         :class="{ 'cb-unactive': !articleIsValide }"
         :disabled="!articleIsValide"
         @click="submitArticle"
@@ -114,8 +114,8 @@
         submit
       </button>
       <button
+        class="write-controls-preview"
         @click="conditions.previewON = !conditions.previewON"
-        class="write-controlls-preview"
       >
         {{ conditions.previewON ? 'to editor' : 'to preview' }}
       </button>
@@ -124,7 +124,7 @@
     <div class="write-modals">
       <Modal
         v-if="modals.showImagePicker"
-        modalType="prompt"
+        modal-type="prompt"
         :text="modals.pickImageText"
         placeholder="url"
         @prompt="setImage"
@@ -176,27 +176,23 @@
       article: { ...savedArticle },
       tagsStr: savedArticle.tags.join(', '),
     }),
-    methods: {
-      ...mapActions(['sendNewArticle']),
-      setImage(url) {
-        this.modals.showImagePicker = false;
 
-        if (url !== '' && url.length > 3) {
-          this.article.img = url;
+    computed: {
+      ...mapGetters(['authLoading', 'sendNewArticleLoadingStatus']),
+      preview() {
+        if (this.article.content.length < 1) {
+          return '<em style="color: #c2c2c2; font-style: italic;">empty...</em>';
         } else {
-          this.article.img = DEFAULT_ARTICLE_IMG;
+          return this.article.content;
         }
-
-        this.updateLocalStorage();
       },
-      submitArticle() {
-        this.sendNewArticle(this.article);
-      },
-      updateLocalStorage() {
-        localStorage.setItem(
-          UNCOMPLATED_LOCAL_KEY,
-          JSON.stringify(this.article)
-        );
+      articleIsValide() {
+        return [
+          this.article.content.length > MIN_ARTICLE_LENGTH - 1,
+          // this.article.img !== DEFAULT_ARTICLE_IMG,
+          this.article.tags.length > 0,
+          this.article.title.length > 2,
+        ].every((r) => r);
       },
     },
     watch: {
@@ -229,22 +225,27 @@
         }
       },
     },
-    computed: {
-      ...mapGetters(['authLoading', 'sendNewArticleLoadingStatus']),
-      preview() {
-        if (this.article.content.length < 1) {
-          return '<em style="color: #c2c2c2; font-style: italic;">empty...</em>';
+    methods: {
+      ...mapActions(['sendNewArticle']),
+      setImage(url) {
+        this.modals.showImagePicker = false;
+
+        if (url !== '' && url.length > 3) {
+          this.article.img = url;
         } else {
-          return this.article.content;
+          this.article.img = DEFAULT_ARTICLE_IMG;
         }
+
+        this.updateLocalStorage();
       },
-      articleIsValide() {
-        return [
-          this.article.content.length > MIN_ARTICLE_LENGTH - 1,
-          // this.article.img !== DEFAULT_ARTICLE_IMG,
-          this.article.tags.length > 0,
-          this.article.title.length > 2,
-        ].every((r) => r);
+      submitArticle() {
+        this.sendNewArticle(this.article);
+      },
+      updateLocalStorage() {
+        localStorage.setItem(
+          UNCOMPLATED_LOCAL_KEY,
+          JSON.stringify(this.article)
+        );
       },
     },
   };
@@ -321,7 +322,7 @@
       }
     }
 
-    &-controlls {
+    &-controls {
       padding: $break 0;
       border-top: 1px solid $invisible-color;
       margin-top: $break;

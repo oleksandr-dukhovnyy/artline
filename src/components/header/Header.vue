@@ -28,8 +28,8 @@
     </nav>
 
     <nav
-      class="header-navbar"
       v-else
+      class="header-navbar"
     >
       <router-link
         class="header-navbar-link"
@@ -51,7 +51,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: 'Header',
+    name: 'TheHeader',
     computed: {
       ...mapGetters(['user']),
       isCurrectUsername() {

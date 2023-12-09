@@ -1,31 +1,25 @@
 <template>
-
-	<div class="wrapper">
-		<div>
-			Loading...
-		</div>
-	</div>
-
+  <div class="wrapper">
+    <div> Loading... </div>
+  </div>
 </template>
 
 <script>
-
-export default {
-	name: 'Loader'
-}
-
+  export default {
+    name: 'LoaderLines',
+  };
 </script>
 
 <style lang="scss" scoped>
-	.wrapper{
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-		div {
-			margin: auto 0;
-		}
-	}
+    div {
+      margin: auto 0;
+    }
+  }
 </style>

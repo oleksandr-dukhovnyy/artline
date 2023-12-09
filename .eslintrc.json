@@ -16,6 +16,7 @@
     "comma-spacing": ["error", { "before": false, "after": true }],
     "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
     "object-curly-spacing": ["error", "always"],
+    "vue/order-in-components": "error",
     "array-bracket-spacing": "off"
   },
   "ignorePatterns": [

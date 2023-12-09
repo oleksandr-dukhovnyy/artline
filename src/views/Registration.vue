@@ -2,26 +2,26 @@
   <section class="registration animate__animated animate__fadeIn">
     <h2 class="registration-title">Registration</h2>
     <form
-      @submit.prevent="submit"
       class="registration-form"
+      @submit.prevent="submit"
     >
       <input
-        type="text"
         v-model="data.login"
+        type="text"
         placeholder="login"
         class="registration-form-input registration-form-login"
       />
 
       <input
-        type="email"
         v-model="data.email"
+        type="email"
         placeholder="email"
         class="registration-form-input registration-form-password"
       />
 
       <input
-        type="password"
         v-model="data.password"
+        type="password"
         placeholder="password"
         class="registration-form-input registration-form-password"
       />
@@ -50,7 +50,7 @@
   import { mapActions, mapGetters } from 'vuex';
 
   export default {
-    name: 'Registration',
+    name: 'RegistrationView',
     data: () => ({
       data: {
         login: 'bla-bla-' + Math.floor(Math.random() * 9999),

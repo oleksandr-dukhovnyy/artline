@@ -11,9 +11,9 @@
         <div class="article-data-creation_date">{{ article.creationDate }}</div>
         <div class="article-data-tags">
           <div
-            class="article-data-tags-tag"
             v-for="(item, i) in article.tags"
             :key="i"
+            class="article-data-tags-tag"
           >
             <router-link
               class="link"
@@ -38,8 +38,8 @@
       ></div>
 
       <p
-        v-html="article.body"
         class="article-body"
+        v-purify-html="article.body"
       ></p>
 
       <div class="article-line"></div>
@@ -68,35 +68,38 @@
     >
       <h4 class="comments-title"> Comments: {{ article.comments.length }} </h4>
       <div
-        v-for="(comment, i) in article.comments"
+        v-for="(articleComment, i) in article.comments"
         :key="i"
         class="comments-comment"
-        :class="{ loading: comment.loading, err: comment.status === 'err' }"
+        :class="{
+          loading: articleComment.loading,
+          err: articleComment.status === 'err',
+        }"
       >
         <div class="comments-comment-author">
           <img
             width="40"
             height="40"
-            :src="comment.author.avatar"
+            :src="articleComment.author.avatar"
             alt="user_avatar"
             class="comments-comment-author-img"
           />
           <strong class="comments-comment-author-name">
             <router-link
               class="link"
-              :to="{ name: 'user', params: { id: comment.author.id } }"
+              :to="{ name: 'user', params: { id: articleComment.author.id } }"
             >
               {{
-                comment.author.name !== ''
-                  ? comment.author.name
-                  : comment.author.login
+                articleComment.author.name !== ''
+                  ? articleComment.author.name
+                  : articleComment.author.login
               }}
             </router-link>
           </strong>
           <div
+            v-if="!articleComment.loading"
             class="comments-comment-author-time"
-            v-if="!comment.loading"
-            >at {{ comment.time }}</div
+            >at {{ articleComment.time }}</div
           >
           <div
             v-else
@@ -105,7 +108,7 @@
           >
         </div>
         <p>
-          {{ comment.commentBody }}
+          {{ articleComment.commentBody }}
         </p>
       </div>
     </div>
@@ -116,29 +119,29 @@
     >
       <h4> Write a comment: </h4>
       <textarea
+        v-model="comment"
         class="write_comment-text_area"
         rows="8"
-        v-model="comment"
         :class="{ loading: submitCommentCondition.loading }"
       ></textarea>
       <div
-        class="write_comment-error"
         v-if="submitCommentCondition.status === 'error'"
+        class="write_comment-error"
       >
         {{ submitCommentCondition.msg }}
       </div>
       <button
         class="write_comment-submit"
-        @click="submitComment"
         :disabled="comment.length === 0"
         :class="{ 'cb-unactive': comment.length === 0 }"
+        @click="submitComment"
       >
         submit
       </button>
     </div>
     <div
       v-else-if="article !== undefined"
-      class="write_comment-unlogged"
+      class="write_comment-not-logged"
     >
       <router-link :to="{ name: 'registration' }">Register</router-link>
       or
@@ -162,7 +165,7 @@
   import getDate from '@/js/getCurrentTime.js';
 
   export default {
-    name: 'Article',
+    name: 'TheArticle',
     components: {
       Loader,
     },
@@ -175,6 +178,27 @@
         msg: '',
       },
     }),
+    computed: {
+      ...mapGetters(['articlesLoading', 'user']),
+      article() {
+        let article = this.$store.getters.articles.find(
+          (article) => article.id === +this.$route.params.id
+        );
+
+        if (article === undefined && this.articlesLoading === true) {
+          this.loadArticle();
+          return this.laodedArticle;
+        }
+
+        return article;
+      },
+    },
+    created() {
+      if (this.$store.getters.articles.length === 0) {
+        this.loadArticles();
+      }
+    },
+
     methods: {
       ...mapActions(['loadArticles', 'sendComment']),
       loadArticle() {
@@ -221,26 +245,6 @@
       insertCommentToArticleComments(comment) {
         this.article.comments.push(comment);
       },
-    },
-    computed: {
-      ...mapGetters(['articlesLoading', 'user']),
-      article() {
-        let article = this.$store.getters.articles.find(
-          (article) => article.id === +this.$route.params.id
-        );
-
-        if (article === undefined && this.articlesLoading === true) {
-          this.loadArticle();
-          return this.laodedArticle;
-        }
-
-        return article;
-      },
-    },
-    created() {
-      if (this.$store.getters.articles.length === 0) {
-        this.loadArticles();
-      }
     },
   };
 </script>
@@ -487,7 +491,7 @@
       color: $cta-color;
     }
 
-    &-unlogged {
+    &-not-logged {
       @include data-block;
 
       padding: 25px $break;

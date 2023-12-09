@@ -9,17 +9,17 @@
     >
       <p
         class="modal-confirm-text"
-        v-html="text"
+        v-purify-html="text"
       ></p>
-      <div class="modal-confirm-controlls">
+      <div class="modal-confirm-controls">
         <button
-          class="modal-confirm-controlls-ok"
+          class="modal-confirm-controls-ok"
           @click="confirm('ok')"
         >
           ok
         </button>
         <button
-          class="modal-confirm-controlls-cancel"
+          class="modal-confirm-controls-cancel"
           @click="confirm('cancel')"
         >
           cancel
@@ -33,23 +33,23 @@
     >
       <p
         class="modal-prompt-text"
-        v-html="text"
+        v-purify-html="text"
       ></p>
       <input
-        type="text"
         v-model="promptText"
+        type="text"
         :placeholder="placeholder"
         class="modal-prompt-input"
       />
-      <div class="modal-prompt-controlls">
+      <div class="modal-prompt-controls">
         <button
-          class="modal-prompt-controlls-ok"
+          class="modal-prompt-controls-ok"
           @click="prompt('ok')"
         >
           ok
         </button>
         <button
-          class="modal-prompt-controlls-cancel"
+          class="modal-prompt-controls-cancel"
           @click="prompt('cancel')"
         >
           cancel
@@ -58,8 +58,8 @@
     </div>
 
     <div
-      class="modal-actions animate__animated animate__fadeInUp"
       v-if="modalType === 'actions'"
+      class="modal-actions animate__animated animate__fadeInUp"
     >
       <button
         v-for="(button, i) in buttons"
@@ -76,8 +76,25 @@
 
 <script>
   export default {
-    name: 'Modal',
-    props: ['modalType', 'text', 'placeholder', 'buttons'],
+    name: 'AModal',
+    props: {
+      modalType: {
+        type: String,
+        default: '',
+      },
+      text: {
+        type: String,
+        default: '',
+      },
+      placeholder: {
+        type: String,
+        default: '',
+      },
+      buttons: {
+        type: Array,
+        default: () => [],
+      },
+    },
     data: () => ({
       promptText: '',
     }),
@@ -131,7 +148,7 @@
       position: relative;
       padding: $break;
 
-      &-controlls {
+      &-controls {
         position: absolute;
         bottom: $break;
         width: $buttons-width;
@@ -149,7 +166,7 @@
     }
 
     &-confirm {
-      &-controlls {
+      &-controls {
         position: absolute;
         bottom: $break;
         width: $buttons-width;
@@ -179,7 +196,7 @@
         margin-bottom: 0;
       }
 
-      &-controlls {
+      &-controls {
         position: absolute;
         bottom: $break;
         width: $buttons-width;

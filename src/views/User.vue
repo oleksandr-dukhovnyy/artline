@@ -15,39 +15,39 @@
         <strong class="user-header-name">
           {{ user.name === '' ? `@${user.login}` : user.name }}
           <router-link
-            :to="{ name: 'account', query: { id: user.id } }"
             v-if="
               currentLoggedUser !== null && currentLoggedUser.id === user.id
             "
+            :to="{ name: 'account', query: { id: user.id } }"
             class="user-header-name-edit-btn"
           >
             (edit profile)
           </router-link>
         </strong>
         <p
-          class="user-header-about"
           v-if="user.about.length > 0"
+          class="user-header-about"
         >
           {{ user.about }}
         </p>
         <p
-          class="empty"
           v-else
+          class="empty"
         >
           The user has written nothing about himself yet
         </p>
       </div>
       <div class="user-actions">
-        <div class="user-actions-controlls">
+        <div class="user-actions-controls">
           <button
-            class="user-actions-controlls-button user-actions-controlls-show_user_articles"
+            class="user-actions-controls-button user-actions-controls-show_user_articles"
             :class="{ active: showNow === 'articles' }"
             @click="showUserActions('articles')"
           >
             User articles ({{ userArticles.length }})
           </button>
           <button
-            class="user-actions-controlls-button user-actions-controlls-show_user_comments"
+            class="user-actions-controls-button user-actions-controls-show_user_comments"
             :class="{ active: showNow === 'comments' }"
             @click="showUserActions('comments')"
           >
@@ -57,13 +57,13 @@
         <div class="user-actions-content">
           <!-- articles-->
           <div
-            class="user-actions-content-articles user-actions-content-comments animate__animated animate__fadeInUp"
             v-if="showNow === 'articles' && userArticles.length > 0"
+            class="user-actions-content-articles user-actions-content-comments animate__animated animate__fadeInUp"
           >
             <div
-              class="user-actions-content-articles-article"
               v-for="(article, i) in userArticles"
               :key="i"
+              class="user-actions-content-articles-article"
             >
               <div class="user-actions-content-articles-article-img">
                 <img
@@ -98,13 +98,13 @@
 
           <!-- comments-->
           <div
-            class="user-actions-content-comments animate__animated animate__zoomIn"
             v-else-if="showNow === 'comments' && userComments.length > 0"
+            class="user-actions-content-comments animate__animated animate__zoomIn"
           >
             <div
-              class="user-actions-content-comments-comment"
               v-for="(comment, i) in userComments"
               :key="i"
+              class="user-actions-content-comments-comment"
             >
               <h3 class="user-actions-content-comments-comment-article_title">
                 <router-link
@@ -162,7 +162,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: 'Article',
+    name: 'UserArticle',
     components: {
       Loader,
     },
@@ -186,8 +186,8 @@
       });
     },
     methods: {
-      showUserActions(acrionType = 'articles') {
-        this.showNow = acrionType;
+      showUserActions(actionType = 'articles') {
+        this.showNow = actionType;
       },
       loadArticles(articlesIDs) {
         API.getArticles('', '', { arrOfId: articlesIDs }).then(
@@ -304,7 +304,7 @@
     }
 
     &-actions {
-      &-controlls {
+      &-controls {
         margin-bottom: -1px;
         margin-left: 3px;
 

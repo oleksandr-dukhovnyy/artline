@@ -1,7 +1,7 @@
 <template>
   <div
-    class="pagination animate__animated animate__slideInLeft"
     v-if="paginationPages !== undefined && paginationPages > 0"
+    class="pagination animate__animated animate__slideInLeft"
   >
     <div class="pagination-wrapper">
       <div class="pagination-wrapper-arrow-left">
@@ -14,9 +14,9 @@
         />
       </div>
       <div
-        class="pagination-wrapper-page"
         v-for="(page, i) in pages"
         :key="i"
+        class="pagination-wrapper-page"
         :class="{ active: page === currentPage }"
         @click="selectPage(page)"
       >
@@ -42,7 +42,7 @@
 
 <script>
   export default {
-    name: 'Pagination',
+    name: 'ThePagination',
     props: {
       paginationPages: {
         type: Number,
@@ -53,17 +53,29 @@
       rangeStart: 0,
       pages: [],
     }),
-    watch: {
-      rangeStart() {
-        this.setPages(this.rangeStart, this.paginationPages);
-      },
-    },
     computed: {
       currentPage() {
         const currentPage = +this.$route.query.page;
 
         return isNaN(currentPage) || currentPage === 0 ? 1 : currentPage;
       },
+    },
+    watch: {
+      rangeStart() {
+        this.setPages(this.rangeStart, this.paginationPages);
+      },
+    },
+    created() {
+      let roundTo10th;
+
+      if (this.currentPage < this.paginationPages) {
+        roundTo10th = Math.floor((this.currentPage - 1) / 10) * 10;
+      } else {
+        roundTo10th = this.paginationPages - 10;
+      }
+
+      this.rangeStart = roundTo10th;
+      this.setPages(roundTo10th, this.paginationPages);
     },
     methods: {
       selectPage(page) {
@@ -95,18 +107,6 @@
           this.rangeStart = 0;
         }
       },
-    },
-    created() {
-      let roundTo10th;
-
-      if (this.currentPage < this.paginationPages) {
-        roundTo10th = Math.floor((this.currentPage - 1) / 10) * 10;
-      } else {
-        roundTo10th = this.paginationPages - 10;
-      }
-
-      this.rangeStart = roundTo10th;
-      this.setPages(roundTo10th, this.paginationPages);
     },
   };
 </script>

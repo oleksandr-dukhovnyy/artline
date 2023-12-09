@@ -1,15 +1,15 @@
 <template>
   <section class="home">
     <div
-      class="home-content"
       v-if="!articlesLoading"
+      class="home-content"
     >
       <Feed :articles="articles" />
       <PopularTags />
     </div>
     <div
-      class="home-loader"
       v-else
+      class="home-loader"
     >
       <Loader />
     </div>

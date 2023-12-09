@@ -2,20 +2,20 @@
   <section class="login animate__animated animate__fadeIn">
     <h2 class="login-title">Login</h2>
     <form
-      @submit.prevent="submit"
       class="login-form"
+      @submit.prevent="submit"
     >
       <input
-        type="text"
         v-model="data.login"
+        type="text"
         placeholder="login"
         class="login-form-input login-form-login"
         :class="{ error: errors.login }"
       />
 
       <input
-        type="password"
         v-model="data.password"
+        type="password"
         placeholder="password"
         class="login-form-input login-form-password"
         :class="{ error: errors.password }"
@@ -45,7 +45,7 @@
   import { mapActions, mapGetters } from 'vuex';
 
   export default {
-    name: 'Login',
+    name: 'TheLogin',
     data: () => ({
       data: {
         login: 'jess-still',
@@ -59,6 +59,9 @@
         loading: false,
       },
     }),
+    computed: {
+      ...mapGetters(['isAuthError', 'authError', 'user', 'authLoading']),
+    },
     watch: {
       user: function () {
         if (this.isAuthError === false) {
@@ -72,9 +75,7 @@
         this.conditions.loading = this.authLoading;
       },
     },
-    computed: {
-      ...mapGetters(['isAuthError', 'authError', 'user', 'authLoading']),
-    },
+
     methods: {
       ...mapActions(['login']),
       submit() {

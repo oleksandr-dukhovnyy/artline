@@ -3,9 +3,9 @@
     <strong> Popular tags: </strong>
     <div class="home-popular_tags-contain">
       <div
-        class="home-popular_tags-contain-tag"
         v-for="(tag, i) in popularTags"
         :key="i"
+        class="home-popular_tags-contain-tag"
       >
         <router-link
           class="link"
@@ -26,13 +26,13 @@
     computed: {
       ...mapGetters(['popularTags', 'popularTagsLoaded']),
     },
-    methods: {
-      ...mapActions(['loadPopularTags']),
-    },
     created() {
       if (this.popularTagsLoaded === false) {
         this.loadPopularTags();
       }
+    },
+    methods: {
+      ...mapActions(['loadPopularTags']),
     },
   };
 </script>

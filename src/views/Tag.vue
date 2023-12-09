@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <section
-      class="tag"
       v-if="!articlesByTagLoading"
+      class="tag"
     >
       <div class="tag-header">
         <h1 class="tag-header-title">
@@ -37,7 +37,7 @@
   import Loader from '@/components/loader/LoaderLines.vue';
 
   export default {
-    name: 'Tag',
+    name: 'CategoryTag',
     components: {
       Articles,
       Loader,
@@ -45,8 +45,12 @@
     data: () => ({
       articlesWidthTag: 120,
     }),
-    methods: {
-      ...mapActions(['loadArticlesByTag', 'getArticlesByTagCount']),
+    computed: {
+      ...mapGetters([
+        'articlesByTagLoading',
+        'articlesByTag',
+        'articlesByTagCount',
+      ]),
     },
     created() {
       this.loadArticlesByTag({
@@ -57,12 +61,9 @@
 
       this.getArticlesByTagCount(this.$route.params.tag);
     },
-    computed: {
-      ...mapGetters([
-        'articlesByTagLoading',
-        'articlesByTag',
-        'articlesByTagCount',
-      ]),
+
+    methods: {
+      ...mapActions(['loadArticlesByTag', 'getArticlesByTagCount']),
     },
   };
 </script>
