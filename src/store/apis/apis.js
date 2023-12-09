@@ -40,7 +40,7 @@ export default {
           commit('setLoading', false);
         });
 
-        autoLogin.catch((res) => {
+        autoLogin.catch(() => {
           commit('setLoading', false);
         });
       }
@@ -73,7 +73,7 @@ export default {
         commit('setErrorRes', res);
       });
     },
-    async register({ commit, dispatch, state }, userData) {
+    async register({ commit, dispatch }, userData) {
       const registration = API.register(userData);
 
       commit('setLoading', true);
@@ -125,7 +125,7 @@ export default {
 
       const deleting = API.deleteAccount(state.token, state.user.id);
 
-      deleting.then((res) => {
+      deleting.then(() => {
         commit('setLoading', false);
         commit('setUserData', null);
         Router.push({ name: 'home' });
@@ -158,7 +158,7 @@ export default {
         }
       });
 
-      commentSending.catch((res) => {
+      commentSending.catch(() => {
         commit('setLoading', false);
         failed();
       });

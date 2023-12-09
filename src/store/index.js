@@ -9,10 +9,10 @@ import deviceData from '@/store/device_data/device.js';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-	modules: {
-		articles: Articles,
-		APIs,
-		popularTags,
-		deviceData,
-	},
+  modules: {
+    articles: Articles,
+    APIs,
+    popularTags,
+    deviceData,
+  },
 });

@@ -1,48 +1,48 @@
 import { GET_USER } from '@/api/offline-fake-api/generators/users.js';
 
-let prevMounthNum = new Date().getMonth();
-const prevMounth = prevMounthNum < 10 ? '0' + prevMounthNum : prevMounthNum;
+let prevMonthNum = new Date().getMonth();
+const prevMonth = prevMonthNum < 10 ? '0' + prevMonthNum : prevMonthNum;
 
 const getUser = (id) => {
-	return GET_USER(id, ['posts', 'commented', 'about', 'password']);
+  return GET_USER(id, ['posts', 'commented', 'about', 'password']);
 };
 
 const articles = [
-	{
-		title: '1 How to read 700 books at 15 hours. Part 1',
-		creationDate: `25.${prevMounth}.21, 15:34`,
-		author: getUser(234861),
-		body: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet porta ipsum. Cras a turpis elit. Nunc dictum nisi id leo varius vulputate. Maecenas placerat, elit eget dignissim elementum, sapien dui tincidunt lectus, ut suscipit magna purus et neque. Praesent ultricies, dui ac malesuada ornare, lacus libero congue mauris, in feugiat arcu lacus eget nisl. Nullam dui enim, varius sed convallis efficitur, fringilla quis sem. Fusce lacinia lacus sed metus vehicula, nec maximus arcu vehicula. In hendrerit, ex in tristique viverra, urna tellus dapibus eros, eu bibendum massa odio ut neque. Phasellus quis ante rutrum arcu sollicitudin sodales. Nullam sed sagittis velit. Sed vel arcu purus. Integer at porttitor orci.
+  {
+    title: '1 How to read 700 books at 15 hours. Part 1',
+    creationDate: `25.${prevMonth}.21, 15:34`,
+    author: getUser(234861),
+    body: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet porta ipsum. Cras a turpis elit. Nunc dictum nisi id leo varius vulputate. Maecenas placerat, elit eget dignissim elementum, sapien dui tincidunt lectus, ut suscipit magna purus et neque. Praesent ultricies, dui ac malesuada ornare, lacus libero congue mauris, in feugiat arcu lacus eget nisl. Nullam dui enim, varius sed convallis efficitur, fringilla quis sem. Fusce lacinia lacus sed metus vehicula, nec maximus arcu vehicula. In hendrerit, ex in tristique viverra, urna tellus dapibus eros, eu bibendum massa odio ut neque. Phasellus quis ante rutrum arcu sollicitudin sodales. Nullam sed sagittis velit. Sed vel arcu purus. Integer at porttitor orci.
 Nulla malesuada consectetur lacus, et fermentum sem suscipit a. Duis aliquet hendrerit egestas. Aenean tempus sem ut vehicula tempor. In pellentesque, nibh vitae fringilla laoreet, nisi purus congue est, ac laoreet mi ex quis quam. In dignissim, ipsum vitae placerat dignissim, ex lacus laoreet justo, congue congue nulla nibh dictum enim. Donec cursus suscipit dui vel maximus. Integer non lacinia nisl, et porta enim. Pellentesque eu risus eget risus tempus luctus. Sed felis diam, fermentum at imperdiet at, venenatis ac velit. Aliquam varius justo eu magna varius fringilla. Donec elementum turpis nec enim imperdiet, vel aliquet turpis dignissim. Curabitur mauris felis, condimentum eget mauris sed, tempor condimentum augue. Fusce ut venenatis arcu. Etiam pharetra tincidunt eros, sit amet dictum magna dignissim vel. Praesent varius mi ut quam suscipit, non scelerisque purus accumsan.
 Integer sed nibh non nulla fringilla suscipit et nec dui. Curabitur ac ex nec tellus condimentum lacinia. Phasellus non mi ut justo suscipit laoreet. Sed hendrerit elit vitae erat interdum semper. Nullam a lorem eget enim interdum pulvinar. Etiam dui nisi, dictum at malesuada sit amet, blandit eget arcu. Maecenas dictum vel ex non efficitur. Curabitur sed diam vitae sem dictum gravida quis id metus. Nam rutrum hendrerit lectus non volutpat. Proin sit amet lacus ac neque vehicula aliquam vel vel tellus. Nulla tristique, metus et gravida mollis, leo odio malesuada nunc, at rutrum dui sem nec turpis. Aenean rutrum mauris sed pretium ultrices. Vivamus eu mattis lacus. Nunc et massa dui. Phasellus sed magna nisl. Nunc condimentum posuere condimentum.
 Quisque egestas vel augue quis ornare. Nunc elit eros, pellentesque ac scelerisque et, suscipit nec urna. Pellentesque cursus id est eu venenatis. Suspendisse at tempus enim. Ut finibus fringilla magna, egestas posuere ipsum scelerisque eu. Integer a enim sit amet tellus malesuada molestie. Morbi cursus facilisis nisl, id porttitor metus. Quisque luctus a velit in finibus. Maecenas condimentum sodales massa vitae dictum.
 Ut in neque vel nibh imperdiet vehicula in non ipsum. Sed tincidunt erat a tellus imperdiet facilisis. Vivamus ac purus vel ligula euismod ultrices. Praesent libero leo, tempor ac nisl non, tempor faucibus metus. Duis hendrerit semper purus. Sed congue sollicitudin est eu scelerisque. Nulla sit amet eros vel justo tempus ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam vestibulum leo urna, sed euismod nisi volutpat nec. Praesent et ex feugiat, commodo nisi non, luctus massa. Donec quis condimentum ante, vel sollicitudin felis. Nulla facilisi.</p>`,
-		img: 'https://picsum.photos/id/155/800/450',
-		id: 21033,
-		tags: ['Books', 'JavaScript', 'Math'],
-		comments: [
-			{
-				author: getUser(341445),
-				commentBody: 'Yes!',
-				time: `25.${prevMounth}.21, 16:12`,
-			},
-			{
-				author: getUser(147511),
-				commentBody: 'No! It`s impassble! u are crazy!)',
-				time: `26.${prevMounth}.21, 18:32`,
-			},
-			{
-				author: getUser(117234),
-				commentBody: 'How are you do this?)',
-				time: `27.${prevMounth}.21, 18:32`,
-			},
-		],
-	},
-	{
-		title: '2 Angular is Costing Companies Billions',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(341445),
-		body: `<p>I know I’m going to get hate-mail for writing this piece, but, so be it. Someone has got to finally say what many of us as experienced software engineers have been thinking for some time now.
+    img: 'https://picsum.photos/id/155/800/450',
+    id: 21033,
+    tags: ['Books', 'JavaScript', 'Math'],
+    comments: [
+      {
+        author: getUser(341445),
+        commentBody: 'Yes!',
+        time: `25.${prevMonth}.21, 16:12`,
+      },
+      {
+        author: getUser(147511),
+        commentBody: 'No! It`s impassble! u are crazy!)',
+        time: `26.${prevMonth}.21, 18:32`,
+      },
+      {
+        author: getUser(117234),
+        commentBody: 'How are you do this?)',
+        time: `27.${prevMonth}.21, 18:32`,
+      },
+    ],
+  },
+  {
+    title: '2 Angular is Costing Companies Billions',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(341445),
+    body: `<p>I know I’m going to get hate-mail for writing this piece, but, so be it. Someone has got to finally say what many of us as experienced software engineers have been thinking for some time now.
 I’ve been a developer for over 20 years working for some of North America’s most prestigious companies. For several years now I’ve been watching the state of UI and how it’s gone from bad to worse. Specifically, I’m talking about “fad-tech”, those cutesy not-so-little pieces of JS and CSS that are supposed to be all the rage with the newbie crowd and now even with some seasoned engineers who should know better.
 The snowballing culture of using these frameworks, like Angular, have avalanched us into code hell with no end in sight of when this nonsense is ever going to level off.
 Everyday I see job postings come into my email, companies of all sizes scrambling for EXPERIENCED Angular 4, 5, 6, 7, 8, 10, 12 developers with at least 5 years of experience building and maintaining this mess we call “state-of-the-art” UI.
@@ -81,28 +81,29 @@ If something breaks in production with an enclosure written in plain JS, it take
 Conclusion
 The Holy Grail of writing code, any code, lies within its simplicity. However, as modern engineers, we’ve all but totally lost sight of that simplicity. We’ve gotten caught up in the fad of whatever shiny new tech has gotten released from which ever fav tech giant or college has shoved in our face as “state-of-the-art”.
 Well, Google or whichever university isn’t paying your staffing bills. It’s time CTO’s took charge of the technology stack, deprecated the fad-tech, and returned all of us to rational reasoned UI that is simple, maintainable, and beautiful.</p>`,
-		img: 'https://picsum.photos/id/172/800/450',
-		id: 12411,
-		tags: ['Angular', 'JavaScript', 'UI'],
-		comments: [
-			{
-				author: getUser(234861),
-				commentBody: 'Vue.js the best!)',
-				time: `30.${prevMounth}.21, 16:12`,
-			},
-			{
-				author: getUser(117234),
-				commentBody: `Angular has its drawbacks and good points. It is a tool. I feel sorry for people who do not know how to choose a tool for a specific task.`,
-				time: `30.${prevMounth}.21, 17:35`,
-			},
-		],
-	},
-	{
-		title:
-			'3 Science Just Confirmed Elon Musk’s Favorite Interview Question Is Brilliant',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>Every entrepreneur and hiring manager goes into a job interview looking to hire the best person for the job. The problem is research shows they generally fail spectacularly. One Yale professor has even called job interviews as they’re usually conducted “useless.”
+    img: 'https://picsum.photos/id/172/800/450',
+    id: 12411,
+    tags: ['Angular', 'JavaScript', 'UI'],
+    comments: [
+      {
+        author: getUser(234861),
+        commentBody: 'Vue.js the best!)',
+        time: `30.${prevMonth}.21, 16:12`,
+      },
+      {
+        author: getUser(117234),
+        commentBody:
+          'Angular has its drawbacks and good points. It is a tool. I feel sorry for people who do not know how to choose a tool for a specific task.',
+        time: `30.${prevMonth}.21, 17:35`,
+      },
+    ],
+  },
+  {
+    title:
+      '3 Science Just Confirmed Elon Musk’s Favorite Interview Question Is Brilliant',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: `<p>Every entrepreneur and hiring manager goes into a job interview looking to hire the best person for the job. The problem is research shows they generally fail spectacularly. One Yale professor has even called job interviews as they’re usually conducted “useless.”
 The problem isn’t bad intentions. It’s human fallibility. Study after study confirms most bosses just can’t seem to stop themselves from being taken in by overconfident blowhards.
 Is there a way to get better at sniffing out BS or even flat-out lying in job interviews (or any other context)? A new study has uncovered a simple, research-validated technique, and funnily enough, it’s exactly how Tesla and SpaceX boss Elon Musk has been interviewing job candidates for years.
 No polygraph required.
@@ -115,16 +116,16 @@ Elon Musk already knew that.
 That huge jump in BS-detection rates might come as a happy surprise to many cops, but one person it likely wouldn’t shock is Elon Musk. He told the World Government Summit back in 2017 that he always uses the same approach to interviewing, asking every candidate, “Tell me about some of the most difficult problems you worked on and how you solved them.”
 Musk goes on to explain that “the people who really solved the problem, they know exactly how they solved it, they know the little details.” In other words, Musk long ago intuitively grasped the truth behind Porter’s research — genuinely skilled (if sometimes socially awkward) truth tellers will be thrilled to get into the weeds with you. Those who skate by on charisma can’t do the same.
 So if you want your next job interview to be significantly better than useless, follow Musk’s lead and borrow this trick to cut through the BS. Research shows it works for the police. Musk’s endorsement suggests it’s equally useful for hiring.</p>`,
-		img: 'https://picsum.photos/id/214/800/450',
-		id: 16422,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: 'This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>Let me tell you about this obscure package, which generated over 700 thousand downloads in the past year.
+    img: 'https://picsum.photos/id/214/800/450',
+    id: 16422,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: 'This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: `<p>Let me tell you about this obscure package, which generated over 700 thousand downloads in the past year.
 The package name is - and it does literally nothing. It contains the usual empty boilerplate. And yet, people are still downloading it for their projects. I couldn’t wrap my head around it, so I did a little bit of digging.
 In this story, I’ll share what I found out.
 Why Are People Downloading It?
@@ -133,7 +134,7 @@ the graph showing number of downloads of -
 Number of downloads per month (source: npm-stat)
 But if this comes as a surprise to you, wait until I tell you the even crazier part. It’s used as a dependency of over 60 npm packages. I am sensing there will be some readers who will question this statement.
 I went ahead and took a screenshot directly from npm. But if you still think I’m just a Photoshop master, you can check it out for yourself.
-dependants of — package
+dependants of - package
 Number of dependents (source: npm)
 At first, I thought that’s why it has so many downloads. And I bet you’re thinking about it as well. But it’s so far from the truth. In fact, all these packages have only a few downloads.
 While they could generate a couple of extra downloads, it’s nowhere near the final number. So where are all the downloads coming from? That’s the final piece of the puzzle, which I’m gonna reveal to you in just a moment.
@@ -174,46 +175,46 @@ The other problem is that upon installing a package, npm presents a summarized s
 Concluding Thoughts
 As we’ve learned today, we should make attention when typing npm commands in the terminal. Especially when using flags. It also won’t hurt you to check and audit your package.json from time to time.
 I don’t know about you, but when I first heard about this, I immediately looked into my package.json file. The question is, will you?</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 16423,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '4() How to read 700 books at 15 hours. Part 1',
-		creationDate: `25.${prevMounth}.21, 15:34`,
-		author: getUser(234861),
-		body: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet porta ipsum. Cras a turpis elit. Nunc dictum nisi id leo varius vulputate. Maecenas placerat, elit eget dignissim elementum, sapien dui tincidunt lectus, ut suscipit magna purus et neque. Praesent ultricies, dui ac malesuada ornare, lacus libero congue mauris, in feugiat arcu lacus eget nisl. Nullam dui enim, varius sed convallis efficitur, fringilla quis sem. Fusce lacinia lacus sed metus vehicula, nec maximus arcu vehicula. In hendrerit, ex in tristique viverra, urna tellus dapibus eros, eu bibendum massa odio ut neque. Phasellus quis ante rutrum arcu sollicitudin sodales. Nullam sed sagittis velit. Sed vel arcu purus. Integer at porttitor orci.
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 16423,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '4() How to read 700 books at 15 hours. Part 1',
+    creationDate: `25.${prevMonth}.21, 15:34`,
+    author: getUser(234861),
+    body: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet porta ipsum. Cras a turpis elit. Nunc dictum nisi id leo varius vulputate. Maecenas placerat, elit eget dignissim elementum, sapien dui tincidunt lectus, ut suscipit magna purus et neque. Praesent ultricies, dui ac malesuada ornare, lacus libero congue mauris, in feugiat arcu lacus eget nisl. Nullam dui enim, varius sed convallis efficitur, fringilla quis sem. Fusce lacinia lacus sed metus vehicula, nec maximus arcu vehicula. In hendrerit, ex in tristique viverra, urna tellus dapibus eros, eu bibendum massa odio ut neque. Phasellus quis ante rutrum arcu sollicitudin sodales. Nullam sed sagittis velit. Sed vel arcu purus. Integer at porttitor orci.
 Nulla malesuada consectetur lacus, et fermentum sem suscipit a. Duis aliquet hendrerit egestas. Aenean tempus sem ut vehicula tempor. In pellentesque, nibh vitae fringilla laoreet, nisi purus congue est, ac laoreet mi ex quis quam. In dignissim, ipsum vitae placerat dignissim, ex lacus laoreet justo, congue congue nulla nibh dictum enim. Donec cursus suscipit dui vel maximus. Integer non lacinia nisl, et porta enim. Pellentesque eu risus eget risus tempus luctus. Sed felis diam, fermentum at imperdiet at, venenatis ac velit. Aliquam varius justo eu magna varius fringilla. Donec elementum turpis nec enim imperdiet, vel aliquet turpis dignissim. Curabitur mauris felis, condimentum eget mauris sed, tempor condimentum augue. Fusce ut venenatis arcu. Etiam pharetra tincidunt eros, sit amet dictum magna dignissim vel. Praesent varius mi ut quam suscipit, non scelerisque purus accumsan.
 Integer sed nibh non nulla fringilla suscipit et nec dui. Curabitur ac ex nec tellus condimentum lacinia. Phasellus non mi ut justo suscipit laoreet. Sed hendrerit elit vitae erat interdum semper. Nullam a lorem eget enim interdum pulvinar. Etiam dui nisi, dictum at malesuada sit amet, blandit eget arcu. Maecenas dictum vel ex non efficitur. Curabitur sed diam vitae sem dictum gravida quis id metus. Nam rutrum hendrerit lectus non volutpat. Proin sit amet lacus ac neque vehicula aliquam vel vel tellus. Nulla tristique, metus et gravida mollis, leo odio malesuada nunc, at rutrum dui sem nec turpis. Aenean rutrum mauris sed pretium ultrices. Vivamus eu mattis lacus. Nunc et massa dui. Phasellus sed magna nisl. Nunc condimentum posuere condimentum.
 Quisque egestas vel augue quis ornare. Nunc elit eros, pellentesque ac scelerisque et, suscipit nec urna. Pellentesque cursus id est eu venenatis. Suspendisse at tempus enim. Ut finibus fringilla magna, egestas posuere ipsum scelerisque eu. Integer a enim sit amet tellus malesuada molestie. Morbi cursus facilisis nisl, id porttitor metus. Quisque luctus a velit in finibus. Maecenas condimentum sodales massa vitae dictum.
 Ut in neque vel nibh imperdiet vehicula in non ipsum. Sed tincidunt erat a tellus imperdiet facilisis. Vivamus ac purus vel ligula euismod ultrices. Praesent libero leo, tempor ac nisl non, tempor faucibus metus. Duis hendrerit semper purus. Sed congue sollicitudin est eu scelerisque. Nulla sit amet eros vel justo tempus ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam vestibulum leo urna, sed euismod nisi volutpat nec. Praesent et ex feugiat, commodo nisi non, luctus massa. Donec quis condimentum ante, vel sollicitudin felis. Nulla facilisi.</p>`,
-		img: 'https://picsum.photos/id/155/800/450',
-		id: 210331,
-		tags: ['Books', 'JavaScript', 'Math'],
-		comments: [
-			{
-				author: getUser(341445),
-				commentBody: 'Yes!',
-				time: `25.${prevMounth}.21, 16:12`,
-			},
-			{
-				author: getUser(147511),
-				commentBody: 'No! It`s impassble! u are crazy!)',
-				time: `26.${prevMounth}.21, 18:32`,
-			},
-			{
-				author: getUser(117234),
-				commentBody: 'How are you do this?)',
-				time: `27.${prevMounth}.21, 18:32`,
-			},
-		],
-	},
-	{
-		title: '5 Angular is Costing Companies Billions',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(341445),
-		body: `<p>I know I’m going to get hate-mail for writing this piece, but, so be it. Someone has got to finally say what many of us as experienced software engineers have been thinking for some time now.
+    img: 'https://picsum.photos/id/155/800/450',
+    id: 210331,
+    tags: ['Books', 'JavaScript', 'Math'],
+    comments: [
+      {
+        author: getUser(341445),
+        commentBody: 'Yes!',
+        time: `25.${prevMonth}.21, 16:12`,
+      },
+      {
+        author: getUser(147511),
+        commentBody: 'No! It`s impassble! u are crazy!)',
+        time: `26.${prevMonth}.21, 18:32`,
+      },
+      {
+        author: getUser(117234),
+        commentBody: 'How are you do this?)',
+        time: `27.${prevMonth}.21, 18:32`,
+      },
+    ],
+  },
+  {
+    title: '5 Angular is Costing Companies Billions',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(341445),
+    body: `<p>I know I’m going to get hate-mail for writing this piece, but, so be it. Someone has got to finally say what many of us as experienced software engineers have been thinking for some time now.
 I’ve been a developer for over 20 years working for some of North America’s most prestigious companies. For several years now I’ve been watching the state of UI and how it’s gone from bad to worse. Specifically, I’m talking about “fad-tech”, those cutesy not-so-little pieces of JS and CSS that are supposed to be all the rage with the newbie crowd and now even with some seasoned engineers who should know better.
 The snowballing culture of using these frameworks, like Angular, have avalanched us into code hell with no end in sight of when this nonsense is ever going to level off.
 Everyday I see job postings come into my email, companies of all sizes scrambling for EXPERIENCED Angular 4, 5, 6, 7, 8, 10, 12 developers with at least 5 years of experience building and maintaining this mess we call “state-of-the-art” UI.
@@ -252,28 +253,29 @@ If something breaks in production with an enclosure written in plain JS, it take
 Conclusion
 The Holy Grail of writing code, any code, lies within its simplicity. However, as modern engineers, we’ve all but totally lost sight of that simplicity. We’ve gotten caught up in the fad of whatever shiny new tech has gotten released from which ever fav tech giant or college has shoved in our face as “state-of-the-art”.
 Well, Google or whichever university isn’t paying your staffing bills. It’s time CTO’s took charge of the technology stack, deprecated the fad-tech, and returned all of us to rational reasoned UI that is simple, maintainable, and beautiful.</p>`,
-		img: 'https://picsum.photos/id/172/800/450',
-		id: 124111,
-		tags: ['Angular', 'JavaScript', 'UI'],
-		comments: [
-			{
-				author: getUser(234861),
-				commentBody: 'Vue.js the best!)',
-				time: `30.${prevMounth}.21, 16:12`,
-			},
-			{
-				author: getUser(117234),
-				commentBody: `Angular has its drawbacks and good points. It is a tool. I feel sorry for people who do not know how to choose a tool for a specific task.`,
-				time: `30.${prevMounth}.21, 17:35`,
-			},
-		],
-	},
-	{
-		title:
-			'6 Science Just Confirmed Elon Musk’s Favorite Interview Question Is Brilliant',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>Every entrepreneur and hiring manager goes into a job interview looking to hire the best person for the job. The problem is research shows they generally fail spectacularly. One Yale professor has even called job interviews as they’re usually conducted “useless.”
+    img: 'https://picsum.photos/id/172/800/450',
+    id: 124111,
+    tags: ['Angular', 'JavaScript', 'UI'],
+    comments: [
+      {
+        author: getUser(234861),
+        commentBody: 'Vue.js the best!)',
+        time: `30.${prevMonth}.21, 16:12`,
+      },
+      {
+        author: getUser(117234),
+        commentBody:
+          'Angular has its drawbacks and good points. It is a tool. I feel sorry for people who do not know how to choose a tool for a specific task.',
+        time: `30.${prevMonth}.21, 17:35`,
+      },
+    ],
+  },
+  {
+    title:
+      '6 Science Just Confirmed Elon Musk’s Favorite Interview Question Is Brilliant',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: `<p>Every entrepreneur and hiring manager goes into a job interview looking to hire the best person for the job. The problem is research shows they generally fail spectacularly. One Yale professor has even called job interviews as they’re usually conducted “useless.”
 The problem isn’t bad intentions. It’s human fallibility. Study after study confirms most bosses just can’t seem to stop themselves from being taken in by overconfident blowhards.
 Is there a way to get better at sniffing out BS or even flat-out lying in job interviews (or any other context)? A new study has uncovered a simple, research-validated technique, and funnily enough, it’s exactly how Tesla and SpaceX boss Elon Musk has been interviewing job candidates for years.
 No polygraph required.
@@ -286,16 +288,16 @@ Elon Musk already knew that.
 That huge jump in BS-detection rates might come as a happy surprise to many cops, but one person it likely wouldn’t shock is Elon Musk. He told the World Government Summit back in 2017 that he always uses the same approach to interviewing, asking every candidate, “Tell me about some of the most difficult problems you worked on and how you solved them.”
 Musk goes on to explain that “the people who really solved the problem, they know exactly how they solved it, they know the little details.” In other words, Musk long ago intuitively grasped the truth behind Porter’s research — genuinely skilled (if sometimes socially awkward) truth tellers will be thrilled to get into the weeds with you. Those who skate by on charisma can’t do the same.
 So if you want your next job interview to be significantly better than useless, follow Musk’s lead and borrow this trick to cut through the BS. Research shows it works for the police. Musk’s endorsement suggests it’s equally useful for hiring.</p>`,
-		img: 'https://picsum.photos/id/214/800/450',
-		id: 164212,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '7 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>Let me tell you about this obscure package, which generated over 700 thousand downloads in the past year.
+    img: 'https://picsum.photos/id/214/800/450',
+    id: 164212,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '7 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: `<p>Let me tell you about this obscure package, which generated over 700 thousand downloads in the past year.
 The package name is - and it does literally nothing. It contains the usual empty boilerplate. And yet, people are still downloading it for their projects. I couldn’t wrap my head around it, so I did a little bit of digging.
 In this story, I’ll share what I found out.
 Why Are People Downloading It?
@@ -304,7 +306,7 @@ the graph showing number of downloads of -
 Number of downloads per month (source: npm-stat)
 But if this comes as a surprise to you, wait until I tell you the even crazier part. It’s used as a dependency of over 60 npm packages. I am sensing there will be some readers who will question this statement.
 I went ahead and took a screenshot directly from npm. But if you still think I’m just a Photoshop master, you can check it out for yourself.
-dependants of — package
+dependants of - package
 Number of dependents (source: npm)
 At first, I thought that’s why it has so many downloads. And I bet you’re thinking about it as well. But it’s so far from the truth. In fact, all these packages have only a few downloads.
 While they could generate a couple of extra downloads, it’s nowhere near the final number. So where are all the downloads coming from? That’s the final piece of the puzzle, which I’m gonna reveal to you in just a moment.
@@ -345,46 +347,46 @@ The other problem is that upon installing a package, npm presents a summarized s
 Concluding Thoughts
 As we’ve learned today, we should make attention when typing npm commands in the terminal. Especially when using flags. It also won’t hurt you to check and audit your package.json from time to time.
 I don’t know about you, but when I first heard about this, I immediately looked into my package.json file. The question is, will you?</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 164231,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '8 How to read 700 books at 15 hours. Part 1',
-		creationDate: `25.${prevMounth}.21, 15:34`,
-		author: getUser(234861),
-		body: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet porta ipsum. Cras a turpis elit. Nunc dictum nisi id leo varius vulputate. Maecenas placerat, elit eget dignissim elementum, sapien dui tincidunt lectus, ut suscipit magna purus et neque. Praesent ultricies, dui ac malesuada ornare, lacus libero congue mauris, in feugiat arcu lacus eget nisl. Nullam dui enim, varius sed convallis efficitur, fringilla quis sem. Fusce lacinia lacus sed metus vehicula, nec maximus arcu vehicula. In hendrerit, ex in tristique viverra, urna tellus dapibus eros, eu bibendum massa odio ut neque. Phasellus quis ante rutrum arcu sollicitudin sodales. Nullam sed sagittis velit. Sed vel arcu purus. Integer at porttitor orci.
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 164231,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '8 How to read 700 books at 15 hours. Part 1',
+    creationDate: `25.${prevMonth}.21, 15:34`,
+    author: getUser(234861),
+    body: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet porta ipsum. Cras a turpis elit. Nunc dictum nisi id leo varius vulputate. Maecenas placerat, elit eget dignissim elementum, sapien dui tincidunt lectus, ut suscipit magna purus et neque. Praesent ultricies, dui ac malesuada ornare, lacus libero congue mauris, in feugiat arcu lacus eget nisl. Nullam dui enim, varius sed convallis efficitur, fringilla quis sem. Fusce lacinia lacus sed metus vehicula, nec maximus arcu vehicula. In hendrerit, ex in tristique viverra, urna tellus dapibus eros, eu bibendum massa odio ut neque. Phasellus quis ante rutrum arcu sollicitudin sodales. Nullam sed sagittis velit. Sed vel arcu purus. Integer at porttitor orci.
 Nulla malesuada consectetur lacus, et fermentum sem suscipit a. Duis aliquet hendrerit egestas. Aenean tempus sem ut vehicula tempor. In pellentesque, nibh vitae fringilla laoreet, nisi purus congue est, ac laoreet mi ex quis quam. In dignissim, ipsum vitae placerat dignissim, ex lacus laoreet justo, congue congue nulla nibh dictum enim. Donec cursus suscipit dui vel maximus. Integer non lacinia nisl, et porta enim. Pellentesque eu risus eget risus tempus luctus. Sed felis diam, fermentum at imperdiet at, venenatis ac velit. Aliquam varius justo eu magna varius fringilla. Donec elementum turpis nec enim imperdiet, vel aliquet turpis dignissim. Curabitur mauris felis, condimentum eget mauris sed, tempor condimentum augue. Fusce ut venenatis arcu. Etiam pharetra tincidunt eros, sit amet dictum magna dignissim vel. Praesent varius mi ut quam suscipit, non scelerisque purus accumsan.
 Integer sed nibh non nulla fringilla suscipit et nec dui. Curabitur ac ex nec tellus condimentum lacinia. Phasellus non mi ut justo suscipit laoreet. Sed hendrerit elit vitae erat interdum semper. Nullam a lorem eget enim interdum pulvinar. Etiam dui nisi, dictum at malesuada sit amet, blandit eget arcu. Maecenas dictum vel ex non efficitur. Curabitur sed diam vitae sem dictum gravida quis id metus. Nam rutrum hendrerit lectus non volutpat. Proin sit amet lacus ac neque vehicula aliquam vel vel tellus. Nulla tristique, metus et gravida mollis, leo odio malesuada nunc, at rutrum dui sem nec turpis. Aenean rutrum mauris sed pretium ultrices. Vivamus eu mattis lacus. Nunc et massa dui. Phasellus sed magna nisl. Nunc condimentum posuere condimentum.
 Quisque egestas vel augue quis ornare. Nunc elit eros, pellentesque ac scelerisque et, suscipit nec urna. Pellentesque cursus id est eu venenatis. Suspendisse at tempus enim. Ut finibus fringilla magna, egestas posuere ipsum scelerisque eu. Integer a enim sit amet tellus malesuada molestie. Morbi cursus facilisis nisl, id porttitor metus. Quisque luctus a velit in finibus. Maecenas condimentum sodales massa vitae dictum.
 Ut in neque vel nibh imperdiet vehicula in non ipsum. Sed tincidunt erat a tellus imperdiet facilisis. Vivamus ac purus vel ligula euismod ultrices. Praesent libero leo, tempor ac nisl non, tempor faucibus metus. Duis hendrerit semper purus. Sed congue sollicitudin est eu scelerisque. Nulla sit amet eros vel justo tempus ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam vestibulum leo urna, sed euismod nisi volutpat nec. Praesent et ex feugiat, commodo nisi non, luctus massa. Donec quis condimentum ante, vel sollicitudin felis. Nulla facilisi.</p>`,
-		img: 'https://picsum.photos/id/155/800/450',
-		id: 2103311,
-		tags: ['Books', 'JavaScript', 'Math'],
-		comments: [
-			{
-				author: getUser(341445),
-				commentBody: 'Yes!',
-				time: `25.${prevMounth}.21, 16:12`,
-			},
-			{
-				author: getUser(147511),
-				commentBody: 'No! It`s impassble! u are crazy!)',
-				time: `26.${prevMounth}.21, 18:32`,
-			},
-			{
-				author: getUser(117234),
-				commentBody: 'How are you do this?)',
-				time: `27.${prevMounth}.21, 18:32`,
-			},
-		],
-	},
-	{
-		title: '9 Angular is Costing Companies Billions',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(341445),
-		body: `<p>I know I’m going to get hate-mail for writing this piece, but, so be it. Someone has got to finally say what many of us as experienced software engineers have been thinking for some time now.
+    img: 'https://picsum.photos/id/155/800/450',
+    id: 2103311,
+    tags: ['Books', 'JavaScript', 'Math'],
+    comments: [
+      {
+        author: getUser(341445),
+        commentBody: 'Yes!',
+        time: `25.${prevMonth}.21, 16:12`,
+      },
+      {
+        author: getUser(147511),
+        commentBody: 'No! It`s impassble! u are crazy!)',
+        time: `26.${prevMonth}.21, 18:32`,
+      },
+      {
+        author: getUser(117234),
+        commentBody: 'How are you do this?)',
+        time: `27.${prevMonth}.21, 18:32`,
+      },
+    ],
+  },
+  {
+    title: '9 Angular is Costing Companies Billions',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(341445),
+    body: `<p>I know I’m going to get hate-mail for writing this piece, but, so be it. Someone has got to finally say what many of us as experienced software engineers have been thinking for some time now.
 I’ve been a developer for over 20 years working for some of North America’s most prestigious companies. For several years now I’ve been watching the state of UI and how it’s gone from bad to worse. Specifically, I’m talking about “fad-tech”, those cutesy not-so-little pieces of JS and CSS that are supposed to be all the rage with the newbie crowd and now even with some seasoned engineers who should know better.
 The snowballing culture of using these frameworks, like Angular, have avalanched us into code hell with no end in sight of when this nonsense is ever going to level off.
 Everyday I see job postings come into my email, companies of all sizes scrambling for EXPERIENCED Angular 4, 5, 6, 7, 8, 10, 12 developers with at least 5 years of experience building and maintaining this mess we call “state-of-the-art” UI.
@@ -423,28 +425,29 @@ If something breaks in production with an enclosure written in plain JS, it take
 Conclusion
 The Holy Grail of writing code, any code, lies within its simplicity. However, as modern engineers, we’ve all but totally lost sight of that simplicity. We’ve gotten caught up in the fad of whatever shiny new tech has gotten released from which ever fav tech giant or college has shoved in our face as “state-of-the-art”.
 Well, Google or whichever university isn’t paying your staffing bills. It’s time CTO’s took charge of the technology stack, deprecated the fad-tech, and returned all of us to rational reasoned UI that is simple, maintainable, and beautiful.</p>`,
-		img: 'https://picsum.photos/id/172/800/450',
-		id: 1241111,
-		tags: ['Angular', 'JavaScript', 'UI'],
-		comments: [
-			{
-				author: getUser(234861),
-				commentBody: 'Vue.js the best!)',
-				time: `30.${prevMounth}.21, 16:12`,
-			},
-			{
-				author: getUser(117234),
-				commentBody: `Angular has its drawbacks and good points. It is a tool. I feel sorry for people who do not know how to choose a tool for a specific task.`,
-				time: `30.${prevMounth}.21, 17:35`,
-			},
-		],
-	},
-	{
-		title:
-			'10 Science Just Confirmed Elon Musk’s Favorite Interview Question Is Brilliant',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>Every entrepreneur and hiring manager goes into a job interview looking to hire the best person for the job. The problem is research shows they generally fail spectacularly. One Yale professor has even called job interviews as they’re usually conducted “useless.”
+    img: 'https://picsum.photos/id/172/800/450',
+    id: 1241111,
+    tags: ['Angular', 'JavaScript', 'UI'],
+    comments: [
+      {
+        author: getUser(234861),
+        commentBody: 'Vue.js the best!)',
+        time: `30.${prevMonth}.21, 16:12`,
+      },
+      {
+        author: getUser(117234),
+        commentBody:
+          'Angular has its drawbacks and good points. It is a tool. I feel sorry for people who do not know how to choose a tool for a specific task.',
+        time: `30.${prevMonth}.21, 17:35`,
+      },
+    ],
+  },
+  {
+    title:
+      '10 Science Just Confirmed Elon Musk’s Favorite Interview Question Is Brilliant',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: `<p>Every entrepreneur and hiring manager goes into a job interview looking to hire the best person for the job. The problem is research shows they generally fail spectacularly. One Yale professor has even called job interviews as they’re usually conducted “useless.”
 The problem isn’t bad intentions. It’s human fallibility. Study after study confirms most bosses just can’t seem to stop themselves from being taken in by overconfident blowhards.
 Is there a way to get better at sniffing out BS or even flat-out lying in job interviews (or any other context)? A new study has uncovered a simple, research-validated technique, and funnily enough, it’s exactly how Tesla and SpaceX boss Elon Musk has been interviewing job candidates for years.
 No polygraph required.
@@ -457,16 +460,16 @@ Elon Musk already knew that.
 That huge jump in BS-detection rates might come as a happy surprise to many cops, but one person it likely wouldn’t shock is Elon Musk. He told the World Government Summit back in 2017 that he always uses the same approach to interviewing, asking every candidate, “Tell me about some of the most difficult problems you worked on and how you solved them.”
 Musk goes on to explain that “the people who really solved the problem, they know exactly how they solved it, they know the little details.” In other words, Musk long ago intuitively grasped the truth behind Porter’s research — genuinely skilled (if sometimes socially awkward) truth tellers will be thrilled to get into the weeds with you. Those who skate by on charisma can’t do the same.
 So if you want your next job interview to be significantly better than useless, follow Musk’s lead and borrow this trick to cut through the BS. Research shows it works for the police. Musk’s endorsement suggests it’s equally useful for hiring.</p>`,
-		img: 'https://picsum.photos/id/214/800/450',
-		id: 1642121,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '11 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>Let me tell you about this obscure package, which generated over 700 thousand downloads in the past year.
+    img: 'https://picsum.photos/id/214/800/450',
+    id: 1642121,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '11 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: `<p>Let me tell you about this obscure package, which generated over 700 thousand downloads in the past year.
 The package name is - and it does literally nothing. It contains the usual empty boilerplate. And yet, people are still downloading it for their projects. I couldn’t wrap my head around it, so I did a little bit of digging.
 In this story, I’ll share what I found out.
 Why Are People Downloading It?
@@ -475,7 +478,7 @@ the graph showing number of downloads of -
 Number of downloads per month (source: npm-stat)
 But if this comes as a surprise to you, wait until I tell you the even crazier part. It’s used as a dependency of over 60 npm packages. I am sensing there will be some readers who will question this statement.
 I went ahead and took a screenshot directly from npm. But if you still think I’m just a Photoshop master, you can check it out for yourself.
-dependants of — package
+dependants of — package
 Number of dependents (source: npm)
 At first, I thought that’s why it has so many downloads. And I bet you’re thinking about it as well. But it’s so far from the truth. In fact, all these packages have only a few downloads.
 While they could generate a couple of extra downloads, it’s nowhere near the final number. So where are all the downloads coming from? That’s the final piece of the puzzle, which I’m gonna reveal to you in just a moment.
@@ -516,123 +519,123 @@ The other problem is that upon installing a package, npm presents a summarized s
 Concluding Thoughts
 As we’ve learned today, we should make attention when typing npm commands in the terminal. Especially when using flags. It also won’t hurt you to check and audit your package.json from time to time.
 I don’t know about you, but when I first heard about this, I immediately looked into my package.json file. The question is, will you?</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 1642311,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '12 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>12</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 16423111,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '13 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>13</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 23456,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '14 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>14</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 234256,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '15 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>15</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 16423111,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '16 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>16</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 23456,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '17 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>17</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 234256,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '18 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>18</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 234256,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '19 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>19</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 16423111,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '20 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>20</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 23456,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
-	{
-		title: '21 This Empty NPM Package Has Over 700,000 Downloads',
-		creationDate: `30.${prevMounth}.21, 12:22`,
-		author: getUser(234861),
-		body: `<p>21</p>`,
-		img: 'https://picsum.photos/id/366/800/450',
-		id: 234256,
-		tags: ['Elon Musk', 'Science', 'News'],
-		comments: [],
-	},
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 1642311,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '12 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>12</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 16423111,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '13 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>13</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 23456,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '14 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>14</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 234256,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '15 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>15</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 16423111,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '16 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>16</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 23456,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '17 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>17</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 234256,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '18 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>18</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 234256,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '19 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>19</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 16423111,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '20 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>20</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 23456,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
+  {
+    title: '21 This Empty NPM Package Has Over 700,000 Downloads',
+    creationDate: `30.${prevMonth}.21, 12:22`,
+    author: getUser(234861),
+    body: '<p>21</p>',
+    img: 'https://picsum.photos/id/366/800/450',
+    id: 234256,
+    tags: ['Elon Musk', 'Science', 'News'],
+    comments: [],
+  },
 ];
 
 export default articles;
 
 export function ITERATE_ARTICLES_AND_COMMENTS_AUTHORS(
-	articlesDB = articles,
-	callback = () => {}
+  articlesDB = articles,
+  callback = () => {}
 ) {
-	articlesDB.forEach((article) => {
-		callback(article.author);
-		article.comments.forEach((comment) => {
-			callback(comment);
-		});
-	});
+  articlesDB.forEach((article) => {
+    callback(article.author);
+    article.comments.forEach((comment) => {
+      callback(comment);
+    });
+  });
 }

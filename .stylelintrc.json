@@ -21,5 +21,14 @@
     ],
     "selector-class-pattern": "[a-z]+[a-z-]*[a-z]",
     "media-feature-range-notation": "prefix"
-  }
+  },
+  "ignoreFiles": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "!**/*.scss",
+    "!**/*.css",
+    "!**/*.vue"
+  ]
 }

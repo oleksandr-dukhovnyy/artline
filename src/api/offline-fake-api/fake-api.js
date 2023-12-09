@@ -31,14 +31,13 @@ function getCurrentTime(format) {
   const replaceTable = {
     '[d]': () => f(d.getDate()),
     '[sy]': () => `${d.getFullYear()}`.slice(-2),
-    // '[y]': () => d.getFullYear(),
     '[mt]': () => f(d.getMonth() + 1),
     '[h]': () => f(d.getHours()),
     '[m]': () => f(d.getMinutes()),
     '[s]': () => f(d.getSeconds()),
   };
 
-  format.split(/[^\[\w\]]/g).forEach((variable) => {
+  format.split(/[^[\w\]]/g).forEach((variable) => {
     const fixedVar = variable.replace(/\s/g, '');
 
     if (replaceTable[variable] !== undefined) {
@@ -135,21 +134,6 @@ function initServer() {
         response.articles = parsedDB.articles.slice(from, to);
       }
 
-      // test pagination
-      // const response = {
-      // 	success: null,
-      // 	articles: [],
-      // 	paginationPages: 200,
-      // };
-
-      // if (arrOfId !== null) {
-      // 	response.articles = parsedDB.articles.filter((article) => {
-      // 		return arrOfId.includes(article.id);
-      // 	});
-      // } else {
-      // 	response.articles = parsedDB.articles.slice(0, 10);
-      // }
-
       return response;
     },
     '/article': (id) =>
@@ -203,7 +187,7 @@ function initServer() {
 
       const fieldsValidation = {
         email: /^.{3,}@.{2,}\..{2,7}/g,
-        login: /[^0-9\s\r\+]{1}[a-z\-_0-9]{5,30}/gi,
+        login: /[^0-9\s\r+]{1}[a-z\-_0-9]{5,30}/gi,
         password: /.{6,100}/g,
         // name: /[a-z]{5,100}/gi,
         // about: /.{0,300}/g,
@@ -262,7 +246,7 @@ function initServer() {
         parsedDB.users.push(newUser);
         saveDataBase(parsedDB);
 
-        // autologin for auto registration token
+        // auto login for auto registration token
         response.token = postApi['/login'](response.user).token;
       }
 
@@ -328,7 +312,7 @@ function initServer() {
         addAndSaveToken(response.token, cleanUser.id);
       } else {
         response.success = false;
-        response.msg = 'uncurrect login or password';
+        response.msg = 'incorrect login or password';
       }
 
       return response;
@@ -438,7 +422,7 @@ function initServer() {
 
         const failed = [];
 
-        const articleIsValide = checks.every((r) => {
+        const articleIsValid = checks.every((r) => {
           if (r[0] === false) {
             failed.push(r[1]);
           }
@@ -446,7 +430,7 @@ function initServer() {
           return r[0];
         });
 
-        if (articleIsValide) {
+        if (articleIsValid) {
           response.success = true;
           response.msg = 'ok';
           response.newArticleID = newArticle.id;
@@ -481,7 +465,7 @@ function initServer() {
       if (accessIsValid === true) {
         if (commentBody.length === 0 || /^\s{0,}$/g.test(commentBody)) {
           response.success = false;
-          response.msg = 'Uncurrect comment body. Comment empty.';
+          response.msg = 'Incorrect comment body. Comment empty.';
         } else {
           const article = DBTools.getArticle(articleID);
 
@@ -595,7 +579,7 @@ function initServer() {
 
   const server = {
     get(url, params = '') {
-      if (typeof params === 'str') {
+      if (typeof params === 'string') {
         log('get', `${url}/${params}`);
       } else {
         log('get', url, params);
