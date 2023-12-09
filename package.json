@@ -1,10 +1,12 @@
 {
   "name": "artline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
+  "author": "Oleksandr Dukhovnyy <script@vip-person.net> (https://github.com/oleksandr-dukhovnyy)",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "npx eslint ./"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
@@ -17,13 +19,25 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.23.3",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-pwa": "~5.0.8",
     "@vue/cli-plugin-router": "~5.0.8",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~5.0.8",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-vue": "^9.19.2",
     "node-sass": "^9.0.0",
     "sass-loader": "^13.2.0",
+    "stylelint": "^15.10.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard-scss": "^11.1.0",
     "vue-template-compiler": "^2.6.11"
+  },
+  "engines": {
+    "node": "^18.0.0",
+    "npm": "^10.0.0"
   }
 }

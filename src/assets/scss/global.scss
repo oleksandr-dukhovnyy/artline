@@ -1,16 +1,16 @@
 @import '@/assets/scss/normalize.scss';
 
 * {
-	box-sizing: border-box;
-	font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 
-	// outline: 1px solid #ff000055;
+  // outline: 1px solid #ff000055;
 }
 
 .main {
-	padding: 0 40px;
+  padding: 0 40px;
 }
 
 .router-link-active {
-	color: unset;
+  color: unset;
 }

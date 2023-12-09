@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["plugin:vue/recommended", "eslint:recommended", "prettier"],
+  "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+    "object-curly-spacing": ["error", "always"],
+    "array-bracket-spacing": ["error", "always"]
+  },
+  "ignorePatterns": [
+    ".eslintrc.js",
+    "*.scss",
+    "*.sh",
+    "*.svg",
+    "*.ico",
+    "*.json",
+    "*.md",
+    "*.min.*",
+    "dist/*",
+    "node_modules/*",
+    "public/*",
+    "*.config.js"
+  ]
+}
