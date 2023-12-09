@@ -2,11 +2,9 @@
 $media-mobile-s: 320px;
 $media-mobile-m: 640px;
 $media-mobile-l: 1080px;
-
 $media-tablet-s: 600px;
 $media-tablet-m: 1000px;
 $media-tablet-l: 1600px;
-
 $media-desktop-s: 1200px;
 $media-desktop-m: 1800px;
 $media-desktop-l: 2200px;
@@ -53,6 +51,7 @@ $media-desktop-l: 2200px;
 		@content;
 	}
 }
+
 @mixin mobile-landscape {
 	html.mobile.landscape & {
 		@include media-mx($media-mobile-l) {
@@ -60,6 +59,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin mobile-portrait {
 	html.mobile.portrait & {
 		@include media-mx($media-mobile-l) {
@@ -67,6 +67,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 // -
 @mixin mobile-s() {
 	html.mobile & {
@@ -75,6 +76,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin mobile-s-landscape() {
 	html.mobile.landscape & {
 		@include media-mx($media-mobile-s) {
@@ -82,6 +84,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin mobile-s-portrait() {
 	html.mobile.portrait & {
 		@include media-mx($media-mobile-s) {
@@ -89,6 +92,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 // -
 @mixin mobile-m() {
 	html.mobile & {
@@ -105,6 +109,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin mobile-m-portrait() {
 	html.mobile.portrait & {
 		@include media-mn-mx($media-mobile-s, $media-mobile-m) {
@@ -112,6 +117,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 // -
 @mixin mobile-l() {
 	html.mobile & {
@@ -128,6 +134,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin mobile-l-portrait() {
 	html.mobile.portrait & {
 		@include media-mn-mx($media-mobile-m, $media-mobile-l) {
@@ -145,6 +152,7 @@ $media-desktop-l: 2200px;
 		@content;
 	}
 }
+
 @mixin tablet-landscape() {
 	html.tablet.landscape & {
 		@include media-mn-mx($media-tablet-s, $media-tablet-l) {
@@ -152,6 +160,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin tablet-portrait() {
 	html.tablet.portrait & {
 		@include media-mn-mx($media-tablet-s, $media-tablet-l) {
@@ -159,6 +168,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 // -
 @mixin tablet-s() {
 	html.tablet & {
@@ -167,6 +177,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin tablet-s-landscape() {
 	html.tablet.landscape & {
 		@include media-mx($media-tablet-s) {
@@ -174,6 +185,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin tablet-s-portrait() {
 	html.tablet.portrait & {
 		@include media-mx($media-tablet-s) {
@@ -181,6 +193,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 // -
 @mixin tablet-m() {
 	html.tablet & {
@@ -189,6 +202,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin tablet-m-landscape() {
 	html.tablet.landscape & {
 		@include media-mn-mx($media-tablet-s, $media-tablet-m) {
@@ -196,6 +210,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin tablet-m-portrait() {
 	html.tablet.landscape & {
 		@include media-mn-mx($media-tablet-s, $media-tablet-m) {
@@ -203,6 +218,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 // -
 @mixin tablet-l() {
 	html.tablet & {
@@ -211,6 +227,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin tablet-l-landscape() {
 	html.tablet.landscape & {
 		@include media-mn-mx($media-tablet-m, $media-tablet-l) {
@@ -218,6 +235,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin tablet-l-portrait() {
 	html.tablet.portrait & {
 		@include media-mn-mx($media-tablet-m, $media-tablet-l) {
@@ -235,6 +253,7 @@ $media-desktop-l: 2200px;
 		@content;
 	}
 }
+
 @mixin desktop-landscape() {
 	html.desktop.landscape & {
 		@include media-mn-mx($media-desktop-s, $media-desktop-l) {
@@ -242,6 +261,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin desktop-portrait() {
 	html.desktop.portrait & {
 		@include media-mn-mx($media-desktop-s, $media-desktop-l) {
@@ -249,6 +269,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 // -
 @mixin desktop-s() {
 	html.desktop & {
@@ -257,6 +278,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin desktop-s-landscape() {
 	html.desktop.landscape & {
 		@include media-mx($media-desktop-s) {
@@ -264,6 +286,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin desktop-s-portrait() {
 	html.desktop.portrait & {
 		@include media-mx($media-desktop-s) {
@@ -271,6 +294,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 // -
 @mixin desktop-m() {
 	html.desktop & {
@@ -279,6 +303,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin desktop-m-landscape() {
 	html.desktop.landscape & {
 		@include media-mn-mx($media-desktop-s, $media-desktop-m) {
@@ -286,6 +311,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin desktop-m-portrait() {
 	html.desktop.portrait & {
 		@include media-mn-mx($media-desktop-s, $media-desktop-m) {
@@ -293,6 +319,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 // -
 @mixin desktop-l() {
 	html.desktop & {
@@ -301,6 +328,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin desktop-l-landscape() {
 	html.desktop.landscape & {
 		@include media-mn-mx($media-desktop-l, $max-supported-width) {
@@ -308,6 +336,7 @@ $media-desktop-l: 2200px;
 		}
 	}
 }
+
 @mixin desktop-l-portrait() {
 	html.desktop.portrait & {
 		@include media-mn-mx($media-desktop-l, $max-supported-width) {

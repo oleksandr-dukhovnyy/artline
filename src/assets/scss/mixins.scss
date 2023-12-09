@@ -1,5 +1,5 @@
-@import './vars.scss';
-@import './media.scss';
+@import './vars';
+@import './media';
 
 @mixin link {
 	// text-decoration: none;
@@ -25,6 +25,7 @@
 	$hoverActive: 'yes'
 ) {
 	@include button($s-color);
+
 	border: 1px solid $color;
 	color: $color;
 	padding: 10px;
@@ -34,7 +35,7 @@
 		opacity: 0.5;
 	}
 
-	@if ($hoverActive == 'yes') {
+	@if  $hoverActive == 'yes' {
 		@include desktop {
 			&:hover {
 				color: #fff;
@@ -63,7 +64,6 @@
 	border-radius: 40px;
 	background-color: $tag-background-color;
 	padding: 5px 10px;
-
 	display: flex;
 	justify-content: center;
 	text-align: center;
@@ -73,9 +73,11 @@
 	0% {
 		opacity: 0.7;
 	}
+
 	50% {
 		opacity: 0.3;
 	}
+
 	100% {
 		opacity: 0.7;
 	}
@@ -122,6 +124,7 @@
 
 @mixin beauty-textarea {
 	@include beauty-input;
+
 	min-height: 150px;
 	resize: vertical;
 }

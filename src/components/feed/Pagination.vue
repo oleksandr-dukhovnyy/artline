@@ -1,179 +1,176 @@
 <template>
-	<div
-		class="pagination animate__animated animate__slideInLeft"
-		v-if="paginationPages !== undefined && paginationPages > 0"
-	>
-		<div class="pagination-wrapper">
-			<div class="pagination-wrapper-arrow-left">
-				<img
-					src="@/assets/icons/arrow-left-50.png"
-					alt="prev_pagination_page"
-					class="pagination-wrapper-arrow-left-img"
-					:class="{ unactive: rangeStart < 1 }"
-					@click="prevPaginationPage()"
-				/>
-			</div>
-			<div
-				class="pagination-wrapper-page"
-				v-for="(page, i) in pages"
-				:key="i"
-				:class="{ active: page === currentPage }"
-				@click="selectPage(page)"
-			>
-				<router-link
-					class="pagination-wrapper-page-link"
-					:to="{ name: $route.name, query: { page } }"
-				>
-					{{ page }}
-				</router-link>
-			</div>
-			<div class="pagination-wrapper-arrow-right">
-				<img
-					src="@/assets/icons/arrow-left-50.png"
-					alt="next_pagination_page"
-					class="pagination-wrapper-arrow-right-img flipped"
-					:class="{ unactive: paginationPages - rangeStart <= 10 }"
-					@click="nextPaginationPage()"
-				/>
-			</div>
-		</div>
-	</div>
+  <div
+    class="pagination animate__animated animate__slideInLeft"
+    v-if="paginationPages !== undefined && paginationPages > 0"
+  >
+    <div class="pagination-wrapper">
+      <div class="pagination-wrapper-arrow-left">
+        <img
+          src="@/assets/icons/arrow-left-50.png"
+          alt="prev_pagination_page"
+          class="pagination-wrapper-arrow-left-img"
+          :class="{ unactive: rangeStart < 1 }"
+          @click="prevPaginationPage()"
+        />
+      </div>
+      <div
+        class="pagination-wrapper-page"
+        v-for="(page, i) in pages"
+        :key="i"
+        :class="{ active: page === currentPage }"
+        @click="selectPage(page)"
+      >
+        <router-link
+          class="pagination-wrapper-page-link"
+          :to="{ name: $route.name, query: { page } }"
+        >
+          {{ page }}
+        </router-link>
+      </div>
+      <div class="pagination-wrapper-arrow-right">
+        <img
+          src="@/assets/icons/arrow-left-50.png"
+          alt="next_pagination_page"
+          class="pagination-wrapper-arrow-right-img flipped"
+          :class="{ unactive: paginationPages - rangeStart <= 10 }"
+          @click="nextPaginationPage()"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-	name: 'Pagination',
-	props: {
-		paginationPages: {
-			type: Number,
-			default: 1,
-		},
-	},
-	data: () => ({
-		rangeStart: 0,
-		pages: [],
-	}),
-	watch: {
-		rangeStart() {
-			this.setPages(this.rangeStart, this.paginationPages);
-		},
-	},
-	computed: {
-		currentPage() {
-			const currentPage = +this.$route.query.page;
+  export default {
+    name: 'Pagination',
+    props: {
+      paginationPages: {
+        type: Number,
+        default: 1,
+      },
+    },
+    data: () => ({
+      rangeStart: 0,
+      pages: [],
+    }),
+    watch: {
+      rangeStart() {
+        this.setPages(this.rangeStart, this.paginationPages);
+      },
+    },
+    computed: {
+      currentPage() {
+        const currentPage = +this.$route.query.page;
 
-			return isNaN(currentPage) || currentPage === 0 ? 1 : currentPage;
-		},
-	},
-	methods: {
-		selectPage(page) {
-			this.$emit('selectPage', page);
-		},
-		setPages(start, pages) {
-			const res = [];
+        return isNaN(currentPage) || currentPage === 0 ? 1 : currentPage;
+      },
+    },
+    methods: {
+      selectPage(page) {
+        this.$emit('selectPage', page);
+      },
+      setPages(start, pages) {
+        const res = [];
 
-			for (let i = start; i < start + 10; i++) {
-				if (pages > i && i >= 0) {
-					res.push(i + 1);
-				}
-			}
+        for (let i = start; i < start + 10; i++) {
+          if (pages > i && i >= 0) {
+            res.push(i + 1);
+          }
+        }
 
-			this.pages = res;
-		},
-		nextPaginationPage() {
-			const newStart =
-				Number(this.paginationPages) - 10 - Number(this.rangeStart);
+        this.pages = res;
+      },
+      nextPaginationPage() {
+        const newStart =
+          Number(this.paginationPages) - 10 - Number(this.rangeStart);
 
-			if (newStart > 1) {
-				this.rangeStart += 10;
-			}
-		},
-		prevPaginationPage() {
-			if (this.rangeStart - 10 > 0) {
-				this.rangeStart -= 10;
-			} else {
-				this.rangeStart = 0;
-			}
-		},
-	},
-	created() {
-		let roundTo10th;
+        if (newStart > 1) {
+          this.rangeStart += 10;
+        }
+      },
+      prevPaginationPage() {
+        if (this.rangeStart - 10 > 0) {
+          this.rangeStart -= 10;
+        } else {
+          this.rangeStart = 0;
+        }
+      },
+    },
+    created() {
+      let roundTo10th;
 
-		if (this.currentPage < this.paginationPages) {
-			roundTo10th = Math.floor((this.currentPage - 1) / 10) * 10;
-		} else {
-			roundTo10th = this.paginationPages - 10;
-		}
+      if (this.currentPage < this.paginationPages) {
+        roundTo10th = Math.floor((this.currentPage - 1) / 10) * 10;
+      } else {
+        roundTo10th = this.paginationPages - 10;
+      }
 
-		this.rangeStart = roundTo10th;
-		this.setPages(roundTo10th, this.paginationPages);
-	},
-};
+      this.rangeStart = roundTo10th;
+      this.setPages(roundTo10th, this.paginationPages);
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/mixins.scss';
+  .flipped {
+    transform: rotate(180deg);
+  }
 
-.flipped {
-	transform: rotate(180deg);
-}
+  .pagination {
+    background-color: #fff;
+    border-radius: $border-radius;
+    padding: $break;
+    display: flex;
+    justify-content: center;
 
-.pagination {
-	background-color: #fff;
-	border-radius: $border-radius;
-	padding: $break;
-	display: flex;
-	justify-content: center;
+    &-wrapper {
+      display: grid;
+      grid-template-columns: repeat(12, 35px);
+      grid-template-rows: 35px;
+      grid-gap: $break;
 
-	&-wrapper {
-		display: grid;
-		grid-template-columns: repeat(12, 35px);
-		grid-template-rows: 35px;
+      &-page {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $main-color;
+        opacity: 0.4;
+        border-radius: $border-radius;
+        cursor: pointer;
 
-		grid-gap: $break;
+        &-link {
+          @include link;
 
-		&-page {
-			padding: 10px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border: 1px solid $main-color;
-			opacity: 0.4;
-			border-radius: $border-radius;
+          text-decoration: none;
+          color: $main-color !important;
+        }
+      }
 
-			cursor: pointer;
+      &-arrow,
+      &-right {
+        &-left,
+        &-right {
+          display: flex;
+          align-items: center;
 
-			&-link {
-				@include link;
-				text-decoration: none;
-				color: $main-color !important;
-			}
-		}
+          &-img {
+            width: 25px;
+            height: 25px;
 
-		&-arrow,
-		&-right {
-			&-left,
-			&-right {
-				display: flex;
-				align-items: center;
+            &.unactive {
+              opacity: 0.3;
+            }
+          }
+        }
+      }
+    }
+  }
 
-				&-img {
-					width: 25px;
-					height: 25px;
-
-					&.unactive {
-						opacity: 0.3;
-					}
-				}
-			}
-		}
-	}
-}
-
-.active {
-	opacity: 1;
-	color: black;
-	font-weight: 600;
-	border: 2px solid #2a544ccc;
-}
+  .active {
+    opacity: 1;
+    color: black;
+    font-weight: 600;
+    border: 2px solid #2a544ccc;
+  }
 </style>

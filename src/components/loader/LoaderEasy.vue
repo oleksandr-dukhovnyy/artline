@@ -25,11 +25,11 @@ export default {
 			border-radius: 100%;
 			height: 10px;
 			width: 10px;
-			background-color: hsl(0, 0%, 100%);
+			background-color: hsl(0deg, 0%, 100%);
 			animation: bounce 1s ease-in-out infinite;
 			position: absolute;
 			top: 0;
-			transform: translatey(20px);
+			transform: translateY(20px);
 
 			&:first-of-type {
 				left: -20px;
@@ -48,7 +48,7 @@ export default {
 	}
 
 	@keyframes bounce {
-		50% {transform: translatey(-20px);}
-		100% {transform: translatey( 20px);}
+		50% {transform: translateY(-20px);}
+		100% {transform: translateY( 20px);}
 	}
 </style>

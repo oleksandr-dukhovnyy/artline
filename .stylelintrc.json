@@ -15,7 +15,9 @@
           "media-up",
           "media-down",
           "each",
-          "for"
+          "for",
+          "if",
+          "else"
         ]
       }
     ],
@@ -23,12 +25,21 @@
     "media-feature-range-notation": "prefix"
   },
   "ignoreFiles": [
+    "dist/*/**",
+    "**/*.png",
+    "**/*.jpg",
+    "**/*.ico",
+    "**/*.txt",
+    "**/*.html",
+    "**/*.jpeg",
+    "**/*.svg",
+    "**/*.md",
     "**/*.js",
-    "**/*.jsx",
+    "**/*.json",
     "**/*.ts",
     "**/*.tsx",
     "!**/*.scss",
-    "!**/*.css",
-    "!**/*.vue"
+    "!**/*.vue",
+    "LICENSE"
   ]
 }

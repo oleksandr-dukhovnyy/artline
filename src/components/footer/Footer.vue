@@ -1,52 +1,53 @@
 <template>
-	<footer class="footer">
-		<div class="footer-logo">
-			<router-link class="footer-logo-text" :to="{ name: 'home' }"
-				>ARTLINE</router-link
-			>
-		</div>
-		<div class="footer-author">
-			SCRIPT developers studio ©
-			<span class="footer-author-email">feat@vip-person.net</span>
-		</div>
-	</footer>
+  <footer class="footer">
+    <div class="footer-logo">
+      <router-link
+        class="footer-logo-text"
+        :to="{ name: 'home' }"
+        >ARTLINE</router-link
+      >
+    </div>
+    <div class="footer-author">
+      SCRIPT developers studio ©
+      <span class="footer-author-email">feat@vip-person.net</span>
+    </div>
+  </footer>
 </template>
 
 <script>
-export default {
-	name: 'Footer',
-	mount() {},
-};
+  export default {
+    name: 'Footer',
+    mount() {},
+  };
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/mixins.scss';
+  .footer {
+    height: 210px;
+    background-color: $main-color;
+    position: relative;
 
-.footer {
-	height: 210px;
-	background-color: $main-color;
-	position: relative;
+    &-logo {
+      padding: 20px;
 
-	&-logo {
-		padding: 20px;
-		&-text {
-			font-size: $font-size-l;
-			color: #fff;
-			text-decoration: none;
-		}
-	}
+      &-text {
+        font-size: $font-size-l;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
 
-	&-author {
-		position: absolute;
-		bottom: 10px;
-		font-size: $font-size-s;
-		color: #fff;
-		text-align: center;
-		width: 100%;
+    &-author {
+      position: absolute;
+      bottom: 10px;
+      font-size: $font-size-s;
+      color: #fff;
+      text-align: center;
+      width: 100%;
 
-		&-email {
-			margin-left: 10px;
-		}
-	}
-}
+      &-email {
+        margin-left: 10px;
+      }
+    }
+  }
 </style>

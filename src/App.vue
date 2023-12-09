@@ -1,51 +1,40 @@
 <template>
   <div id="app">
-    <Header />
+    <TheHeader />
     <main class="main">
-      <router-view/>
+      <router-view />
     </main>
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 
 <script>
-import Header from './components/header/Header.vue';
-import Footer from '@/components/footer/Footer.vue';
-import {mapActions} from 'vuex';
+  import TheHeader from './components/header/Header.vue';
+  import TheFooter from '@/components/footer/Footer.vue';
+  import { mapActions } from 'vuex';
 
-export default {
-  components: {
-    Header,
-    Footer
-  },
-  name: 'App',
-  methods: {
-    ...mapActions(['autoLogin'])
-  },
-  created(){
-    this.autoLogin();
-
-    // if(confirm('delete-database?')){
-    //   localStorage.clear();
-    //   location.reload();
-    // }
-  }
-}
+  export default {
+    name: 'App',
+    components: {
+      TheHeader,
+      TheFooter,
+    },
+    created() {
+      this.autoLogin();
+    },
+    methods: {
+      ...mapActions(['autoLogin']),
+    },
+  };
 </script>
 
-
 <style lang="scss">
-  @import '@/assets/scss/global.scss';
-  @import '@/assets/scss/vars.scss';
+  @import '@/assets/scss/global';
 
   .main {
-    padding: 40px 0 0 0;
-    background-color: $home_background-color;
-
+    padding: 40px 0 0;
+    background-color: $home-background-color;
     display: flex;
     justify-content: center;
-    // width: 100vw;
   }
-
-
 </style>
