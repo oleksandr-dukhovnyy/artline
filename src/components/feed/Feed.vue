@@ -25,7 +25,7 @@
   import { mapGetters, mapActions } from 'vuex';
 
   import FeedArticle from '@/components/feed/FeedArticle.vue';
-  import Pagination from '@/components/feed/Pagination.vue';
+  // import Pagination from '@/components/feed/Pagination.vue';
 
   export default {
     name: 'NewsFeed',
@@ -100,6 +100,8 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    gap: 14px;
+    margin: 16px 0 28px;
 
     @include mobile-m {
       width: 100%;

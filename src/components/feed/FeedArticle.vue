@@ -2,7 +2,7 @@
   <article class="article">
     <h2 class="article-title">
       <router-link
-        class="article-title-link"
+        class="article-title-link scalable"
         :to="{ name: 'article', params: { id: articleId } }"
       >
         {{ title }}
@@ -11,7 +11,7 @@
     <div class="article-data">
       <div class="article-data-creation_date">{{ creationDate }}</div>
       <router-link
-        class="link"
+        class="link scalable"
         :to="{ name: 'user', params: { id: author.id } }"
       >
         <div class="article-data-author">{{ author.name }}</div>
@@ -47,7 +47,10 @@
       class="article-preview"
       v-purify-html="body.slice(0, 300)"
     ></p>
-    <router-link :to="{ name: 'article', params: { id: articleId } }">
+    <router-link
+      class="article-read_link"
+      :to="{ name: 'article', params: { id: articleId } }"
+    >
       <button class="article-read_more"> read more... </button>
     </router-link>
   </article>
@@ -99,10 +102,10 @@
 <style lang="scss" scoped>
   .article {
     background-color: #fff;
-    padding: $break 10px;
+    padding: 10px $break;
     border-radius: $border-radius;
     width: 820px;
-    margin: $break 0;
+    position: relative;
 
     @include mobile {
       width: 100%;
@@ -128,6 +131,7 @@
 
     &-preview {
       word-wrap: break-word;
+      padding-top: calc(52% + 14px);
     }
 
     &-title {
@@ -145,28 +149,17 @@
     &-picture_placeholder {
       width: 800px;
       height: 450px;
+      margin: $break;
     }
 
     &-img {
-      max-width: 100%;
+      width: 100%;
       margin: 0 auto;
-      border-radius: $border-radius;
       display: flex;
-
-      @include mobile-m {
-        width: 295px;
-        height: calc(295px * 0.5625);
-      }
-
-      @include tablet {
-        width: 480px;
-        height: calc(480px * 0.5625);
-      }
-
-      // @include tablet-landscape {
-      // 	width: 719px;
-      // 	height: calc(719px * 0.5625);
-      // }
+      position: absolute;
+      left: 0;
+      color: #dedede;
+      font-style: italic;
     }
 
     &-data {
@@ -183,14 +176,18 @@
       }
     }
 
-    &-read_more {
-      width: 100px;
-      height: 25px;
-      border: 1px solid $main-color;
-      color: $main-color;
-      font-size: $font-size-s;
+    &-read {
+      &_link {
+        display: flex;
+        width: max-content;
+        text-decoration: none;
+      }
 
-      @include button;
+      &_more {
+        @include button;
+
+        width: max-content;
+      }
     }
 
     &-data-tags {
@@ -199,6 +196,8 @@
       grid-template-columns: repeat(5, auto);
       grid-column-gap: 5px;
       grid-template-rows: 1fr;
+      width: max-content;
+      margin-top: 8px;
 
       &-tag {
         @include tag;

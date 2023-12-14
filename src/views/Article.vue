@@ -119,9 +119,10 @@
     >
       <h4> Write a comment: </h4>
       <textarea
-        v-model="comment"
+        v-model.trim="comment"
         class="write_comment-text_area"
         rows="8"
+        placeholder="Write a comment here..."
         :class="{ loading: submitCommentCondition.loading }"
       ></textarea>
       <div
@@ -250,6 +251,12 @@
 </script>
 
 <style lang="scss">
+  .wrapper .article img {
+    width: 100%;
+  }
+</style>
+
+<style lang="scss" scoped>
   // local vars
   $article-width-desktop: 820px;
   $article-width-tablet: 700px;
@@ -290,6 +297,7 @@
   .article {
     margin: 30px 0;
     padding: $break 10px;
+    position: relative;
 
     @include block-width;
     @include data-block;
@@ -318,18 +326,9 @@
     }
 
     &-img {
-      @include mobile {
-        width: 94vw;
-        height: calc(94vw * 0.5625);
-      }
-
-      @include tablet {
-        width: 680px;
-        height: calc(680px * 0.5625);
-      }
-
-      margin: 0 auto;
-      border-radius: $border-radius;
+      width: 100%;
+      position: absolute;
+      left: 0;
     }
 
     &-data {
@@ -348,6 +347,7 @@
         grid-template-columns: repeat(5, auto);
         grid-column-gap: 5px;
         grid-template-rows: 1fr;
+        margin-top: 8px;
 
         &-tag {
           @include tag;
@@ -373,7 +373,6 @@
 
     &-read_more {
       width: 100px;
-      height: 35px;
       border: 1px solid $main-color;
       color: $main-color;
 
@@ -402,6 +401,7 @@
 
     &-body {
       word-wrap: break-word;
+      padding-top: calc(52% + 14px);
 
       img {
         max-width: 100%;
@@ -466,12 +466,21 @@
 
     padding: $break;
     margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    button {
+      width: max-content;
+    }
 
     @include data-block;
 
     &-text_area {
       width: 100%;
       resize: vertical;
+      min-height: 70px;
+      max-height: 1000px;
 
       &.loading {
         opacity: 0.7;

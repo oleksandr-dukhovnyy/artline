@@ -44,6 +44,8 @@
     height: max-content;
     padding: $break;
     border-radius: $border-radius;
+    position: sticky;
+    top: $break + $header-height;
 
     @include mobile {
       & {

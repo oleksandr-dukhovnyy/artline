@@ -6,21 +6,21 @@
       @submit.prevent="submit"
     >
       <input
-        v-model="data.login"
+        v-model.trim="data.login"
         type="text"
         placeholder="login"
         class="registration-form-input registration-form-login"
       />
 
       <input
-        v-model="data.email"
+        v-model.trim="data.email"
         type="email"
         placeholder="email"
         class="registration-form-input registration-form-password"
       />
 
       <input
-        v-model="data.password"
+        v-model.trim="data.password"
         type="password"
         placeholder="password"
         class="registration-form-input registration-form-password"

@@ -32,7 +32,7 @@
   @import '@/assets/scss/global';
 
   .main {
-    padding: 40px 0 0;
+    padding: 35px 0 0;
     background-color: $home-background-color;
     display: flex;
     justify-content: center;

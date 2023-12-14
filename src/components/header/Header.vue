@@ -95,8 +95,9 @@
       }
 
       &-new_article {
-        @include action-button(#fff);
+        @include button(#fff, #fff);
 
+        background-color: transparent;
         height: 20px;
         line-height: 20px;
         padding: 5px;
@@ -105,10 +106,6 @@
         align-items: center;
         justify-content: center;
         text-decoration: none;
-
-        &:hover {
-          color: $cta-color;
-        }
       }
     }
 

@@ -7,7 +7,7 @@
     <div class="write-image">
       <div
         v-if="!conditions.previewON"
-        class="write-image-title"
+        class="write-image-title write-label"
       >
         Image:
       </div>
@@ -28,13 +28,13 @@
     >
       <div
         v-if="!conditions.previewON"
-        class="write-tags-title"
+        class="write-tags-title write-label"
       >
         Tags:
       </div>
       <input
         v-if="!conditions.previewON"
-        v-model="tagsStr"
+        v-model.trim="tagsStr"
         class="write-tags-input"
         type="text"
         placeholder="tags, comma separated"
@@ -56,13 +56,13 @@
     <div class="write-title">
       <div
         v-if="!conditions.previewON"
-        class="write-tags-title"
+        class="write-tags-title write-label"
       >
         Article title:
       </div>
       <input
         v-if="!conditions.previewON"
-        v-model="article.title"
+        v-model.trim="article.title"
         class="write-title-input"
         type="text"
         placeholder="Article title"
@@ -89,9 +89,9 @@
       v-if="!conditions.previewON"
       class="write-editor"
     >
-      <div class="write-editor-title"> Content: </div>
+      <div class="write-editor-title write-label"> Content: </div>
       <quill-editor
-        v-model="article.content"
+        v-model.trim="article.content"
         :options="editorOption"
         :read-only="true"
         @change="updateLocalStorage"
@@ -289,6 +289,10 @@
 
     @include mobile {
       margin: 0;
+    }
+
+    &-label {
+      margin-bottom: 4px;
     }
 
     &-image {

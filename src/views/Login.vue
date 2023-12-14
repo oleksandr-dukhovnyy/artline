@@ -1,12 +1,13 @@
 <template>
   <section class="login animate__animated animate__fadeIn">
-    <h2 class="login-title">Login</h2>
     <form
       class="login-form"
       @submit.prevent="submit"
     >
+      <h2 class="login-title">Login</h2>
+
       <input
-        v-model="data.login"
+        v-model.trim="data.login"
         type="text"
         placeholder="login"
         class="login-form-input login-form-login"
@@ -14,7 +15,7 @@
       />
 
       <input
-        v-model="data.password"
+        v-model.trim="data.password"
         type="password"
         placeholder="password"
         class="login-form-input login-form-password"
@@ -27,6 +28,8 @@
       >
         {{ authError.msg }}
       </div>
+
+      <hr />
 
       <div class="login-form-submit">
         <input
@@ -94,27 +97,26 @@
     align-items: center;
     flex-direction: column;
 
-    &-title {
-      margin: 0 0 2vh;
-    }
-
     &-form {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      gap: 14px;
       align-items: center;
       padding: $break;
-      width: 25vw;
-      min-width: 300px;
+      width: 350px;
       background-color: #fff;
       border-radius: $border-radius;
 
-      &-input {
+      hr {
+        height: 1px;
         width: 100%;
-        height: 35px;
-        padding: 1.5vh;
-        margin-bottom: $break;
-        font-size: $font-size-m;
+        background-color: $muted-text-color;
+        border: none;
+      }
+
+      &-input {
+        @include input;
 
         &.error {
           @include input-error;
@@ -125,12 +127,11 @@
         width: 100%;
 
         &-bttn {
-          height: 6vh;
+          // height: 35px;
+          width: 100%;
+          padding: 14px 20px;
 
           @include button;
-
-          border: 1px solid $cta-color;
-          color: $cta-color;
         }
       }
 

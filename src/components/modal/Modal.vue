@@ -33,10 +33,11 @@
     >
       <p
         class="modal-prompt-text"
+        style="margin-bottom: 4px"
         v-purify-html="text"
       ></p>
       <input
-        v-model="promptText"
+        v-model.trim="promptText"
         type="text"
         :placeholder="placeholder"
         class="modal-prompt-input"
@@ -61,11 +62,13 @@
       v-if="modalType === 'actions'"
       class="modal-actions animate__animated animate__fadeInUp"
     >
+      <strong style="width: 100%; text-align: center"> More actions </strong>
+
       <button
         v-for="(button, i) in buttons"
         :key="i"
         class="modal-actions-button"
-        :class="{ 'modal-actions-button-red': button.style === 'red' }"
+        :class="`modal-actions-button-${button.style}`"
         @click="actionClick(button.value)"
       >
         {{ button.text }}
@@ -135,6 +138,7 @@
     z-index: 10;
     top: 0;
     left: 0;
+    border-radius: $border-radius;
 
     @include data-block;
 
@@ -202,6 +206,7 @@
         width: $buttons-width;
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 14px;
 
         &-ok {
           @include action-button($red, #fff);
@@ -219,10 +224,29 @@
       grid-gap: $break;
       width: 320px;
       height: max-content;
+      border-radius: $border-radius;
 
       &-button {
         &-red {
           @include action-button($red, #fff);
+
+          background-color: transparent;
+
+          &:hover {
+            border: 1px solid $red !important;
+          }
+        }
+
+        &-gray {
+          @include action-button($muted-text-color, #fff);
+
+          background-color: transparent !important;
+          color: $muted-text-color !important;
+          border: 1px solid $muted-text-color;
+
+          &:hover {
+            border: 1px solid $muted-text-color !important;
+          }
         }
       }
     }

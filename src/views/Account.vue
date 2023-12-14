@@ -28,7 +28,7 @@
         <div class="account-info-name">
           <div class="account-info-name-title">Name:</div>
           <input
-            v-model="newData.name"
+            v-model.trim="newData.name"
             type="text"
             class="account-info-name-input"
             placeholder="Name"
@@ -38,7 +38,7 @@
         <div class="account-info-about">
           <div class="account-info-about-title"> About user: </div>
           <textarea
-            v-model="newData.about"
+            v-model.trim="newData.about"
             class="account-info-about-input"
             placeholder="Write something about yourself"
           >
@@ -219,6 +219,11 @@
           text: 'Log out',
           value: 'logOut',
           style: 'red',
+        },
+        {
+          text: 'Change email',
+          value: 'changeEmail',
+          style: 'gray',
         },
       ]"
       @actionClick="handleMoreActionsClick"
@@ -402,12 +407,27 @@
         this.modals.showMoreActions = true;
       },
       handleMoreActionsClick(action) {
-        if (action === 'deleteAccount') {
-          this._deleteAccount();
-        } else if (action === 'logOut') {
-          this.modals.showMoreActions = false;
-          this.logout();
+        switch (action) {
+          case 'deleteAccount':
+            this.showMoreActions();
+            break;
+
+          case 'logOut':
+            this.modals.showMoreActions = false;
+            this.logout();
+            break;
+
+          case 'changeEmail':
+            prompt('new email');
+            break;
         }
+
+        // if (action === 'deleteAccount') {
+        //   this._deleteAccount();
+        // } else if (action === 'logOut') {
+        //   this.modals.showMoreActions = false;
+        //   this.logout();
+        // }
       },
     },
   };
@@ -553,15 +573,22 @@
           &_posts {
             @include action-button($cta-color, transparent, 'no');
 
+            border-radius: 0;
+            background-color: transparent;
+            transform: none !important;
+
             &.active {
               border-bottom: 1px solid #fff;
             }
           }
 
           &_comments {
-            margin-left: -1px;
-
             @include action-button($cta-color, transparent, 'no');
+
+            margin-left: -1px;
+            border-radius: 0;
+            background-color: transparent;
+            transform: none !important;
 
             &.active {
               border-bottom: 1px solid #fff;
