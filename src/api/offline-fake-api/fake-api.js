@@ -276,7 +276,7 @@ function initServer() {
           response.msg = 'ok';
         } else {
           response.success = false;
-          response.msg = `cannot find user width token.id [${tokenData.id}]`;
+          response.msg = `cannot find user with token.id [${tokenData.id}]`;
         }
       } else {
         response.success = false;
@@ -588,7 +588,7 @@ function initServer() {
       try {
         return makeDBRequest(url, getApi, params, (ok, time) => {
           log(
-            `get ${url} is finished:\nwidth ${time} ms,\nstatus: ${
+            `get ${url} is finished:\nwith ${time} ms,\nstatus: ${
               ok ? 'ok' : 'error'
             }`
           );

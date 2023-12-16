@@ -6,7 +6,7 @@
     >
       <div class="tag-header">
         <h1 class="tag-header-title">
-          Articles width tag "<span class="tag-header-title-cta">{{
+          Articles with tag "<span class="tag-header-title-cta">{{
             $route.params.tag
           }}</span
           >"
