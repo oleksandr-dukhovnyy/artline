@@ -81,7 +81,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   /* eslint-disable-next-line no-undef */
   base: process.env.NODE_ENV === 'production' ? '/artline/' : '/',
   routes,
