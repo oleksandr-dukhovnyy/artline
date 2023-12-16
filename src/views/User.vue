@@ -7,7 +7,7 @@
       <div class="user-header">
         <img
           :src="user.avatar"
-          alt="user_avatar"
+          alt="Avatar not found"
           class="user-header-avatar"
           width="160"
           height="160"
@@ -286,8 +286,13 @@
       grid-gap: $break;
 
       &-avatar {
-        width: $avatar-size-l;
-        height: $avatar-size-l;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        background-color: #ededed;
+        text-align: center;
+        line-height: 150px;
+        color: #a7a7a7;
         border-radius: 50%;
         margin: 0 auto;
       }

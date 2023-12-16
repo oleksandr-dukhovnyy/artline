@@ -7,7 +7,7 @@
       <div class="account-header">
         <div class="account-header-avatar">
           <img
-            alt="user_avatar"
+            alt="Avatar not found"
             :src="newData.avatar"
             width="150"
             height="150"
@@ -475,6 +475,13 @@
 
         &-avatar {
           position: relative;
+          width: 150px;
+          height: 150px;
+          background-color: #ededed;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 150px;
+          color: #a7a7a7;
 
           &-img {
             @include avatar-custom(150px);
