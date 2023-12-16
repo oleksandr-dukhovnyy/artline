@@ -52,7 +52,7 @@
           <img
             class="article-author-link-avatar"
             :src="article.author.avatar"
-            alt="author avatar"
+            :alt="`${article.author.name}'s avatar`"
             width="40"
             height="40"
           />
@@ -81,7 +81,7 @@
             width="40"
             height="40"
             :src="articleComment.author.avatar"
-            alt="user_avatar"
+            :alt="`${articleComment.author.name}'s avatar`"
             class="comments-comment-author-img"
           />
           <strong class="comments-comment-author-name">
@@ -381,6 +381,7 @@
 
     &-author {
       &-link {
+        width: max-content;
         display: grid;
         align-items: center;
         grid-template-columns: $avatar-size-m 1fr;

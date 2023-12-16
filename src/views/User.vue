@@ -313,6 +313,7 @@
 
           @include action-button;
 
+          border-radius: 0;
           background-color: #fff;
 
           &.active {
