@@ -120,7 +120,7 @@
       "tags": ["aws", " security"],
       "comments": [],
       "id": 16424186,
-      "creationDate": "21:10:21, at: 21:49",
+      "creationDate": "21.10.2023, 21:49",
       "author": {
         "id": 976526,
         "name": "HackerOne",
@@ -135,7 +135,7 @@
       "tags": ["security"],
       "comments": [],
       "id": 16423532,
-      "creationDate": "21:10:21, at: 21:01",
+      "creationDate": "21.10.2021, 21:01",
       "author": {
         "id": 976526,
         "name": "HackerOne",
@@ -145,7 +145,7 @@
     },
     {
       "title": "1 How to read 700 books at 15 hours. Part 1",
-      "creationDate": "25.09.21, 15:34",
+      "creationDate": "25.09.2021, 15:34",
       "author": {
         "id": 234861,
         "name": "Jessica Stillman",
@@ -165,7 +165,7 @@
             "login": "bea-bea"
           },
           "commentBody": "Yes!",
-          "time": "25.09.21, 16:12"
+          "time": "25.09.2021, 16:12"
         },
         {
           "author": {
@@ -175,7 +175,7 @@
             "login": "hub-mor"
           },
           "commentBody": "No! It`s impassble! u are crazy!)",
-          "time": "26.09.21, 18:32"
+          "time": "26.09.2021, 18:32"
         },
         {
           "author": {
@@ -185,13 +185,13 @@
             "login": "jss-grnd"
           },
           "commentBody": "How are you do this?)",
-          "time": "27.09.21, 18:32"
+          "time": "27.09.2021, 18:32"
         }
       ]
     },
     {
       "title": "2 Angular is Costing Companies Billions",
-      "creationDate": "30.09.21, 12:22",
+      "creationDate": "30.09.2021, 12:22",
       "author": {
         "id": 341445,
         "name": "Jessica Stillman",
@@ -211,7 +211,7 @@
             "login": "jess-still"
           },
           "commentBody": "Vue.js the best!)",
-          "time": "30.09.21, 16:12"
+          "time": "30.09.2021, 16:12"
         },
         {
           "author": {
@@ -221,13 +221,13 @@
             "login": "jss-grnd"
           },
           "commentBody": "Angular has its drawbacks and good points. It is a tool. I feel sorry for people who do not know how to choose a tool for a specific task.",
-          "time": "30.09.21, 17:35"
+          "time": "30.09.2021, 17:35"
         }
       ]
     },
     {
       "title": "3 Science Just Confirmed Elon Musk’s Favorite Interview Question Is Brilliant",
-      "creationDate": "30.09.21, 12:22",
+      "creationDate": "30.09.2021, 12:22",
       "author": {
         "id": 234861,
         "name": "Jessica Stillman",
@@ -242,7 +242,7 @@
     },
     {
       "title": "This Empty NPM Package Has Over 700,000 Downloads",
-      "creationDate": "30.09.21, 12:22",
+      "creationDate": "30.09.2021, 12:22",
       "author": {
         "id": 234861,
         "name": "Jessica Stillman",
@@ -257,7 +257,7 @@
     },
     {
       "title": "4() How to read 700 books at 15 hours. Part 1",
-      "creationDate": "25.09.21, 15:34",
+      "creationDate": "25.09.2021, 15:34",
       "author": {
         "id": 234861,
         "name": "Jessica Stillman",
@@ -277,7 +277,7 @@
             "login": "bea-bea"
           },
           "commentBody": "Yes!",
-          "time": "25.09.21, 16:12"
+          "time": "25.09.2021, 16:12"
         },
         {
           "author": {
@@ -287,7 +287,7 @@
             "login": "hub-mor"
           },
           "commentBody": "No! It`s impassble! u are crazy!)",
-          "time": "26.09.21, 18:32"
+          "time": "26.09.2021, 18:32"
         },
         {
           "author": {
@@ -297,13 +297,13 @@
             "login": "jss-grnd"
           },
           "commentBody": "How are you do this?)",
-          "time": "27.09.21, 18:32"
+          "time": "27.09.2021, 18:32"
         }
       ]
     },
     {
       "title": "5 Angular is Costing Companies Billions",
-      "creationDate": "30.09.21, 12:22",
+      "creationDate": "30.09.2021, 12:22",
       "author": {
         "id": 341445,
         "name": "Jessica Stillman",
@@ -323,7 +323,7 @@
             "login": "jess-still"
           },
           "commentBody": "Vue.js the best!)",
-          "time": "30.09.21, 16:12"
+          "time": "30.09.2021, 16:12"
         },
         {
           "author": {
@@ -333,13 +333,13 @@
             "login": "jss-grnd"
           },
           "commentBody": "Angular has its drawbacks and good points. It is a tool. I feel sorry for people who do not know how to choose a tool for a specific task.",
-          "time": "30.09.21, 17:35"
+          "time": "30.09.2021, 17:35"
         }
       ]
     },
     {
       "title": "6 Science Just Confirmed Elon Musk’s Favorite Interview Question Is Brilliant",
-      "creationDate": "30.09.21, 12:22",
+      "creationDate": "16.10.2021, 12:22",
       "author": {
         "id": 234861,
         "name": "Jessica Stillman",
@@ -354,7 +354,7 @@
     },
     {
       "title": "7 This Empty NPM Package Has Over 700,000 Downloads",
-      "creationDate": "30.09.21, 12:22",
+      "creationDate": "10.01.2022, 12:22",
       "author": {
         "id": 234861,
         "name": "Jessica Stillman",
@@ -369,7 +369,7 @@
     },
     {
       "title": "8 How to read 700 books at 15 hours. Part 1",
-      "creationDate": "25.09.21, 15:34",
+      "creationDate": "25.09.2021, 15:34",
       "author": {
         "id": 234861,
         "name": "Jessica Stillman",
@@ -389,7 +389,7 @@
             "login": "bea-bea"
           },
           "commentBody": "Yes!",
-          "time": "25.09.21, 16:12"
+          "time": "25.09.2021, 16:12"
         },
         {
           "author": {
@@ -399,7 +399,7 @@
             "login": "hub-mor"
           },
           "commentBody": "No! It`s impassble! u are crazy!)",
-          "time": "26.09.21, 18:32"
+          "time": "26.09.2021, 18:32"
         },
         {
           "author": {
@@ -409,13 +409,13 @@
             "login": "jss-grnd"
           },
           "commentBody": "How are you do this?)",
-          "time": "27.09.21, 18:32"
+          "time": "27.09.2021, 18:32"
         }
       ]
     },
     {
       "title": "9 Angular is Costing Companies Billions",
-      "creationDate": "30.09.21, 12:22",
+      "creationDate": "30.09.2021, 12:22",
       "author": {
         "id": 341445,
         "name": "Jessica Stillman",
@@ -435,7 +435,7 @@
             "login": "jess-still"
           },
           "commentBody": "Vue.js the best!)",
-          "time": "30.09.21, 16:12"
+          "time": "30.09.2021, 16:12"
         },
         {
           "author": {
@@ -445,13 +445,13 @@
             "login": "jss-grnd"
           },
           "commentBody": "Angular has its drawbacks and good points. It is a tool. I feel sorry for people who do not know how to choose a tool for a specific task.",
-          "time": "30.09.21, 17:35"
+          "time": "30.09.2021, 17:35"
         }
       ]
     },
     {
       "title": "10 Science Just Confirmed Elon Musk’s Favorite Interview Question Is Brilliant",
-      "creationDate": "30.09.21, 12:22",
+      "creationDate": "30.09.2021, 12:22",
       "author": {
         "id": 234861,
         "name": "Jessica Stillman",
@@ -466,7 +466,7 @@
     },
     {
       "title": "11 This Empty NPM Package Has Over 700,000 Downloads",
-      "creationDate": "30.09.21, 12:22",
+      "creationDate": "30.09.2021, 12:22",
       "author": {
         "id": 234861,
         "name": "Jessica Stillman",
