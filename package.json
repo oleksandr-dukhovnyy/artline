@@ -1,15 +1,18 @@
 {
   "name": "artline",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": true,
   "author": "Oleksandr Dukhovnyy <script@vip-person.net> (https://github.com/oleksandr-dukhovnyy)",
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && npm run sentry:sourcemaps",
     "lint": "npx eslint ./",
-    "stylelint": "npx stylelint ./ --config ./.stylelintrc.json"
+    "stylelint": "npx stylelint ./ --config ./.stylelintrc.json",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org oleksandr-dukhovnyy --project artline ./dist && sentry-cli sourcemaps upload --org oleksandr-dukhovnyy --project artline ./dist"
   },
   "dependencies": {
+    "@sentry/cli": "^2.23.1",
+    "@sentry/vue": "^7.91.0",
     "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
     "current-device": "^0.10.2",
