@@ -253,22 +253,7 @@
 
 <style lang="scss">
   $article-mobile-width: 100%;
-  $article-tablet-width: $media-tablet-s;
   $article-desktop-width: 830px;
-
-  @mixin block-width {
-    @include mobile {
-      width: $article-mobile-width;
-    }
-
-    @include tablet {
-      width: $article-mobile-width;
-    }
-
-    @include desktop {
-      width: $article-desktop-width;
-    }
-  }
 
   .write-preview img {
     max-width: 100%;
@@ -281,15 +266,12 @@
 
   .write {
     margin: $break;
-
-    @include block-width;
-    @include data-block;
-
     padding: $break;
+    display: flex;
+    flex-direction: column;
 
-    @include mobile {
-      margin: 0;
-    }
+    @include view-wrapper;
+    @include data-block;
 
     &-label {
       margin-bottom: 4px;
@@ -304,25 +286,9 @@
       }
 
       &-image {
-        @include mobile-portrait {
-          width: 92vw;
-          height: calc(92vw * 0.5625);
-        }
+        width: 100%;
 
-        @include mobile-landscape {
-          width: 95.5vw;
-          height: calc(95.5vw * 0.5625);
-        }
-
-        @include tablet-portrait {
-          width: 92vw;
-          height: calc(92vw * 0.5625);
-        }
-
-        @include tablet-landscape {
-          width: 95.5vw;
-          height: calc(95.5vw * 0.5625);
-        }
+        @include block-border-radius;
       }
     }
 
@@ -345,10 +311,6 @@
       padding-bottom: $break;
       transition: 0.7s;
       width: max-content;
-
-      &-muted {
-        opacity: 0.2;
-      }
 
       &-input {
         @include beauty-input;
@@ -377,6 +339,8 @@
     }
 
     &-editor {
+      flex: 1;
+
       &-title {
         font-size: $font-size-s;
         font-weight: 700;

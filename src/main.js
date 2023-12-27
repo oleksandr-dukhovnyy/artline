@@ -15,26 +15,28 @@ import * as Sentry from '@sentry/vue';
 Vue.use(VueQuillEditor);
 Vue.use(vPurifyHTML, purifyConfig);
 
-Sentry.init({
-  Vue,
-  dsn: process.env.VUE_APP_SENTRY_DSN,
-  integrations: [
-    new Sentry.BrowserTracing({
-      routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-    }),
-    new Sentry.Replay(),
-  ],
+if (process.env.NODE_ENV === 'production') {
+  Sentry.init({
+    Vue,
+    dsn: process.env.VUE_APP_SENTRY_DSN,
+    integrations: [
+      new Sentry.BrowserTracing({
+        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+      }),
+      new Sentry.Replay(),
+    ],
 
-  // Set tracesSampleRate to 1.0 to capture 100%
-  tracesSampleRate: 1.0,
-  tracePropagationTargets: ['localhost', /\.github\.io/],
+    // Set tracesSampleRate to 1.0 to capture 100%
+    tracesSampleRate: 1.0,
+    tracePropagationTargets: [/\.github\.io/],
 
-  // Capture Replay for 10% of all sessions,
-  replaysSessionSampleRate: 0.1,
+    // Capture Replay for 10% of all sessions,
+    replaysSessionSampleRate: 0.1,
 
-  // plus for 100% of sessions with an error
-  replaysOnErrorSampleRate: 1.0,
-});
+    // plus for 100% of sessions with an error
+    replaysOnErrorSampleRate: 1.0,
+  });
+}
 
 Vue.config.productionTip = false;
 

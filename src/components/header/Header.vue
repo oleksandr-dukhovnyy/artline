@@ -72,16 +72,18 @@
     position: fixed;
     width: 100%;
     z-index: 11;
+    display: flex;
+    justify-content: center;
 
     &-content {
       width: 100%;
-      margin: 0 auto;
+      max-width: 820px;
       display: grid;
       grid-template-columns: auto auto;
       grid-template-rows: $header-height;
       justify-content: space-between;
       align-items: center;
-      padding: 0 20px;
+      margin: 0 12px;
     }
 
     &-navbar {

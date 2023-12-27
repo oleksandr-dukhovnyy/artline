@@ -31,7 +31,7 @@ const API = {
   },
   editAccount(user, token, newData) {
     if (!user || !token || !newData) {
-      console.log('uncurrect data for request!');
+      console.log('incorrect data for request!');
     }
 
     const postData = JSON.parse(

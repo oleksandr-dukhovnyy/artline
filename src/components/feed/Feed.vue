@@ -102,9 +102,5 @@
     flex-direction: column;
     gap: 14px;
     margin: 16px 0 28px;
-
-    @include mobile-m {
-      width: 100%;
-    }
   }
 </style>

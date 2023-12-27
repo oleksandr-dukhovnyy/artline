@@ -28,7 +28,7 @@ Ut in neque vel nibh imperdiet vehicula in non ipsum. Sed tincidunt erat a tellu
       },
       {
         author: getUser(147511),
-        commentBody: 'No! It`s impassble! u are crazy!)',
+        commentBody: 'No! It`s impossible! u are crazy!)',
         time: `26.${prevMonth}.21, 18:32`,
       },
       {
@@ -200,7 +200,7 @@ Ut in neque vel nibh imperdiet vehicula in non ipsum. Sed tincidunt erat a tellu
       },
       {
         author: getUser(147511),
-        commentBody: 'No! It`s impassble! u are crazy!)',
+        commentBody: 'No! It`s impossible! u are crazy!)',
         time: `26.${prevMonth}.21, 18:32`,
       },
       {
@@ -372,7 +372,7 @@ Ut in neque vel nibh imperdiet vehicula in non ipsum. Sed tincidunt erat a tellu
       },
       {
         author: getUser(147511),
-        commentBody: 'No! It`s impassble! u are crazy!)',
+        commentBody: 'No! It`s impossible! u are crazy!)',
         time: `26.${prevMonth}.21, 18:32`,
       },
       {

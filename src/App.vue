@@ -36,5 +36,6 @@
     background-color: $home-background-color;
     display: flex;
     justify-content: center;
+    min-height: 100vh;
   }
 </style>

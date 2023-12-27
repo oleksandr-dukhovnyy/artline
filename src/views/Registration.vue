@@ -26,6 +26,8 @@
         class="registration-form-input registration-form-password"
       />
 
+      <hr />
+
       <div
         v-if="isAuthError !== null && authError !== null"
         class="registration-form-error"
@@ -105,45 +107,48 @@
     align-items: center;
     flex-direction: column;
 
-    &-title {
-      margin: 0 0 2vh;
-    }
-
     &-form {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      gap: 14px;
       align-items: center;
       padding: $break;
-      width: 25vw;
-      min-width: 300px;
+      width: 350px;
       background-color: #fff;
-      border-radius: $border-radius;
+
+      @include block-border-radius;
+
+      hr {
+        height: 1px;
+        width: 100%;
+        background-color: $muted-text-color;
+        border: none;
+      }
 
       &-input {
-        width: 100%;
-        height: 35px;
-        padding: 1.5vh;
-        margin-bottom: $break;
-        font-size: $font-size-m;
+        @include input;
+
+        &.error {
+          @include input-error;
+        }
       }
 
       &-submit {
         width: 100%;
 
         &-bttn {
-          height: 6vh;
+          // height: 35px;
+          width: 100%;
+          padding: 14px 20px;
 
           @include button;
-
-          border: 1px solid $cta-color;
-          color: $cta-color;
         }
       }
 
       &-error {
         color: #f00;
-        padding: 0 5px 5px;
+        padding: 0 5px 10px;
         font-style: italic;
       }
     }

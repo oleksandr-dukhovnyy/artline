@@ -4,26 +4,31 @@
       v-if="article !== undefined"
       class="article animate__animated animate__slideInUp"
     >
-      <h2 class="article-title">
-        {{ article.title }}
-      </h2>
-      <div class="article-data">
-        <div class="article-data-creation_date">{{ article.creationDate }}</div>
-        <div class="article-data-tags">
-          <div
-            v-for="(item, i) in article.tags"
-            :key="i"
-            class="article-data-tags-tag"
-          >
-            <router-link
-              class="link"
-              :to="{ name: 'tag', params: { tag: item } }"
+      <div class="article-body-container">
+        <h2 class="article-title">
+          {{ article.title }}
+        </h2>
+        <div class="article-data">
+          <div class="article-data-creation_date">{{
+            article.creationDate
+          }}</div>
+          <div class="article-data-tags">
+            <div
+              v-for="(item, i) in article.tags"
+              :key="i"
+              class="article-data-tags-tag"
             >
-              {{ item }}
-            </router-link>
+              <router-link
+                class="link"
+                :to="{ name: 'tag', params: { tag: item } }"
+              >
+                {{ item }}
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
+
       <img
         v-if="article.img !== ''"
         class="article-img"
@@ -37,29 +42,31 @@
         class="article-picture_placeholder"
       ></div>
 
-      <p
-        class="article-body"
-        v-purify-html="article.body"
-      ></p>
+      <div class="article-body-container">
+        <p
+          v-purify-html="article.body"
+          class="article-body"
+        ></p>
 
-      <div class="article-line"></div>
+        <div class="article-line"></div>
 
-      <div class="article-author">
-        <router-link
-          class="article-author-link"
-          :to="{ name: 'user', params: { id: article.author.id } }"
-        >
-          <img
-            class="article-author-link-avatar"
-            :src="article.author.avatar"
-            :alt="`${article.author.name}'s avatar`"
-            width="40"
-            height="40"
-          />
-          <div class="article-author-link-name">
-            {{ article.author.name }}
-          </div>
-        </router-link>
+        <div class="article-author">
+          <router-link
+            class="article-author-link"
+            :to="{ name: 'user', params: { id: article.author.id } }"
+          >
+            <img
+              class="article-author-link-avatar"
+              :src="article.author.avatar"
+              :alt="`${article.author.name}'s avatar`"
+              width="40"
+              height="40"
+            />
+            <div class="article-author-link-name">
+              {{ article.author.name }}
+            </div>
+          </router-link>
+        </div>
       </div>
     </article>
     <div
@@ -263,47 +270,28 @@
   $article-width-mobile: 100%;
 
   // /local vars
-  @mixin block-width {
-    @include desktop {
-      width: $article-width-desktop;
-    }
-
-    @include tablet {
-      width: $article-width-tablet;
-    }
-
-    @include mobile {
-      width: $article-width-mobile;
-    }
-  }
 
   .link {
     @include link;
   }
 
   .loader {
-    // width: $article-width;
-    @include block-width;
-
     height: 84vh;
     display: flex;
     padding: auto;
     align-items: center;
     justify-content: center;
-
-    // margin-left: -343px;
   }
 
   .article {
     margin: 30px 0;
-    padding: $break 10px;
     position: relative;
 
-    @include block-width;
+    @include view-wrapper;
     @include data-block;
 
-    @include mobile {
-      margin-top: 0;
+    &-body-container {
+      padding: $break 10px;
     }
 
     &-title {
@@ -320,15 +308,12 @@
     }
 
     &-picture_placeholder {
-      @include block-width;
-
       height: 450px;
     }
 
     &-img {
       width: 100%;
-      position: absolute;
-      left: 0;
+      height: auto;
     }
 
     &-data {
@@ -353,21 +338,7 @@
           @include tag;
 
           overflow: hidden;
-
-          @include mobile {
-            max-width: 75px;
-          }
         }
-
-        @include mobile {
-          grid-template-columns: repeat(4, auto);
-          grid-row-gap: 10px;
-        }
-      }
-
-      @include mobile {
-        grid-template-rows: 25px 1fr;
-        grid-template-columns: unset;
       }
     }
 
@@ -402,7 +373,6 @@
 
     &-body {
       word-wrap: break-word;
-      padding-top: calc(52% + 14px);
 
       img {
         max-width: 100%;
@@ -411,8 +381,6 @@
   }
 
   .comments {
-    @include block-width;
-
     margin-bottom: 25px;
     padding: $break;
 
@@ -463,8 +431,6 @@
   }
 
   .write_comment {
-    @include block-width;
-
     padding: $break;
     margin-bottom: 25px;
     display: flex;

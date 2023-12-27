@@ -1,6 +1,21 @@
 @import './vars';
 @import './media';
 
+@mixin view-wrapper {
+  width: 100%;
+  margin: $break auto;
+
+  @include media-up(tablet) {
+    width: 820px;
+  }
+}
+
+@mixin block-border-radius {
+  @include media-up(tablet) {
+    border-radius: $border-radius;
+  }
+}
+
 @mixin scalable($scale: 1.042) {
   transition: transform 0.3s;
 
@@ -10,13 +25,15 @@
 }
 
 @mixin link {
-  // text-decoration: none;
   color: $link-color;
   font-weight: 300;
   text-decoration: none;
 
-  &:link,
-  &:visited,
+  &:visited {
+    color: $link-color;
+  }
+
+  &:active,
   &:hover {
     text-decoration: underline;
     color: $link-color;
@@ -24,8 +41,6 @@
 }
 
 @mixin button($bg-color: transparent, $color: $cta-color) {
-  // @include scalable;
-
   border-radius: $border-radius;
   cursor: pointer;
   background-color: $color;
@@ -77,21 +92,11 @@
   }
 
   @if $hoverActive == 'yes' {
-    @include desktop {
-      &:hover {
-        color: #fff;
-        background-color: $color;
-        transition: background-color 1s;
-      }
-    }
+    @include media-up(tablet) {
+      color: #fff;
+      background-color: $color;
+      transition: background-color 1s;
 
-    @include mobile {
-      &:hover {
-        color: $color;
-      }
-    }
-
-    @include tablet {
       &:hover {
         color: $color;
       }

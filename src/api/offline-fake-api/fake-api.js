@@ -398,7 +398,7 @@ function initServer() {
           title: articleData.title,
           body: articleData.content,
           img: articleData.img,
-          tags: articleData.tags,
+          tags: articleData.tags?.map((tag) => tag.trim()) || [],
           comments: [],
           id: generateArticleID(parsedDB.articles),
           creationDate: getCurrentTime('[d].[mt].[sy], at: [h]:[m]'),

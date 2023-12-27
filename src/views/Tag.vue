@@ -83,15 +83,6 @@
 
   .tag {
     width: 850px;
-
-    @include mobile {
-      width: 100%;
-    }
-
-    @include tablet {
-      width: 530px;
-    }
-
     padding: $break;
 
     &-header {

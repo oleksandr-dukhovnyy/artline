@@ -118,10 +118,11 @@
 
   .pagination {
     background-color: #fff;
-    border-radius: $border-radius;
     padding: $break;
     display: flex;
     justify-content: center;
+
+    @include block-border-radius;
 
     &-wrapper {
       display: grid;
@@ -136,8 +137,9 @@
         align-items: center;
         border: 1px solid $main-color;
         opacity: 0.4;
-        border-radius: $border-radius;
         cursor: pointer;
+
+        @include block-border-radius;
 
         &-link {
           @include link;

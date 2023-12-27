@@ -138,8 +138,8 @@
     z-index: 10;
     top: 0;
     left: 0;
-    border-radius: $border-radius;
 
+    @include block-border-radius;
     @include data-block;
 
     & > * {
@@ -152,7 +152,7 @@
       position: relative;
       padding: $break;
 
-      &-controls {
+      .modal-controls {
         position: absolute;
         bottom: $break;
         width: $buttons-width;
@@ -224,7 +224,8 @@
       grid-gap: $break;
       width: 320px;
       height: max-content;
-      border-radius: $border-radius;
+
+      @include block-border-radius;
 
       &-button {
         &-red {

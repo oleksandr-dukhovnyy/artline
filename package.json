@@ -1,6 +1,6 @@
 {
   "name": "artline",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "private": true,
   "author": "Oleksandr Dukhovnyy <script@vip-person.net> (https://github.com/oleksandr-dukhovnyy)",
   "scripts": {
@@ -28,11 +28,11 @@
     "@vue/cli-plugin-router": "~5.0.8",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~5.0.8",
+    "adaptive-scss": "^1.2.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.19.2",
-    "node-sass": "^9.0.0",
     "sass-loader": "^13.2.0",
     "stylelint": "^15.10.0",
     "stylelint-config-recommended-vue": "^1.5.0",

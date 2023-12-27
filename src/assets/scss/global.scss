@@ -16,7 +16,13 @@
   color: unset;
 }
 
-// scaleable
+.muted {
+  padding-top: $break;
+  font-style: italic;
+  color: $muted-text-color;
+}
+
+// scalable
 input,
 textarea {
   @include scalable(1.01);

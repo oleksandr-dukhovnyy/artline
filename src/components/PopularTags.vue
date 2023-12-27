@@ -1,11 +1,11 @@
 <template>
-  <div class="home-popular_tags">
+  <div class="tags">
     <strong> Popular tags: </strong>
-    <div class="home-popular_tags-contain">
+    <div class="tags__contain">
       <div
         v-for="(tag, i) in popularTags"
         :key="i"
-        class="home-popular_tags-contain-tag"
+        class="tags__tag"
       >
         <router-link
           class="link"
@@ -38,50 +38,26 @@
 </script>
 
 <style lang="scss" scoped>
-  .home-popular_tags {
+  .tags {
     margin-top: $break;
     background-color: #fff;
     height: max-content;
     padding: $break;
-    border-radius: $border-radius;
-    position: sticky;
-    top: $break + $header-height;
 
-    @include mobile {
-      & {
-        grid-row: 1;
-      }
-    }
+    @include block-border-radius;
 
-    @include desktop-s {
-      & {
-        display: none;
-      }
-    }
-
-    &-contain {
-      display: grid;
-      grid-auto-flow: dense;
-      grid-gap: 5px;
-      grid-template-rows: repeat(10, auto);
-      grid-template-columns: 1fr 1fr;
+    &__contain {
       margin-top: $break;
       width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-      @include mobile {
-        & {
-          grid-template-columns: repeat(3, 1fr);
-          grid-template-rows: minmax(1fr, max-content);
-          grid-template-rows: auto;
-        }
-      }
+    &__tag {
+      display: inline-block;
+      margin: 5px;
 
-      &-tag {
-        width: max-content;
-        height: max-content;
-
-        @include tag;
-      }
+      @include tag;
     }
   }
 

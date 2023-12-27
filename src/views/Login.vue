@@ -106,7 +106,8 @@
       padding: $break;
       width: 350px;
       background-color: #fff;
-      border-radius: $border-radius;
+
+      @include block-border-radius;
 
       hr {
         height: 1px;
