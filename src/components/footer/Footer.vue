@@ -7,22 +7,24 @@
         >ARTLINE</router-link
       >
     </div>
-    <div class="footer-author">
-      SCRIPT developers studio ©
-      <span class="footer-author-email">feat@vip-person.net</span>
-    </div>
+    <FooterCopyright />
   </footer>
 </template>
 
 <script>
+  import FooterCopyright from '@/components/footer/Copyright.vue';
+
   export default {
     name: 'TheFooter',
+    components: {
+      FooterCopyright,
+    },
   };
 </script>
 
 <style lang="scss" scoped>
   .footer {
-    height: 210px;
+    height: 180px;
     background-color: $main-color;
     position: relative;
 
@@ -30,7 +32,7 @@
       padding: 20px;
 
       &-text {
-        font-size: $font-size-l;
+        font-size: 28px;
         color: #fff;
         text-decoration: none;
       }

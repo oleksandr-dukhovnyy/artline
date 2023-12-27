@@ -1,6 +1,6 @@
 {
   "name": "artline",
-  "version": "0.3.11",
+  "version": "0.3.12",
   "private": true,
   "author": "Oleksandr Dukhovnyy <script@vip-person.net> (https://github.com/oleksandr-dukhovnyy)",
   "scripts": {
@@ -24,7 +24,6 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
     "@vue/cli-plugin-babel": "~5.0.8",
-    "@vue/cli-plugin-pwa": "~5.0.8",
     "@vue/cli-plugin-router": "~5.0.8",
     "@vue/cli-plugin-vuex": "^5.0.8",
     "@vue/cli-service": "~5.0.8",

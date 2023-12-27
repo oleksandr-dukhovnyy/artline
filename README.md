@@ -1,4 +1,4 @@
-# Artline
+# Artline <img src="public/img/logo.png" height="40" />
 
 (Vue.js, Vue-CLI, Webpack, Vuex, Vue-Router, Vue-Quill-Editor, SCSS, PWA)
 
