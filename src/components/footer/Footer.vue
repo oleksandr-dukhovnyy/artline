@@ -30,6 +30,8 @@
 
     &-logo {
       padding: 20px;
+      justify-content: center;
+      display: flex;
 
       &-text {
         font-size: 28px;
