@@ -77,16 +77,14 @@
     align-items: center;
   }
 
-  .wrapper {
-    min-height: 83vh;
-  }
-
   .tag {
-    width: 850px;
-    padding: $break;
+    @include view-wrapper;
 
     &-header {
-      @include data-block;
+      background-color: #fff;
+
+      @include block-border-radius;
+      @include view-wrapper;
 
       padding: $break 0;
 
