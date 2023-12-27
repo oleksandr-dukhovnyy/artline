@@ -1,49 +1,51 @@
 <template>
   <header class="header animate__animated animate__fadeIn">
-    <div class="header-logo">
-      <router-link
-        class="header-logo-text"
-        :to="{ name: 'home' }"
-        >ARTLINE</router-link
+    <div class="header-content">
+      <div class="header-logo">
+        <router-link
+          class="header-logo-text"
+          :to="{ name: 'home' }"
+          >ARTLINE</router-link
+        >
+      </div>
+
+      <nav
+        v-if="user !== null && user !== undefined"
+        class="header-navbar"
       >
+        <router-link
+          class="header-navbar-link"
+          :to="{ name: 'account', query: { id: user.id } }"
+        >
+          {{ isCurrectUsername ? user.name : user.login }}
+        </router-link>
+
+        <router-link
+          class="header-navbar-new_article"
+          :to="{ name: 'new-article' }"
+        >
+          new article
+        </router-link>
+      </nav>
+
+      <nav
+        v-else
+        class="header-navbar"
+      >
+        <router-link
+          class="header-navbar-link"
+          :to="{ name: 'login' }"
+        >
+          Login
+        </router-link>
+        <router-link
+          class="header-navbar-link"
+          :to="{ name: 'registration' }"
+        >
+          Registration
+        </router-link>
+      </nav>
     </div>
-
-    <nav
-      v-if="user !== null && user !== undefined"
-      class="header-navbar"
-    >
-      <router-link
-        class="header-navbar-link"
-        :to="{ name: 'account', query: { id: user.id } }"
-      >
-        {{ isCurrectUsername ? user.name : user.login }}
-      </router-link>
-
-      <router-link
-        class="header-navbar-new_article"
-        :to="{ name: 'new-article' }"
-      >
-        new article
-      </router-link>
-    </nav>
-
-    <nav
-      v-else
-      class="header-navbar"
-    >
-      <router-link
-        class="header-navbar-link"
-        :to="{ name: 'login' }"
-      >
-        Login
-      </router-link>
-      <router-link
-        class="header-navbar-link"
-        :to="{ name: 'registration' }"
-      >
-        Registration
-      </router-link>
-    </nav>
   </header>
 </template>
 
@@ -65,17 +67,22 @@
 
 <style lang="scss" scoped>
   .header {
-    width: 100%;
-    height: $header-height;
-    z-index: 11;
     background-color: $main-color;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: $header-height;
-    justify-content: space-between;
-    align-items: center;
+    height: $header-height;
     position: fixed;
-    padding: 0 20px;
+    width: 100%;
+    z-index: 11;
+
+    &-content {
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-template-rows: $header-height;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
 
     &-navbar {
       display: grid;
