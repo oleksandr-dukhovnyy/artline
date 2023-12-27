@@ -1,7 +1,7 @@
 <template>
   <section class="contain">
     <div
-      v-if="userNotNullAndUndf"
+      v-if="isUserDefined"
       class="account"
     >
       <div class="account-header">
@@ -47,7 +47,7 @@
       </div>
       <button
         class="account-submit"
-        :class="{ 'cb-unactive': !dataEdited && !UALoading }"
+        :class="{ 'cb-inactive': !dataEdited && !UALoading }"
         :disabled="!dataEdited && !UALoading"
         @click="updateUserData"
       >
@@ -55,7 +55,7 @@
       </button>
       <button
         class="account-delete_changes"
-        :class="{ 'cb-unactive': !dataEdited && !UALoading }"
+        :class="{ 'cb-inactive': !dataEdited && !UALoading }"
         :disabled="!dataEdited && !UALoading"
         @click="setNewDataToDefault"
       >
@@ -63,7 +63,7 @@
       </button>
       <div class="account-settings">
         <strong
-          class="account-settings-bttn"
+          class="account-settings-btn"
           @click="showMoreActions"
           >More</strong
         >
@@ -71,7 +71,7 @@
     </div>
 
     <div
-      v-if="userNotNullAndUndf"
+      v-if="isUserDefined"
       class="activity"
     >
       <h2>Activity:</h2>
@@ -194,7 +194,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!userNotNullAndUndf"> loading... </div>
+    <div v-if="!isUserDefined"> loading... </div>
     <Modal
       v-if="modals.showConfirm"
       modal-type="confirm"
@@ -242,7 +242,7 @@
 					style: 'red'
 				},
 				{
-					text: 'Delete accout',
+					text: 'Delete account',
 					value: 'deleteAccount',
 					style: 'red'
 			}]"
@@ -278,7 +278,7 @@
         modals: {
           showConfirm: false,
           deleteAccountText:
-            'You are realy watn to <span style="color: #f00;">delete</span> your account?<br>We <strong>cannot</strong> undo this action.<br>All your posts and comments does not deleted.',
+            'You are really want to <span style="color: #f00;">delete</span> your account?<br>We <strong>cannot</strong> undo this action.<br>All your posts and comments does not deleted.',
 
           inputImageUrlText: 'Enter url',
           showPrompt: false,
@@ -293,7 +293,7 @@
         const fields = Object.keys(this.newData);
         return fields.some((field) => this.newData[field] !== this.user[field]);
       },
-      userNotNullAndUndf() {
+      isUserDefined() {
         return this.user !== undefined && this.user !== null;
       },
     },
@@ -547,7 +547,7 @@
       &-settings {
         margin-top: $break;
 
-        &-bttn {
+        &-btn {
           @include link;
 
           cursor: pointer;
@@ -708,12 +708,6 @@
             &:hover {
               opacity: 1;
             }
-          }
-
-          &-delete_accout {
-            @include action-button($red, #fff);
-
-            margin-left: $break;
           }
         }
       }

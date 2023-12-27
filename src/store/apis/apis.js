@@ -1,7 +1,7 @@
 import API from '@/api/index.api.js';
 import { Router } from '@/main.js';
 
-const tokenLSKey = 'user-auth-token';
+const tokenLSKey = 'user-auth-token.v1';
 
 export default {
   actions: {

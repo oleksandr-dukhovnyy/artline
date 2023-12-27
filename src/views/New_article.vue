@@ -100,15 +100,15 @@
 
     <div
       v-else
-      class="write-preview"
       v-purify-html="preview"
+      class="write-preview"
     ></div>
 
     <div class="write-controls">
       <button
         class="write-controls-submit"
-        :class="{ 'cb-unactive': !articleIsValide }"
-        :disabled="!articleIsValide"
+        :class="{ 'cb-inactive': !articleIsValid }"
+        :disabled="!articleIsValid"
         @click="submitArticle"
       >
         submit
@@ -143,8 +143,8 @@
     'https://www.unfe.org/wp-content/uploads/2019/04/SM-placeholder.png';
   const MIN_ARTICLE_LENGTH = 100;
 
-  const UNCOMPLATED_LOCAL_KEY = 'uncomplated-article';
-  let savedArticle = localStorage.getItem(UNCOMPLATED_LOCAL_KEY);
+  const UNCOMPLETED_LOCAL_KEY = 'uncomplated-article';
+  let savedArticle = localStorage.getItem(UNCOMPLETED_LOCAL_KEY);
 
   if (savedArticle === null) {
     savedArticle = {
@@ -186,7 +186,7 @@
           return this.article.content;
         }
       },
-      articleIsValide() {
+      articleIsValid() {
         return [
           this.article.content.length > MIN_ARTICLE_LENGTH - 1,
           // this.article.img !== DEFAULT_ARTICLE_IMG,
@@ -243,7 +243,7 @@
       },
       updateLocalStorage() {
         localStorage.setItem(
-          UNCOMPLATED_LOCAL_KEY,
+          UNCOMPLETED_LOCAL_KEY,
           JSON.stringify(this.article)
         );
       },

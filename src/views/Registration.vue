@@ -72,7 +72,7 @@
       ...mapGetters(['user', 'isAuthError', 'authError', 'authLoading']),
     },
     watch: {
-      user: function () {
+      user() {
         if (this.isAuthError === false) {
           this.redirect();
           this.data = {
@@ -82,7 +82,7 @@
           };
         }
       },
-      authLoading: function () {
+      authLoading() {
         this.condition.loading = this.authLoading;
       },
     },

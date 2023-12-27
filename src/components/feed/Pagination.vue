@@ -9,7 +9,7 @@
           src="@/assets/icons/arrow-left-50.png"
           alt="prev_pagination_page"
           class="pagination-wrapper-arrow-left-img"
-          :class="{ unactive: rangeStart < 1 }"
+          :class="{ inactive: rangeStart < 1 }"
           @click="prevPaginationPage()"
         />
       </div>
@@ -32,7 +32,7 @@
           src="@/assets/icons/arrow-left-50.png"
           alt="next_pagination_page"
           class="pagination-wrapper-arrow-right-img flipped"
-          :class="{ unactive: paginationPages - rangeStart <= 10 }"
+          :class="{ inactive: paginationPages - rangeStart <= 10 }"
           @click="nextPaginationPage()"
         />
       </div>
@@ -160,7 +160,7 @@
             width: 25px;
             height: 25px;
 
-            &.unactive {
+            &.inactive {
               opacity: 0.3;
             }
           }

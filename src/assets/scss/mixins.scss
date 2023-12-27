@@ -79,7 +79,7 @@
   padding: 10px;
   transition: background-color 1s;
 
-  &.cb-unactive {
+  &.cb-inactive {
     opacity: 0.5;
 
     &:hover {
@@ -92,15 +92,15 @@
   }
 
   @if $hoverActive == 'yes' {
-    @include media-up(tablet) {
-      color: #fff;
-      background-color: $color;
-      transition: background-color 1s;
+    // @include media-up(tablet) {
+    //   color: #fff;
+    //   background-color: $color;
+    //   transition: background-color 1s;
 
-      &:hover {
-        color: $color;
-      }
-    }
+    //   &:hover {
+    //     color: $color;
+    //   }
+    // }
   } @else {
     &:hover,
     &:active {

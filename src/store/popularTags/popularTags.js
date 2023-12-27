@@ -8,7 +8,6 @@ export default {
       commit('setPopularTagsLoading', true);
 
       popularTagsRequest.then((res) => {
-        // console.log('res', res);
         commit('setPopularTags', res);
         commit('setPopularTagsLoaded', true);
         commit('setPopularTagsLoading', false);

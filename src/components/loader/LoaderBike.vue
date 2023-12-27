@@ -1,5 +1,5 @@
 <template>
-  <div class="laoder">
+  <div>
     <div
       id="loop"
       class="center"

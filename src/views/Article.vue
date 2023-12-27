@@ -141,7 +141,7 @@
       <button
         class="write_comment-submit"
         :disabled="comment.length === 0"
-        :class="{ 'cb-unactive': comment.length === 0 }"
+        :class="{ 'cb-inactive': comment.length === 0 }"
         @click="submitComment"
       >
         submit

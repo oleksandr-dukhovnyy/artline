@@ -8,8 +8,8 @@
       class="modal-confirm animate__animated animate__fadeInUp"
     >
       <p
-        class="modal-confirm-text"
         v-purify-html="text"
+        class="modal-confirm-text"
       ></p>
       <div class="modal-confirm-controls">
         <button
@@ -32,9 +32,9 @@
       class="modal-prompt animate__animated animate__fadeInUp"
     >
       <p
+        v-purify-html="text"
         class="modal-prompt-text"
         style="margin-bottom: 4px"
-        v-purify-html="text"
       ></p>
       <input
         v-model.trim="promptText"

@@ -17,7 +17,7 @@
           class="header-navbar-link"
           :to="{ name: 'account', query: { id: user.id } }"
         >
-          {{ isCurrectUsername ? user.name : user.login }}
+          {{ isCorrectUsername ? user.name : user.login }}
         </router-link>
 
         <router-link
@@ -56,7 +56,7 @@
     name: 'TheHeader',
     computed: {
       ...mapGetters(['user']),
-      isCurrectUsername() {
+      isCorrectUsername() {
         const uncurrects = ['', null, undefined, ' '];
 
         return !uncurrects.includes(this.user.name);
