@@ -4,6 +4,7 @@
       <router-link
         class="footer-logo-text"
         :to="{ name: 'home' }"
+        @click.native="scrollToTop"
         >ARTLINE</router-link
       >
     </div>
@@ -13,11 +14,17 @@
 
 <script>
   import FooterCopyright from '@/components/footer/Copyright.vue';
+  import scrollToTop from '@/js/scroll-to-top';
 
   export default {
     name: 'TheFooter',
     components: {
       FooterCopyright,
+    },
+    methods: {
+      scrollToTop() {
+        scrollToTop();
+      },
     },
   };
 </script>

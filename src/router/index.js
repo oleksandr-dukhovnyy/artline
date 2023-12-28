@@ -97,6 +97,8 @@ const upBeforeScroll = [
 ];
 
 router.beforeEach((to, from, next) => {
+  console.log('[router.beforeEach]:', to);
+
   if (upBeforeScroll.includes(to.name)) {
     window.scrollTo(0, 0);
     console.log('[router.beforeEach]: scroll to top');

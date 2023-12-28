@@ -5,6 +5,7 @@
         <router-link
           class="header-logo-text"
           :to="{ name: 'home' }"
+          @click.native="scrollToTop"
           >ARTLINE</router-link
         >
       </div>
@@ -51,6 +52,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import scrollToTop from '@/js/scroll-to-top';
 
   export default {
     name: 'TheHeader',
@@ -60,6 +62,11 @@
         const uncurrects = ['', null, undefined, ' '];
 
         return !uncurrects.includes(this.user.name);
+      },
+    },
+    methods: {
+      scrollToTop() {
+        scrollToTop();
       },
     },
   };
