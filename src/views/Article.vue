@@ -384,6 +384,7 @@
     margin-bottom: 25px;
     padding: $break;
 
+    @include view-wrapper;
     @include data-block;
 
     & > *:nth-child(2) {
