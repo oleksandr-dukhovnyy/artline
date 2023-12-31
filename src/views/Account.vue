@@ -436,8 +436,8 @@
 <style lang="scss" scoped>
   .empty {
     padding-top: $break;
-    font-style: italic;
     color: $muted-text-color;
+    font-style: italic;
   }
 
   .contain {
@@ -451,27 +451,27 @@
     .account {
       @include data-block;
 
-      padding: $break;
       margin-bottom: $break;
+      padding: $break;
 
       &-header {
-        padding: $break;
-        margin-bottom: $break;
         display: grid;
-        grid-template-columns: 1fr;
         grid-template-rows: 150px 1fr;
+        grid-template-columns: 1fr;
         grid-gap: $break;
         place-items: center center;
+        margin-bottom: $break;
+        padding: $break;
 
         &-avatar {
           position: relative;
           width: 150px;
           height: 150px;
-          background-color: #ededed;
           border-radius: 50%;
-          text-align: center;
-          line-height: 150px;
+          background-color: #ededed;
           color: #a7a7a7;
+          line-height: 150px;
+          text-align: center;
 
           &-img {
             @include avatar-custom(150px);
@@ -481,10 +481,10 @@
             position: absolute;
             top: 110px;
             right: 0;
-            background-color: #fff;
-            border-radius: 50%;
             padding: 6px;
             border: 1px solid #000;
+            border-radius: 50%;
+            background-color: #fff;
             cursor: pointer;
           }
         }
@@ -550,8 +550,8 @@
         &-btn {
           @include link;
 
-          cursor: pointer;
           border-bottom: 1px dotted $link-color;
+          cursor: pointer;
         }
       }
     }
@@ -610,17 +610,16 @@
 
         &-posts {
           &-article {
+            display: grid;
+            grid-template-rows: max-content 1fr;
+            grid-template-columns: 100%;
+            margin: $break 0;
             padding-top: $break;
             border-top: 1px solid $muted-text-color;
 
             &:nth-child(1) {
               border-top: 1px solid #fff !important;
             }
-
-            display: grid;
-            grid-template-columns: 100%;
-            grid-template-rows: max-content 1fr;
-            margin: $break 0;
 
             &-img {
               & > img {
@@ -637,8 +636,8 @@
               }
 
               &-time {
-                font-style: italic;
                 color: #555;
+                font-style: italic;
               }
             }
           }
@@ -660,9 +659,9 @@
 
             &-author {
               display: grid;
-              align-items: center;
               grid-template-columns: $avatar-size-m max-content 1fr;
               grid-gap: 10px;
+              align-items: center;
               font-size: $font-size-sm;
 
               &-img {
@@ -674,9 +673,9 @@
               }
 
               &-time {
-                font-style: italic;
                 margin-top: 0.1em;
                 font-size: $font-size-sm;
+                font-style: italic;
                 opacity: 0.5;
               }
             }
@@ -685,12 +684,11 @@
               font-size: $font-size-sm;
 
               &-link {
+                color: #555 !important;
+                font-weight: 500;
                 font-style: italic;
 
                 @include link;
-
-                color: #555 !important;
-                font-weight: 500;
               }
             }
           }

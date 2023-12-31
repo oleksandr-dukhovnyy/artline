@@ -32,10 +32,10 @@
   @import '@/assets/scss/global';
 
   .main {
-    padding: 35px 0 0;
-    background-color: $home-background-color;
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    padding: 35px 0 0;
+    background-color: $home-background-color;
   }
 </style>

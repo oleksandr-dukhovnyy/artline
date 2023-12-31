@@ -100,30 +100,30 @@
 
 <style lang="scss" scoped>
   .registration {
-    width: 100%;
-    height: 83vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    width: 100%;
+    height: 83vh;
 
     &-form {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       gap: 14px;
+      justify-content: flex-start;
       align-items: center;
-      padding: $break;
       width: 350px;
+      padding: $break;
       background-color: #fff;
 
       @include block-border-radius;
 
       hr {
-        height: 1px;
         width: 100%;
-        background-color: $muted-text-color;
+        height: 1px;
         border: none;
+        background-color: $muted-text-color;
       }
 
       &-input {
@@ -147,8 +147,8 @@
       }
 
       &-error {
-        color: #f00;
         padding: 0 5px 10px;
+        color: #f00;
         font-style: italic;
       }
     }

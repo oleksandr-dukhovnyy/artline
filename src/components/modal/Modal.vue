@@ -128,36 +128,36 @@
   $buttons-width: 290px;
 
   .modal {
-    width: 100vw;
-    height: 100vh;
-    background-color: #fffc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fffc;
 
     @include block-border-radius;
     @include data-block;
 
     & > * {
+      position: relative;
       width: $modal-width;
       height: $modal-height;
+      padding: $break;
       background-color: #fff;
       -webkit-box-shadow: 0 0 9px 0 rgba(0, 0, 0, 20%);
       -moz-box-shadow: 0 0 9px 0 rgba(0, 0, 0, 20%);
       box-shadow: 0 0 9px 0 rgba(0, 0, 0, 20%);
-      position: relative;
-      padding: $break;
 
       .modal-controls {
         position: absolute;
         bottom: $break;
-        width: $buttons-width;
         display: grid;
         grid-template-columns: 1fr 1fr;
+        width: $buttons-width;
 
         &-ok {
           @include action-button($red, #fff);
@@ -173,9 +173,9 @@
       &-controls {
         position: absolute;
         bottom: $break;
-        width: $buttons-width;
         display: grid;
         grid-template-columns: 1fr 1fr;
+        width: $buttons-width;
 
         &-ok {
           @include action-button($red, #fff);
@@ -195,18 +195,18 @@
       }
 
       &-text {
+        margin-bottom: 0;
         font-size: $font-size-s;
         font-weight: 700;
-        margin-bottom: 0;
       }
 
       &-controls {
         position: absolute;
         bottom: $break;
-        width: $buttons-width;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 14px;
+        width: $buttons-width;
 
         &-ok {
           @include action-button($red, #fff);
@@ -241,9 +241,9 @@
         &-gray {
           @include action-button($muted-text-color, #fff);
 
+          border: 1px solid $muted-text-color;
           background-color: transparent !important;
           color: $muted-text-color !important;
-          border: 1px solid $muted-text-color;
 
           &:hover {
             border: 1px solid $muted-text-color !important;

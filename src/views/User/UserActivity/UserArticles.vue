@@ -56,8 +56,8 @@
   .articles {
     &__article {
       display: grid;
-      grid-template-columns: 100%;
       grid-template-rows: max-content 1fr;
+      grid-template-columns: 100%;
       padding: $break 0;
       border-top: 1px solid #fff;
 
@@ -81,8 +81,8 @@
         }
 
         &-time {
-          font-style: italic;
           color: #555;
+          font-style: italic;
         }
       }
     }

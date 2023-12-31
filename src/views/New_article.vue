@@ -265,10 +265,10 @@
   }
 
   .write {
-    margin: $break;
-    padding: $break;
     display: flex;
     flex-direction: column;
+    margin: $break;
+    padding: $break;
 
     @include view-wrapper;
     @include data-block;
@@ -293,9 +293,9 @@
     }
 
     &-controls {
+      margin-top: $break;
       padding: $break 0;
       border-top: 1px solid $invisible-color;
-      margin-top: $break;
 
       &-submit,
       &-preview {
@@ -308,9 +308,9 @@
     }
 
     &-tags {
+      width: max-content;
       padding-bottom: $break;
       transition: 0.7s;
-      width: max-content;
 
       &-input {
         @include beauty-input;

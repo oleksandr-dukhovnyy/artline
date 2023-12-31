@@ -55,32 +55,32 @@
 
 <style lang="scss" scoped>
   .user {
-    padding: $break 0;
     display: grid;
-    grid-template-columns: 1fr;
     grid-template-rows: $avatar-size-l 20px 1fr;
-    justify-content: center;
+    grid-template-columns: 1fr;
     grid-gap: $break;
+    justify-content: center;
+    padding: $break 0;
 
     &-avatar {
       position: relative;
       width: 150px;
       height: 150px;
-      background-color: #ededed;
-      text-align: center;
-      line-height: 150px;
-      color: #a7a7a7;
-      border-radius: 50%;
       margin: 0 auto;
+      border-radius: 50%;
+      background-color: #ededed;
+      color: #a7a7a7;
+      line-height: 150px;
+      text-align: center;
     }
 
     &-name {
-      font-size: $font-size-m;
       margin: 0 auto;
+      font-size: $font-size-m;
 
       &-edit-btn {
-        font-size: $font-size-s;
         color: $muted-text-color;
+        font-size: $font-size-s;
       }
     }
   }

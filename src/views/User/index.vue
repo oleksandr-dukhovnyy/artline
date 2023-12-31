@@ -103,9 +103,9 @@
     @include view-wrapper;
     @include block-border-radius;
 
-    background-color: #fff;
+    height: max-content;
     margin: $break 0;
     padding: $break;
-    height: max-content;
+    background-color: #fff;
   }
 </style>

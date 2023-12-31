@@ -40,13 +40,20 @@
   }
 
   #loop {
-    height: 108px;
     width: 108px;
+    height: 108px;
     border: $main-color solid 4px;
     border-radius: 200px;
   }
 
   #loop::before {
+    content: '';
+    position: relative;
+    top: 100px;
+    left: -100px;
+    display: block;
+    width: 300px;
+    height: 4px;
     background: linear-gradient(
       to left,
       rgba(187, 95, 39, 0%) 0%,
@@ -54,24 +61,17 @@
       $main-color 70%,
       rgba(187, 95, 39, 0%) 100%
     );
-    content: '';
-    display: block;
-    height: 4px;
-    left: -100px;
-    position: relative;
-    top: 100px;
-    width: 300px;
   }
 
   #bike-wrapper {
-    height: 108px;
     width: 108px;
+    height: 108px;
     animation: drive 4s linear infinite;
   }
 
   #bike {
-    height: 24px;
     width: 25px;
+    height: 24px;
     background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/133687/motorbike.png');
   }
 
@@ -82,21 +82,21 @@
     }
 
     33% {
-      transform: rotate(0deg);
       margin-left: -50px;
       opacity: 1;
+      transform: rotate(0deg);
     }
 
     66% {
-      transform: rotate(-360deg);
       margin-left: -50px;
       opacity: 1;
+      transform: rotate(-360deg);
     }
 
     100% {
       margin-left: 264px;
-      transform: rotate(-360deg);
       opacity: 0;
+      transform: rotate(-360deg);
     }
   }
 </style>

@@ -98,9 +98,9 @@
 <style lang="scss" scoped>
   .feed {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     gap: 14px;
+    justify-content: center;
     margin: 16px 0 28px;
   }
 </style>

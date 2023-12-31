@@ -73,9 +73,9 @@
 
       &-author {
         display: grid;
-        align-items: center;
         grid-template-columns: $avatar-size-m max-content 1fr;
         grid-gap: 10px;
+        align-items: center;
         font-size: $font-size-sm;
 
         &-img {
@@ -87,9 +87,9 @@
         }
 
         &-time {
-          font-style: italic;
           margin-top: 0.1em;
           font-size: $font-size-sm;
+          font-style: italic;
           opacity: 0.5;
         }
       }
@@ -98,12 +98,11 @@
         font-size: $font-size-sm;
 
         &-link {
+          color: #555 !important;
+          font-weight: 500;
           font-style: italic;
 
           @include link;
-
-          color: #555 !important;
-          font-weight: 500;
         }
       }
     }

@@ -276,16 +276,16 @@
   }
 
   .loader {
-    height: 84vh;
     display: flex;
-    padding: auto;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    height: 84vh;
+    padding: auto;
   }
 
   .article {
-    margin: 30px 0;
     position: relative;
+    margin: 30px 0;
 
     @include view-wrapper;
     @include data-block;
@@ -301,9 +301,9 @@
       &-link {
         @include link;
 
-        text-decoration: none;
         color: #000 !important;
         font-weight: 500;
+        text-decoration: none;
       }
     }
 
@@ -318,20 +318,20 @@
 
     &-data {
       display: grid;
-      width: max-content;
       grid-template-columns: 110px 1fr;
-      align-items: center;
       grid-gap: $break;
+      align-items: center;
+      width: max-content;
       padding: 0 0 10px;
       font-size: $font-size-s;
       font-style: italic;
 
       &-tags {
         display: grid;
-        grid-auto-flow: dense;
-        grid-template-columns: repeat(5, auto);
-        grid-column-gap: 5px;
         grid-template-rows: 1fr;
+        grid-template-columns: repeat(5, auto);
+        grid-auto-flow: dense;
+        grid-column-gap: 5px;
         margin-top: 8px;
 
         &-tag {
@@ -352,11 +352,11 @@
 
     &-author {
       &-link {
-        width: max-content;
         display: grid;
-        align-items: center;
         grid-template-columns: $avatar-size-m 1fr;
         grid-gap: $break;
+        align-items: center;
+        width: max-content;
 
         &-avatar {
           @include avatar;
@@ -367,8 +367,8 @@
     &-line {
       width: 100%;
       height: 1px;
-      background-color: $home-background-color;
       margin: 10px auto;
+      background-color: $home-background-color;
     }
 
     &-body {
@@ -392,23 +392,23 @@
     }
 
     &-comment {
-      border-top: 1px solid $home-background-color;
       padding-top: 15px;
+      border-top: 1px solid $home-background-color;
 
       &-author {
         display: grid;
-        align-items: center;
         grid-template-columns: $avatar-size-m max-content 1fr;
         grid-gap: 10px;
+        align-items: center;
 
         &-img {
           @include avatar;
         }
 
         &-time {
-          font-style: italic;
-          font-size: $font-size-s;
           color: $muted-text-color;
+          font-size: $font-size-s;
+          font-style: italic;
         }
       }
 
@@ -432,11 +432,11 @@
   }
 
   .write_comment {
-    padding: $break;
-    margin-bottom: 25px;
     display: flex;
     flex-direction: column;
     gap: 14px;
+    margin-bottom: 25px;
+    padding: $break;
 
     button {
       width: max-content;
@@ -446,9 +446,9 @@
 
     &-text_area {
       width: 100%;
-      resize: vertical;
       min-height: 70px;
       max-height: 1000px;
+      resize: vertical;
 
       &.loading {
         opacity: 0.7;
@@ -456,9 +456,9 @@
     }
 
     &-error {
+      padding: $break 0;
       color: $red;
       font-style: italic;
-      padding: $break 0;
     }
 
     &-submit {
@@ -471,8 +471,8 @@
     &-not-logged {
       @include data-block;
 
-      padding: 25px $break;
       margin-bottom: 25px;
+      padding: 25px $break;
     }
   }
 </style>

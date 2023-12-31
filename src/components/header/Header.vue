@@ -74,53 +74,52 @@
 
 <style lang="scss" scoped>
   .header {
-    background-color: $main-color;
-    height: $header-height;
     position: fixed;
-    width: 100%;
     z-index: 11;
     display: flex;
     justify-content: center;
+    width: 100%;
+    height: $header-height;
+    background-color: $main-color;
 
     &-content {
-      width: 100%;
-      max-width: 820px;
       display: grid;
-      grid-template-columns: auto auto;
       grid-template-rows: $header-height;
+      grid-template-columns: auto auto;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
+      max-width: 820px;
       margin: 0 12px;
     }
 
     &-navbar {
       display: grid;
-      grid-gap: 15px;
       grid-template-rows: 1fr;
       grid-template-columns: 1fr 1fr;
+      grid-gap: 15px;
 
       &-link {
         display: flex;
         justify-content: center;
         align-items: center;
+        color: #fff !important;
         font-size: $font-size-s;
 
         @include link;
-
-        color: #fff !important;
       }
 
       &-new_article {
         @include button(#fff, #fff);
 
-        background-color: transparent;
-        height: 20px;
-        line-height: 20px;
-        padding: 5px;
-        font-size: $font-size-s;
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
+        height: 20px;
+        padding: 5px;
+        background-color: transparent;
+        font-size: $font-size-s;
+        line-height: 20px;
         text-decoration: none;
       }
     }

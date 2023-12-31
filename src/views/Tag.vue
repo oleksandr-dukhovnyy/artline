@@ -70,23 +70,22 @@
 
 <style lang="scss" scoped>
   .loader {
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
   }
 
   .tag {
     @include view-wrapper;
 
     &-header {
+      padding: $break 0;
       background-color: #fff;
 
       @include block-border-radius;
       @include view-wrapper;
-
-      padding: $break 0;
 
       &-title {
         text-align: center;

@@ -4,6 +4,11 @@
 
 ### [Live demo](https://oleksandr-dukhovnyy.github.io/artline/)
 
+## IDE
+
+Recommended - VSCode (with extension `EditorConfig`)
+All other rules in `.editorconfig` file.
+
 ## Project setup
 
 ```

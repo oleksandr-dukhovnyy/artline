@@ -14,18 +14,18 @@
 
 <style lang="scss" scoped>
   .bounce {
-    width: 140px;
     position: relative;
+    width: 140px;
 
     div {
-      border-radius: 100%;
-      height: 10px;
-      width: 10px;
-      background-color: hsl(0deg, 0%, 100%);
-      animation: bounce 1s ease-in-out infinite;
       position: absolute;
       top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      background-color: hsl(0deg, 0%, 100%);
       transform: translateY(20px);
+      animation: bounce 1s ease-in-out infinite;
 
       &:first-of-type {
         left: -20px;

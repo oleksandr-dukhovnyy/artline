@@ -105,8 +105,8 @@
 
 <style lang="scss" scoped>
   .article {
-    background-color: #fff;
     margin: 0 auto;
+    background-color: #fff;
 
     @include block-border-radius;
 
@@ -124,9 +124,9 @@
       &-link {
         @include link;
 
-        text-decoration: none;
         color: #000 !important;
         font-weight: 500;
+        text-decoration: none;
       }
     }
 
@@ -143,9 +143,9 @@
 
     &-data {
       display: grid;
-      width: max-content;
       grid-template-columns: 110px 1fr;
       grid-column-gap: 0;
+      width: max-content;
       padding: 0 0 10px;
       font-size: $font-size-s;
       font-style: italic;
@@ -171,10 +171,10 @@
 
     &-data-tags {
       display: grid;
-      grid-auto-flow: dense;
-      grid-template-columns: repeat(5, auto);
-      grid-column-gap: 5px;
       grid-template-rows: 1fr;
+      grid-template-columns: repeat(5, auto);
+      grid-auto-flow: dense;
+      grid-column-gap: 5px;
       width: max-content;
       margin-top: 8px;
 

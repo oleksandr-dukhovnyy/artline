@@ -17,25 +17,25 @@
 
 <style lang="scss" scoped>
   .wrapper {
-    font-size: 12px;
-    display: flex;
-    bottom: 30px;
-    justify-content: center;
     position: absolute;
-    text-align: center;
+    bottom: 30px;
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 23px;
+    font-size: 12px;
+    text-align: center;
 
     div {
-      border-top: 1px solid #fff;
-      padding-top: 10px;
       width: 310px;
+      padding-top: 10px;
+      border-top: 1px solid #fff;
       color: #999;
     }
 
     a {
-      text-decoration: underline;
       color: #999;
+      text-decoration: underline;
     }
   }
 </style>

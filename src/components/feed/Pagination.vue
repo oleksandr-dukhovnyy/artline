@@ -117,24 +117,24 @@
   }
 
   .pagination {
-    background-color: #fff;
-    padding: $break;
     display: flex;
     justify-content: center;
+    padding: $break;
+    background-color: #fff;
 
     @include block-border-radius;
 
     &-wrapper {
       display: grid;
-      grid-template-columns: repeat(12, 35px);
       grid-template-rows: 35px;
+      grid-template-columns: repeat(12, 35px);
       grid-gap: $break;
 
       &-page {
-        padding: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 10px;
         border: 1px solid $main-color;
         opacity: 0.4;
         cursor: pointer;
@@ -144,8 +144,8 @@
         &-link {
           @include link;
 
-          text-decoration: none;
           color: $main-color !important;
+          text-decoration: none;
         }
       }
 
@@ -170,9 +170,9 @@
   }
 
   .active {
-    opacity: 1;
+    border: 2px solid #2a544ccc;
     color: black;
     font-weight: 600;
-    border: 2px solid #2a544ccc;
+    opacity: 1;
   }
 </style>

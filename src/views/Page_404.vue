@@ -22,10 +22,10 @@
 
 <style lang="scss" scoped>
   .contain {
-    height: calc(100vh - 35px);
     display: flex;
     justify-content: center;
     align-items: center;
+    height: calc(100vh - 35px);
 
     p {
       text-align: center;

@@ -39,18 +39,18 @@
 
 <style lang="scss" scoped>
   .tags {
-    margin-top: $break;
-    background-color: #fff;
     height: max-content;
+    margin-top: $break;
     padding: $break;
+    background-color: #fff;
 
     @include block-border-radius;
 
     &__contain {
-      margin-top: $break;
-      width: 100%;
       display: flex;
       flex-wrap: wrap;
+      width: 100%;
+      margin-top: $break;
     }
 
     &__tag {
@@ -64,7 +64,7 @@
   .link {
     @include link;
 
-    font-style: italic;
     font-size: $font-size-sm;
+    font-style: italic;
   }
 </style>

@@ -12,11 +12,11 @@
 
 <style lang="scss" scoped>
   .wrapper {
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
 
     div {
       margin: auto 0;

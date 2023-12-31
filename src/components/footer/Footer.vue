@@ -31,18 +31,18 @@
 
 <style lang="scss" scoped>
   .footer {
+    position: relative;
     height: 180px;
     background-color: $main-color;
-    position: relative;
 
     &-logo {
-      padding: 20px;
-      justify-content: center;
       display: flex;
+      justify-content: center;
+      padding: 20px;
 
       &-text {
-        font-size: 28px;
         color: #fff;
+        font-size: 28px;
         text-decoration: none;
       }
     }
@@ -50,10 +50,10 @@
     &-author {
       position: absolute;
       bottom: 10px;
-      font-size: $font-size-s;
-      color: #fff;
-      text-align: center;
       width: 100%;
+      color: #fff;
+      font-size: $font-size-s;
+      text-align: center;
 
       &-email {
         margin-left: 10px;
