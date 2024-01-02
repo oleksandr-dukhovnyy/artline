@@ -3,10 +3,11 @@
 
 @mixin view-wrapper {
   width: 100%;
-  margin: $break auto;
+  margin: 0 auto;
 
   @include media-up(tablet) {
     width: 820px;
+    margin-top: $break auto;
   }
 }
 
@@ -35,20 +36,20 @@
 
   &:active,
   &:hover {
-    text-decoration: underline;
     color: $link-color;
+    text-decoration: underline;
   }
 }
 
 @mixin button($bg-color: transparent, $color: $cta-color) {
-  border-radius: $border-radius;
-  cursor: pointer;
-  background-color: $color;
-  border: 1px solid $bg-color;
-  transition: 0.3s;
-  color: #fff;
   padding: 14px 20px;
+  border: 1px solid $bg-color;
+  border-radius: $border-radius;
+  background-color: $color;
+  color: #fff;
   text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
     border: 1px solid $color;
@@ -58,11 +59,11 @@
 }
 
 @mixin input {
-  border-radius: 8px;
-  border: 1px solid $color-black;
   width: 100%;
   height: 45px;
   padding: 10px 16px;
+  border: 1px solid $color-black;
+  border-radius: 8px;
   font-size: $font-size-m;
 }
 
@@ -73,21 +74,21 @@
 ) {
   @include button(transparent, $color);
 
-  background-color: transparent;
-  border: 1px solid $color;
-  color: $color;
   padding: 10px;
+  border: 1px solid $color;
+  background-color: transparent;
+  color: $color;
   transition: background-color 1s;
 
   &.cb-inactive {
     opacity: 0.5;
 
     &:hover {
-      background-color: transparent;
       border: 1px solid $color;
+      background-color: transparent;
       color: $color;
-      transform: scale(1);
       cursor: not-allowed;
+      transform: scale(1);
     }
   }
 
@@ -111,28 +112,14 @@
 }
 
 @mixin tag {
-  width: max-content;
-  font-size: 0.9em;
-  border-radius: 40px;
-  background-color: $tag-background-color;
-  padding: 5px 10px;
   display: flex;
   justify-content: center;
+  width: max-content;
+  padding: 5px 10px;
+  border-radius: 40px;
+  background-color: $tag-background-color;
+  font-size: 0.9em;
   text-align: center;
-}
-
-@keyframes box {
-  0% {
-    opacity: 0.7;
-  }
-
-  50% {
-    opacity: 0.3;
-  }
-
-  100% {
-    opacity: 0.7;
-  }
 }
 
 @mixin loading-animation-text() {
@@ -144,20 +131,21 @@
 }
 
 @mixin avatar {
-  border-radius: 50%;
   width: $avatar-size-m;
   height: $avatar-size-m;
+  border-radius: 50%;
 }
 
 @mixin avatar-custom($size) {
-  border-radius: 50%;
   width: $size;
   height: $size;
+  border-radius: 50%;
 }
 
 @mixin data-block {
-  border-radius: $border-radius;
   background-color: #fff;
+
+  @include block-border-radius;
 }
 
 @mixin beauty-input {
@@ -165,12 +153,12 @@
   &:hover,
   &:active,
   &:focus {
-    outline: none;
     width: 100%;
-    height: 35px;
+    height: 35px !important;
     border: 1px solid $main-color;
     border-radius: $border-radius;
-    padding: $break;
+    outline: none !important;
+    line-height: 2rem !important;
   }
 }
 

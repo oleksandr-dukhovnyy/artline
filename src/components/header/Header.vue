@@ -10,9 +10,17 @@
         >
       </div>
 
+      <SearchBar
+        @search-start="isSearchActive = true"
+        @search-end="isSearchActive = false"
+      />
+
       <nav
         v-if="user !== null && user !== undefined"
         class="header-navbar"
+        :class="{
+          'hide-on-mobile': isSearchActive,
+        }"
       >
         <router-link
           class="header-navbar-link"
@@ -32,6 +40,9 @@
       <nav
         v-else
         class="header-navbar"
+        :class="{
+          'hide-on-mobile': isSearchActive,
+        }"
       >
         <router-link
           class="header-navbar-link"
@@ -52,16 +63,25 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import scrollToTop from '@/js/scroll-to-top';
+  import scrollToTop from '@/helpers/scroll-to-top';
+  import SearchBar from './Search/SearchBar.vue';
 
   export default {
     name: 'TheHeader',
+    components: {
+      SearchBar,
+    },
+
+    data() {
+      return {
+        isSearchActive: false,
+      };
+    },
+
     computed: {
       ...mapGetters(['user']),
       isCorrectUsername() {
-        const uncurrects = ['', null, undefined, ' '];
-
-        return !uncurrects.includes(this.user.name);
+        return !!this.user.name?.trim();
       },
     },
     methods: {
@@ -81,11 +101,14 @@
     width: 100%;
     height: $header-height;
     background-color: $main-color;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 14%), 0 1px 5px 0 rgba(0, 0, 0, 12%),
+      0 3px 1px -2px rgba(0, 0, 0, 20%);
 
     &-content {
       display: grid;
       grid-template-rows: $header-height;
-      grid-template-columns: auto auto;
+      grid-template-columns: max-content 1fr max-content;
+      gap: $break;
       justify-content: space-between;
       align-items: center;
       width: 100%;
@@ -94,10 +117,14 @@
     }
 
     &-navbar {
-      display: grid;
-      grid-template-rows: 1fr;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 15px;
+      // display: grid;
+      // grid-template-rows: 1fr;
+      // grid-template-columns: 1fr 1fr;
+      // grid-gap: 15px;
+
+      display: flex;
+      gap: 15px;
+      align-items: center;
 
       &-link {
         display: flex;
@@ -112,15 +139,18 @@
       &-new_article {
         @include button(#fff, #fff);
 
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
         height: 20px;
-        padding: 5px;
         background-color: transparent;
         font-size: $font-size-s;
         line-height: 20px;
         text-decoration: none;
+
+        @include media-up(470px) {
+          display: flex;
+        }
       }
     }
 

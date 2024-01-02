@@ -270,6 +270,7 @@
     margin: $break;
     padding: $break;
 
+    @include block-border-radius;
     @include view-wrapper;
     @include data-block;
 

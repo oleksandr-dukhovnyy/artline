@@ -5,7 +5,7 @@
       <div
         v-for="(tag, i) in popularTags"
         :key="i"
-        class="tags__tag"
+        class="tags__tag animate__animated animate__zoomIn"
       >
         <router-link
           class="link"
@@ -40,7 +40,6 @@
 <style lang="scss" scoped>
   .tags {
     height: max-content;
-    margin-top: $break;
     padding: $break;
     background-color: #fff;
 

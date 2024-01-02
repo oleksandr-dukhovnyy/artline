@@ -41,9 +41,17 @@
           class="registration-form-submit-bttn"
           :class="{ loading: condition.loading }"
           :disabled="condition.loading"
-          value="submit"
+          value="Registration"
         />
       </div>
+
+      <router-link
+        :to="{
+          name: 'login',
+        }"
+      >
+        login
+      </router-link>
     </form>
   </section>
 </template>
@@ -126,6 +134,10 @@
         background-color: $muted-text-color;
       }
 
+      a {
+        @include link;
+      }
+
       &-input {
         @include input;
 
@@ -138,7 +150,6 @@
         width: 100%;
 
         &-bttn {
-          // height: 35px;
           width: 100%;
           padding: 14px 20px;
 

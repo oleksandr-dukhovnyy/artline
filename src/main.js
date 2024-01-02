@@ -11,6 +11,11 @@ import 'quill/dist/quill.snow.css';
 import 'animate.css';
 import * as Sentry from '@sentry/vue';
 
+// Directives
+import bindClickOutside from './vue-directives/click-outside';
+
+bindClickOutside(Vue);
+
 Vue.use(VueQuillEditor);
 Vue.use(vPurifyHTML, purifyConfig);
 

@@ -14,7 +14,7 @@
 
 <script>
   import FooterCopyright from '@/components/footer/Copyright.vue';
-  import scrollToTop from '@/js/scroll-to-top';
+  import scrollToTop from '@/helpers/scroll-to-top';
 
   export default {
     name: 'TheFooter',

@@ -60,8 +60,21 @@ const API = {
   getPopularTags() {
     return fakeAPI.get('/popular-tags');
   },
+
+  async searchPosts(searchStr = '') {
+    return await fakeAPI.get('/search-posts', searchStr);
+  },
+
+  async searchUsers(searchStr = '') {
+    return await fakeAPI.get('/search-users', searchStr);
+  },
+
   core: fakeAPI,
 };
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 // /dev
 

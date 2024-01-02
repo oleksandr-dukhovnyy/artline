@@ -170,56 +170,54 @@
   import { mapActions, mapGetters } from 'vuex';
   import API from '@/api/index.api.js';
   import Loader from '@/components/loader/LoaderLines.vue';
-  import getDate from '@/js/getCurrentTime.js';
+  import getDate from '@/helpers/getCurrentTime.js';
 
   export default {
     name: 'TheArticle',
+
     components: {
       Loader,
     },
+
     data: () => ({
       showComments: true,
       comment: '',
-      laodedArticle: undefined,
+      article: undefined,
       submitCommentCondition: {
         status: '',
         msg: '',
       },
     }),
+
     computed: {
       ...mapGetters(['articlesLoading', 'user']),
-      article() {
-        let article = this.$store.getters.articles.find(
-          (article) => article.id === +this.$route.params.id
-        );
+    },
 
-        if (article === undefined && this.articlesLoading === true) {
+    watch: {
+      $route() {
+        if (this.$route.params.id != this.article?.id) {
           this.loadArticle();
-          return this.laodedArticle;
         }
-
-        return article;
       },
     },
+
     created() {
-      if (this.$store.getters.articles.length === 0) {
-        this.loadArticles();
-      }
+      this.loadArticle();
     },
 
     methods: {
       ...mapActions(['loadArticles', 'sendComment']),
       loadArticle() {
-        const promise = API.core.get('/article', this.$route.params.id);
+        this.article = undefined;
 
-        promise.then((data) => {
-          this.laodedArticle = data;
-        });
-
-        promise.catch((e) => {
-          console.log('[Article.vue > loadArticle]: err', e);
-          this.$router.replace({ name: 'page404' });
-        });
+        API.core
+          .get('/article', this.$route.params.id)
+          .then((data) => {
+            this.article = data;
+          })
+          .catch(() => {
+            this.$router.replace({ name: 'page404' });
+          });
       },
       submitComment() {
         const localComment = {
@@ -285,7 +283,6 @@
 
   .article {
     position: relative;
-    margin: 30px 0;
 
     @include view-wrapper;
     @include data-block;

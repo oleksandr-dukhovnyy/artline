@@ -45,4 +45,7 @@ export default {
       attributes: ['colspan', 'rowspan'],
     },
   ],
+  presets: {
+    'clear-all': [],
+  },
 };

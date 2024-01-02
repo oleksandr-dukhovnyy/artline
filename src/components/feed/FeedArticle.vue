@@ -12,7 +12,7 @@
       <div class="article-data">
         <div class="article-data-creation_date">{{ creationDate }}</div>
         <router-link
-          class="link scalable"
+          class="link scalable animate__animated animate__slideInRight animate__faster"
           :to="{ name: 'user', params: { id: author.id } }"
         >
           <div class="article-data-author">{{ author.name }}</div>
@@ -35,7 +35,7 @@
     </div>
     <img
       v-if="img"
-      class="article-img"
+      class="article-img animate__animated animate__fadeIn animate__faster"
       :src="img"
       :alt="title"
       width="800"
@@ -47,11 +47,11 @@
     ></div>
     <div class="article-content">
       <p
-        v-purify-html="body.slice(0, 300)"
+        v-purify-html.clear-all="shortBody"
         class="article-preview"
       ></p>
       <router-link
-        class="article-read_link"
+        class="article-read_link animate__animated animate__zoomIn"
         :to="{ name: 'article', params: { id: articleId } }"
       >
         <button class="article-read_more"> read more... </button>
@@ -63,13 +63,6 @@
 <script>
   export default {
     name: 'FeedArticle',
-    filters: {
-      getFirstFewRows(t) {
-        const sliced = t.split('').slice(0, 300);
-
-        return sliced.join('') + '...';
-      },
-    },
     props: {
       title: {
         type: String,
@@ -100,6 +93,16 @@
         default: () => [],
       },
     },
+
+    computed: {
+      shortBody() {
+        const content = this.body.slice(0, 300).trim();
+
+        if (this.body.length > 300) return `${content}...`;
+
+        return content;
+      },
+    },
   };
 </script>
 
@@ -111,6 +114,7 @@
     @include block-border-radius;
 
     &-preview {
+      font-size: 18px;
       word-wrap: break-word;
     }
 

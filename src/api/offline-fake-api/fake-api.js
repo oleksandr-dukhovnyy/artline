@@ -1,91 +1,15 @@
 import defaultDB from '@/api/offline-fake-api/DB.js';
 import { config } from '@/api/offline-fake-api/config.fakeapi.js';
 import initDBTools from '@/api/offline-fake-api/DBTools.js';
+import { search, createCacheStorage } from './helpers.js';
 
 let DataBase;
 let tokeList = [];
 
-function generateToken(n = config.tokenLength) {
-  let token = '';
+export default function initServer() {
+  log('🚀 DB setup started...');
+  const DBSetupStart = performance.now();
 
-  do {
-    token = token + Math.floor(Math.random() * 10 ** n).toString(34);
-  } while (token.length <= n);
-
-  return token.slice(n * -1);
-}
-
-function generateArticleID(articles) {
-  const maxArticlesID = articles.reduce(
-    (a, c) => (c.id > a ? c.id : a),
-    -Infinity
-  );
-
-  return maxArticlesID + Math.floor(Math.random() * 1000);
-}
-
-function getCurrentTime(format) {
-  const d = new Date();
-  const f = (t) => (t < 10 ? '0' + t : t);
-
-  const replaceTable = {
-    '[d]': () => f(d.getDate()),
-    '[sy]': () => `${d.getFullYear()}`.slice(-2),
-    '[mt]': () => f(d.getMonth() + 1),
-    '[h]': () => f(d.getHours()),
-    '[m]': () => f(d.getMinutes()),
-    '[s]': () => f(d.getSeconds()),
-  };
-
-  format.split(/[^[\w\]]/g).forEach((variable) => {
-    const fixedVar = variable.replace(/\s/g, '');
-
-    if (replaceTable[variable] !== undefined) {
-      format = format.replace(variable, replaceTable[fixedVar]());
-    }
-  });
-
-  return format;
-}
-
-function saveDataBase(db) {
-  localStorage.setItem(config.DATABASE_LOCAL_KEY, JSON.stringify(db));
-  return 1;
-}
-
-function saveTokenList(list) {
-  localStorage.setItem(config.TOKEN_LIST_LOCAL_KEY, JSON.stringify(list));
-}
-
-function addAndSaveToken(token, userID) {
-  tokeList.push({
-    token,
-    id: userID,
-  });
-
-  saveTokenList(tokeList);
-
-  return 1;
-}
-
-function deleteToken(token) {
-  const length = tokeList.length;
-  tokeList = tokeList.filter((tokenItem) => tokenItem.token !== token);
-  saveTokenList(tokeList);
-
-  return tokeList.length !== length;
-}
-
-function checkPairTokenAndId(token, id) {
-  token = String(token);
-  id = Number(id);
-
-  return (
-    tokeList.find((ti) => ti.token === token && ti.id === id) !== undefined
-  );
-}
-
-function initServer() {
   const DBInLocalStorage = localStorage.getItem(config.DATABASE_LOCAL_KEY);
   const tokenListInLocalStorage = localStorage.getItem(
     config.TOKEN_LIST_LOCAL_KEY
@@ -96,19 +20,19 @@ function initServer() {
 
   if (DBInLocalStorage !== null) {
     DataBase = DBInLocalStorage;
+
+    log('💡 used DB from localStorage');
   } else {
     DataBase = defaultDB;
     localStorage.setItem(config.DATABASE_LOCAL_KEY, DataBase);
+
+    log('💡 used default DB');
   }
 
   const parsedDB = JSON.parse(DataBase);
   const DBTools = initDBTools(parsedDB);
 
-  const log = (...m) => {
-    if (config.showLogs === true) {
-      console.log('\n' + config.prefix, ...m, '\n\n');
-    }
-  };
+  log(`✅ DB setup finished in ⏱ ${performance.now() - DBSetupStart} ms`);
 
   const getApi = {
     '/user': (id) => {
@@ -178,6 +102,45 @@ function initServer() {
         .sort((a, b) => b[1] - a[1])
         .map((t) => t[0])
         .filter((t, i) => i < 10);
+    },
+    '/search-posts': (searchStr) => {
+      if (searchStr.length < 2 || searchStr.length > 100) return [];
+
+      return parsedDB.articles
+        .map((article) => {
+          return {
+            article,
+            searchResult: search(searchStr, article.title),
+          };
+        })
+        .filter(({ searchResult: { founded } }) => founded)
+        .map(({ article, searchResult }) => {
+          return {
+            link: `/article/${article.id}`,
+            title: searchResult.value,
+            author: article.author.name,
+          };
+        })
+        .slice(0, 15);
+    },
+    '/search-users': (searchStr) => {
+      if (searchStr.length < 2 || searchStr.length > 100) return [];
+
+      return parsedDB.users
+        .map((user) => {
+          return {
+            user,
+            searchResult: search(searchStr, user.name),
+          };
+        })
+        .filter(({ searchResult: { founded } }) => founded)
+        .map(({ user, searchResult }) => {
+          return {
+            id: '' + user.id,
+            name: searchResult.value,
+          };
+        })
+        .slice(0, 20);
     },
   };
 
@@ -292,7 +255,7 @@ function initServer() {
         msg: '',
       };
 
-      log(login, password);
+      // log(login, password);
 
       const user = parsedDB.users.find(
         (u) =>
@@ -534,12 +497,6 @@ function initServer() {
     },
   };
 
-  const getRandomWaiting = () =>
-    Math.floor(
-      Math.random() * (config.timing.maxWait - config.timing.minWait) +
-        config.timing.minWait
-    );
-
   const makeDBRequest = (url, api, params, logCallback = () => {}) => {
     return new Promise((resolve, reject) => {
       if (api[url] !== undefined) {
@@ -557,6 +514,7 @@ function initServer() {
             });
           } else {
             logCallback(true, timing);
+
             if (typeof response === 'object') {
               resolve(JSON.parse(JSON.stringify(response)));
             } else {
@@ -577,38 +535,54 @@ function initServer() {
     });
   };
 
+  const cache = createCacheStorage();
+
   const server = {
     get(url, params = '') {
+      const cachedItem = cache.get(`${url}${JSON.stringify(params)}`);
+
+      if (cachedItem) {
+        log(`⬇️ GET ${url} ${JSON.stringify(params)} is finished (from cache)`);
+
+        return cachedItem;
+      }
+
       if (typeof params === 'string') {
-        log('get', `${url}/${params}`);
+        log('⬇️ GET', `${url}/${params}`);
       } else {
-        log('get', url, params);
+        log('⬇️ GET', url, params);
       }
 
       try {
-        return makeDBRequest(url, getApi, params, (ok, time) => {
+        const result = makeDBRequest(url, getApi, params, (ok, time) => {
           log(
-            `get ${url} is finished:\nwith ${time} ms,\nstatus: ${
+            `⬇️ GET ${url} is finished:\nwith ${time} ms,\nstatus: ${
               ok ? 'ok' : 'error'
             }`
           );
         });
+
+        cache.set(`${url}${JSON.stringify(params)}`, result);
+
+        return result;
       } catch (err) {
         log(err);
+
         return {
           status: 'err',
-          errCode: 501,
+          errCode: 500,
           err,
         };
       }
     },
+
     post(url, params) {
-      log('post', url);
+      log('POST', url);
 
       try {
         return makeDBRequest(url, postApi, params, (ok, time) => {
           log(
-            `post request ${url} is finished with:\n${time} ms,\nstatus: ${
+            `⬆️ POST request ${url} is finished with:\n${time} ms,\nstatus: ${
               ok ? 'ok' : 'error'
             }`
           );
@@ -622,13 +596,14 @@ function initServer() {
         };
       }
     },
+
     delete(url, params) {
       log('delete', url);
 
       try {
         return makeDBRequest(url, deleteApi, params, (ok, time) => {
           log(
-            `delete request ${url} is finished with:\n${time} ms,\nstatus: ${
+            `🗑️ DELETE request ${url} is finished with:\n${time} ms,\nstatus: ${
               ok ? 'ok' : 'error'
             }`
           );
@@ -647,4 +622,95 @@ function initServer() {
   return server;
 }
 
-export default initServer;
+function generateToken(n = config.tokenLength) {
+  let token = '';
+
+  do {
+    token = token + Math.floor(Math.random() * 10 ** n).toString(34);
+  } while (token.length <= n);
+
+  return token.slice(n * -1);
+}
+
+function generateArticleID(articles) {
+  const maxArticlesID = articles.reduce(
+    (a, c) => (c.id > a ? c.id : a),
+    -Infinity
+  );
+
+  return maxArticlesID + Math.floor(Math.random() * 1000);
+}
+
+function getCurrentTime(format) {
+  const d = new Date();
+  const f = (t) => (t < 10 ? '0' + t : t);
+
+  const replaceTable = {
+    '[d]': () => f(d.getDate()),
+    '[sy]': () => `${d.getFullYear()}`.slice(-2),
+    '[mt]': () => f(d.getMonth() + 1),
+    '[h]': () => f(d.getHours()),
+    '[m]': () => f(d.getMinutes()),
+    '[s]': () => f(d.getSeconds()),
+  };
+
+  format.split(/[^[\w\]]/g).forEach((variable) => {
+    const fixedVar = variable.replace(/\s/g, '');
+
+    if (replaceTable[variable] !== undefined) {
+      format = format.replace(variable, replaceTable[fixedVar]());
+    }
+  });
+
+  return format;
+}
+
+function saveDataBase(db) {
+  localStorage.setItem(config.DATABASE_LOCAL_KEY, JSON.stringify(db));
+  return 1;
+}
+
+function saveTokenList(list) {
+  localStorage.setItem(config.TOKEN_LIST_LOCAL_KEY, JSON.stringify(list));
+}
+
+function addAndSaveToken(token, userID) {
+  tokeList.push({
+    token,
+    id: userID,
+  });
+
+  saveTokenList(tokeList);
+
+  return 1;
+}
+
+function deleteToken(token) {
+  const length = tokeList.length;
+  tokeList = tokeList.filter((tokenItem) => tokenItem.token !== token);
+  saveTokenList(tokeList);
+
+  return tokeList.length !== length;
+}
+
+function checkPairTokenAndId(token, id) {
+  token = String(token);
+  id = Number(id);
+
+  return (
+    tokeList.find((ti) => ti.token === token && ti.id === id) !== undefined
+  );
+}
+
+function log(...m) {
+  if (config.showLogs === true) {
+    console.log('\n' + config.prefix, ...m, '\n\n');
+  }
+}
+
+function getRandomWaiting() {
+  return Math.floor(
+    Math.random() * (config.timing.maxWait - config.timing.minWait) +
+      config.timing.minWait
+  );
+}

@@ -5,7 +5,7 @@
   box-sizing: border-box;
   font-family: Roboto, sans-serif;
 
-  // outline: 1px solid #ff000055;
+  // outline: 1px solid #f005;
 }
 
 .main {
@@ -18,17 +18,39 @@
 
 .muted {
   padding-top: $break;
-  font-style: italic;
   color: $muted-text-color;
+  font-style: italic;
+}
+
+@keyframes box {
+  0% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.hide-on-mobile {
+  @include media-down(tablet) {
+    display: none !important;
+  }
 }
 
 // scalable
 input,
 textarea {
-  @include scalable(1.01);
+  @include media-up(desktop) {
+    @include scalable(1.01);
 
-  &:focus {
-    transform: none;
+    &:focus {
+      transform: none;
+    }
   }
 }
 

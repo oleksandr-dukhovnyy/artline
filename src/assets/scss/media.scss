@@ -1,13 +1,19 @@
 @import 'adaptive-scss';
 
 $sizes: (
-  mobile: 0,
+  mobile: 375px,
   tablet: 860px,
   desktop: 1100px,
 );
 
 @mixin media-up($name) {
   @include _media-up($name, $sizes) {
+    @content;
+  }
+}
+
+@mixin media-down($name) {
+  @include _media-down($name, $sizes) {
     @content;
   }
 }
