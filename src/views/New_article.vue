@@ -328,6 +328,7 @@
 
       &-preview {
         display: flex;
+        gap: $break;
 
         &-tag {
           @include tag;

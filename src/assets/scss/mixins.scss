@@ -149,6 +149,8 @@
 }
 
 @mixin beauty-input {
+  padding: 4px $break;
+
   &,
   &:hover,
   &:active,
