@@ -1,11 +1,11 @@
 <template>
   <div class="tags">
-    <strong> Popular tags: </strong>
-    <div class="tags__contain">
+    <div class="tags__contain animate__animated animate__zoomIn">
+      <strong> Popular tags: </strong>
       <div
         v-for="(tag, i) in popularTags"
         :key="i"
-        class="tags__tag animate__animated animate__zoomIn"
+        class="tags__tag"
       >
         <router-link
           class="link"
@@ -40,16 +40,24 @@
 <style lang="scss" scoped>
   .tags {
     height: max-content;
+    min-height: 65px;
     padding: $break;
     background-color: #fff;
+
+    // height: 65px;
 
     @include block-border-radius;
 
     &__contain {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       width: 100%;
-      margin-top: $break;
+
+      strong {
+        display: flex;
+        align-items: center;
+      }
     }
 
     &__tag {

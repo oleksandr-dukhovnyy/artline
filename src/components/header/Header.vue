@@ -113,7 +113,7 @@
       align-items: center;
       width: 100%;
       max-width: 820px;
-      margin: 0 12px;
+      padding: 0 15px;
     }
 
     &-navbar {
@@ -131,9 +131,10 @@
         justify-content: center;
         align-items: center;
         color: #fff !important;
-        font-size: $font-size-s;
 
         @include link;
+
+        font-size: 0.8em;
       }
 
       &-new_article {

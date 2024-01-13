@@ -23,14 +23,14 @@
     name: 'HomeView',
     components: { Feed, PopularTags, Loader },
     computed: {
-      ...mapGetters(['articlesLoading', 'articles']),
+      ...mapGetters(['articlesLoading', 'articles', 'perPage']),
     },
     created() {
       const queryPage = +this.$route.query.page - 1 || 0;
 
       this.loadArticles({
-        from: queryPage * 10,
-        to: (queryPage + 1) * 10,
+        from: queryPage * this.perPage,
+        to: (queryPage + 1) * this.perPage,
       });
     },
     methods: {

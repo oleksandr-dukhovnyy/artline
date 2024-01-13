@@ -47,13 +47,13 @@ export default function initServer() {
       const response = {
         success: null,
         articles: [],
-        paginationPages: Math.ceil(parsedDB.articles.length / 10),
+        paginationPages: Math.ceil(parsedDB.articles.length / (to - from)),
       };
 
       if (arrOfId !== null) {
-        response.articles = parsedDB.articles.filter((article) => {
-          return arrOfId.includes(article.id);
-        });
+        response.articles = parsedDB.articles.filter(({ id }) =>
+          arrOfId.includes(id)
+        );
       } else {
         response.articles = parsedDB.articles.slice(from, to);
       }
@@ -76,7 +76,7 @@ export default function initServer() {
       const response = {
         success: true,
         articles,
-        paginationPages: Math.ceil(articles.length / 10),
+        paginationPages: Math.ceil(articles.length / (to - from)),
       };
 
       return response;
@@ -85,6 +85,8 @@ export default function initServer() {
       return parsedDB.articles.filter((a) => a.tags.includes(tag)).length;
     },
     '/popular-tags': () => {
+      const limit = 8;
+
       return parsedDB.articles
         .reduce((acc, article) => {
           article.tags.forEach((tag) => {
@@ -101,7 +103,7 @@ export default function initServer() {
         }, [])
         .sort((a, b) => b[1] - a[1])
         .map((t) => t[0])
-        .filter((t, i) => i < 10);
+        .slice(0, limit);
     },
     '/search-posts': (searchStr) => {
       if (searchStr.length < 2 || searchStr.length > 100) return [];
@@ -258,9 +260,7 @@ export default function initServer() {
       // log(login, password);
 
       const user = parsedDB.users.find(
-        (u) =>
-          String(u.login) === String(login) &&
-          String(u.password) === String(password)
+        (u) => u.login === login && u.password === password
       );
 
       if (user !== undefined) {

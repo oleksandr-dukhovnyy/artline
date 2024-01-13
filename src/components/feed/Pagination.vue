@@ -9,8 +9,8 @@
           src="@/assets/icons/arrow-left-50.png"
           alt="prev_pagination_page"
           class="pagination-wrapper-arrow-left-img"
-          :class="{ inactive: rangeStart < 1 }"
-          @click="prevPaginationPage()"
+          :class="{ inactive: currentPage === 1 }"
+          @click="prevPage"
         />
       </div>
       <div
@@ -20,20 +20,20 @@
         :class="{ active: page === currentPage }"
         @click="selectPage(page)"
       >
-        <router-link
+        <span
           class="pagination-wrapper-page-link"
           :to="{ name: $route.name, query: { page } }"
         >
           {{ page }}
-        </router-link>
+        </span>
       </div>
       <div class="pagination-wrapper-arrow-right">
         <img
           src="@/assets/icons/arrow-left-50.png"
           alt="next_pagination_page"
           class="pagination-wrapper-arrow-right-img flipped"
-          :class="{ inactive: paginationPages - rangeStart <= 10 }"
-          @click="nextPaginationPage()"
+          :class="{ inactive: currentPage >= paginationPages }"
+          @click="nextPage"
         />
       </div>
     </div>
@@ -47,6 +47,11 @@
       paginationPages: {
         type: Number,
         default: 1,
+      },
+
+      perPage: {
+        type: Number,
+        default: 5,
       },
     },
     data: () => ({
@@ -69,22 +74,33 @@
       let roundTo10th;
 
       if (this.currentPage < this.paginationPages) {
-        roundTo10th = Math.floor((this.currentPage - 1) / 10) * 10;
+        roundTo10th =
+          Math.floor((this.currentPage - 1) / this.perPage) * this.perPage;
       } else {
-        roundTo10th = this.paginationPages - 10;
+        roundTo10th = this.paginationPages - this.perPage;
       }
 
       this.rangeStart = roundTo10th;
       this.setPages(roundTo10th, this.paginationPages);
     },
     methods: {
+      nextPage() {
+        if (this.currentPage < this.paginationPages) {
+          this.$emit('selectPage', this.currentPage + 1);
+        }
+      },
+      prevPage() {
+        if (this.currentPage > 1) {
+          this.$emit('selectPage', this.currentPage - 1);
+        }
+      },
       selectPage(page) {
         this.$emit('selectPage', page);
       },
       setPages(start, pages) {
         const res = [];
 
-        for (let i = start; i < start + 10; i++) {
+        for (let i = start; i < start + this.perPage; i++) {
           if (pages > i && i >= 0) {
             res.push(i + 1);
           }
@@ -94,15 +110,15 @@
       },
       nextPaginationPage() {
         const newStart =
-          Number(this.paginationPages) - 10 - Number(this.rangeStart);
+          Number(this.paginationPages) - this.perPage - Number(this.rangeStart);
 
         if (newStart > 1) {
-          this.rangeStart += 10;
+          this.rangeStart += this.perPage;
         }
       },
       prevPaginationPage() {
-        if (this.rangeStart - 10 > 0) {
-          this.rangeStart -= 10;
+        if (this.rangeStart - this.perPage > 0) {
+          this.rangeStart -= this.perPage;
         } else {
           this.rangeStart = 0;
         }
@@ -118,8 +134,7 @@
 
   .pagination {
     display: flex;
-
-    // justify-content: center;
+    justify-content: center;
     padding: $break;
     background-color: #fff;
 
@@ -128,16 +143,21 @@
     &-wrapper {
       display: grid;
       grid-template-rows: 35px;
-      grid-template-columns: repeat(12, 35px);
+      grid-auto-flow: column;
       grid-gap: $break;
+      justify-content: center;
+      width: 100%;
 
       &-page {
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 35px;
+        height: 35px;
         padding: 10px;
         border: 1px solid $main-color;
         border-radius: 50%;
+        color: #fff;
         opacity: 0.4;
         cursor: pointer;
 
@@ -164,6 +184,13 @@
           &-img {
             width: 25px;
             height: 25px;
+            opacity: 1;
+            cursor: pointer;
+
+            &:hover {
+              opacity: 1;
+              cursor: pointer;
+            }
 
             &.inactive {
               opacity: 0.3;
@@ -176,8 +203,13 @@
 
   .active {
     border: 2px solid #2a544ccc;
-    color: black;
+    background-color: #1a484c;
+    color: #fff !important;
     font-weight: 600;
     opacity: 1;
+
+    span {
+      color: #fff !important;
+    }
   }
 </style>

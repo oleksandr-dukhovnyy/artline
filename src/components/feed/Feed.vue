@@ -40,7 +40,7 @@
       },
     },
     computed: {
-      ...mapGetters(['paginationItems', 'articlesLoading']),
+      ...mapGetters(['paginationItems', 'articlesLoading', 'perPage']),
     },
 
     created() {
@@ -82,12 +82,12 @@
         if (isNaN(queryPage)) {
           this.loadArticles({
             from: 0,
-            to: 10,
+            to: this.perPage,
           });
         } else {
           this.loadArticles({
-            from: queryPage * 10,
-            to: (queryPage + 1) * 10,
+            from: queryPage * this.perPage,
+            to: (queryPage + 1) * this.perPage,
           });
         }
       },

@@ -50,13 +50,14 @@
         'articlesByTagLoading',
         'articlesByTag',
         'articlesByTagCount',
+        'perPage',
       ]),
     },
     created() {
       this.loadArticlesByTag({
         tag: this.$route.params.tag,
         from: 0,
-        to: 10,
+        to: this.perPage,
       });
 
       this.getArticlesByTagCount(this.$route.params.tag);

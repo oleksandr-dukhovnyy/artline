@@ -147,12 +147,19 @@
 
     &-data {
       display: grid;
+      grid-template-rows: auto auto;
       grid-template-columns: 110px 1fr;
       grid-column-gap: 0;
+      align-items: center;
       width: max-content;
       padding: 0 0 10px;
       font-size: $font-size-s;
       font-style: italic;
+
+      &-author {
+        font-size: 14.4px; // 0.9em
+        font-weight: 700;
+      }
 
       &-creation_date {
         width: max-content;

@@ -13,8 +13,12 @@ export default {
         console.error(res);
       });
     },
-    async loadArticles({ commit }, { from = 0, to = 10 } = {}) {
+    async loadArticles({ commit, state }, { from = 0, to } = {}) {
       commit('setArticlesLoading', true);
+
+      if (!to) {
+        to = state.data.perPage;
+      }
 
       API.getArticles(
         ({ articles, paginationPages }) => {
@@ -30,7 +34,11 @@ export default {
         { from, to }
       );
     },
-    async loadArticlesByTag({ commit }, { tag, from = 0, to = 10 }) {
+    async loadArticlesByTag({ commit }, { tag, from = 0, to }) {
+      if (!to) {
+        to = state.data.perPage;
+      }
+
       commit('setArticlesByTagLoading', true);
       const articles = API.getArticlesByTag({ tag, from, to });
 
@@ -73,6 +81,7 @@ export default {
       articlesByTag: [],
       articlesByTagCount: null,
       pagination: null,
+      perPage: 5,
     },
     conditions: {
       articlesLoading: false,
@@ -83,6 +92,7 @@ export default {
     },
   },
   getters: {
+    perPage: (state) => state.data.perPage,
     articles: (state) => state.data.articles,
     articlesByTag: (state) => state.data.articlesByTag,
     articlesLoading: (state) => state.conditions.articlesLoading,
