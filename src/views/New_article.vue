@@ -85,24 +85,20 @@
       </div>
     </div>
 
-    <div
-      v-if="!conditions.previewON"
-      class="write-editor"
-    >
+    <div class="write-editor">
       <div class="write-editor-title write-label"> Content: </div>
       <quill-editor
+        v-if="!conditions.previewON"
         v-model.trim="article.content"
         :options="editorOption"
-        :read-only="true"
         @change="updateLocalStorage"
       />
+      <div
+        v-else
+        v-purify-html="preview"
+        class="write-preview"
+      ></div>
     </div>
-
-    <div
-      v-else
-      v-purify-html="preview"
-      class="write-preview"
-    ></div>
 
     <div class="write-controls">
       <button
