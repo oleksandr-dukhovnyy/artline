@@ -118,7 +118,8 @@
 
   .pagination {
     display: flex;
-    justify-content: center;
+
+    // justify-content: center;
     padding: $break;
     background-color: #fff;
 
@@ -136,16 +137,20 @@
         align-items: center;
         padding: 10px;
         border: 1px solid $main-color;
+        border-radius: 50%;
         opacity: 0.4;
         cursor: pointer;
 
-        @include block-border-radius;
+        &:hover {
+          opacity: 1;
+          transition: 0.3s;
+        }
 
         &-link {
           @include link;
 
           color: $main-color !important;
-          text-decoration: none;
+          text-decoration: none !important;
         }
       }
 

@@ -11,13 +11,13 @@
       :article-id="article.id"
       :tags="article.tags"
     />
-    <!-- <Pagination
-			:paginationPages="paginationItems"
-			@selectPage="_loadArticles"
-			v-if="
-				paginationItems > 1 && articles !== undefined && articles.length > 0
-			" 
-		/> -->
+    <Pagination
+      v-if="
+        paginationItems > 1 && articles !== undefined && articles.length > 0
+      "
+      :pagination-pages="paginationItems"
+      @selectPage="_loadArticles"
+    />
   </div>
 </template>
 
@@ -25,13 +25,13 @@
   import { mapGetters, mapActions } from 'vuex';
 
   import FeedArticle from '@/components/feed/FeedArticle.vue';
-  // import Pagination from '@/components/feed/Pagination.vue';
+  import Pagination from '@/components/feed/Pagination.vue';
 
   export default {
     name: 'NewsFeed',
     components: {
       FeedArticle,
-      // Pagination,
+      Pagination,
     },
     props: {
       articles: {

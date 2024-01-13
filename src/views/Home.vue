@@ -14,11 +14,9 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-
+  import { mapGetters, mapActions } from 'vuex';
   import Feed from '@/components/feed/Feed.vue';
   import PopularTags from '@/components/PopularTags.vue';
-
   import Loader from '@/components/loader/LoaderLines.vue';
 
   export default {
@@ -26,6 +24,17 @@
     components: { Feed, PopularTags, Loader },
     computed: {
       ...mapGetters(['articlesLoading', 'articles']),
+    },
+    created() {
+      const queryPage = +this.$route.query.page - 1 || 0;
+
+      this.loadArticles({
+        from: queryPage * 10,
+        to: (queryPage + 1) * 10,
+      });
+    },
+    methods: {
+      ...mapActions(['loadArticles']),
     },
   };
 </script>
