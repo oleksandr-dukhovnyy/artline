@@ -16,7 +16,7 @@
     "current-device": "^0.10.2",
     "register-service-worker": "^1.7.1",
     "v-purify-html": "^0.1.7",
-    "vue": "^2.6.14",
+    "vue": "^2.7.15",
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.6.5",
     "vuex": "^3.4.0"
