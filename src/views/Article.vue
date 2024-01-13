@@ -106,7 +106,7 @@
           <div
             v-if="!articleComment.loading"
             class="comments-comment-author-time"
-            >at {{ articleComment.time }}</div
+            >{{ articleComment.time }}</div
           >
           <div
             v-else
@@ -323,13 +323,16 @@
       font-size: $font-size-s;
       font-style: italic;
 
+      &-creation_date {
+        font-size: 13px;
+      }
+
       &-tags {
         display: grid;
         grid-template-rows: 1fr;
         grid-template-columns: repeat(5, auto);
         grid-auto-flow: dense;
         grid-column-gap: 5px;
-        margin-top: 8px;
 
         &-tag {
           @include tag;

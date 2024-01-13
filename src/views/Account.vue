@@ -123,7 +123,7 @@
                 </router-link>
               </h3>
               <div class="activity-data-posts-article-header-time">
-                at {{ article.creationDate }}
+                {{ article.creationDate }}
               </div>
             </div>
           </div>
@@ -174,7 +174,7 @@
                 </div>
               </strong>
               <div class="activity-data-comments-comment-author-time">
-                at 02.03.20, 15:13
+                {{ comment.comment.time }}
               </div>
             </div>
             <p>

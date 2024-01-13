@@ -27,7 +27,7 @@
           </router-link>
         </h3>
         <div class="articles__article-header-time">
-          at {{ article.creationDate }}
+          {{ article.creationDate }}
         </div>
       </div>
     </div>

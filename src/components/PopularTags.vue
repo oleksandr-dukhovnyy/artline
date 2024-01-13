@@ -1,6 +1,6 @@
 <template>
   <div class="tags">
-    <div class="tags__contain animate__animated animate__zoomIn">
+    <div class="tags__contain">
       <strong> Popular tags: </strong>
       <div
         v-for="(tag, i) in popularTags"
@@ -8,7 +8,7 @@
         class="tags__tag"
       >
         <router-link
-          class="link"
+          class="link animate__animated animate__zoomIn"
           :to="{ name: 'tag', params: { tag } }"
         >
           {{ tag }}

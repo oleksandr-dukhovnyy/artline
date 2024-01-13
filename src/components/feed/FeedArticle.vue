@@ -12,7 +12,7 @@
       <div class="article-data">
         <div class="article-data-creation_date">{{ creationDate }}</div>
         <router-link
-          class="link scalable animate__animated animate__slideInRight animate__faster"
+          class="link scalable animate__animated animate__fadeIn animate__faster"
           :to="{ name: 'user', params: { id: author.id } }"
         >
           <div class="article-data-author">{{ author.name }}</div>
@@ -148,21 +148,20 @@
     &-data {
       display: grid;
       grid-template-rows: auto auto;
-      grid-template-columns: 110px 1fr;
+      grid-template-columns: 115px auto;
       grid-column-gap: 0;
       align-items: center;
-      width: max-content;
       padding: 0 0 10px;
       font-size: $font-size-s;
       font-style: italic;
 
       &-author {
-        font-size: 14.4px; // 0.9em
+        font-size: 16px; // 0.9em
         font-weight: 700;
       }
 
       &-creation_date {
-        width: max-content;
+        font-size: 13px;
       }
     }
 

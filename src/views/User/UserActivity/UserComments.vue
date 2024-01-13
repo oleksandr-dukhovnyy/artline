@@ -29,7 +29,9 @@
             {{ comment.comment.author.name }}
           </div>
         </strong>
-        <div class="comments__comment-author-time"> at 02.03.20, 15:13 </div>
+        <div class="comments__comment-author-time">
+          {{ comment.comment.time }}
+        </div>
       </div>
       <p>
         {{ comment.comment.commentBody }}

@@ -1,4 +1,6 @@
-import { name, version } from '../package.json';
+import packageJSON from '../package.json';
+
+const { name, version } = packageJSON;
 
 console.log(
   `%c💡 ${name} v${version} ${new Date().toISOString()}`,

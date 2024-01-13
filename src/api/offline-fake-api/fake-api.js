@@ -364,7 +364,7 @@ export default function initServer() {
           tags: articleData.tags?.map((tag) => tag.trim()) || [],
           comments: [],
           id: generateArticleID(parsedDB.articles),
-          creationDate: getCurrentTime('[d].[mt].[sy], at: [h]:[m]'),
+          creationDate: getCurrentTime('[d].[mt].[yyyy], [h]:[m]'),
         };
 
         const author = parsedDB.users.find((u) => u.id === userID);
@@ -445,7 +445,7 @@ export default function initServer() {
                   login: user.login,
                 },
                 commentBody,
-                time: getCurrentTime('[d]:[mt]:[sy], at: [h]:[m]'),
+                time: getCurrentTime('[d]:[mt]:[yyyy], [h]:[m]'),
               });
 
               saveDataBase(parsedDB);
@@ -648,6 +648,7 @@ function getCurrentTime(format) {
   const replaceTable = {
     '[d]': () => f(d.getDate()),
     '[sy]': () => `${d.getFullYear()}`.slice(-2),
+    '[yyyy]': () => `${d.getFullYear()}`,
     '[mt]': () => f(d.getMonth() + 1),
     '[h]': () => f(d.getHours()),
     '[m]': () => f(d.getMinutes()),

@@ -33,11 +33,15 @@
       userComments: [],
     }),
 
+    watch: {
+      '$route.params.id'(n) {
+        loadUserData.call(this, n);
+      },
+    },
+
     created() {
       loadUserData.call(this, this.$route.params.id);
     },
-
-    methods: {},
   };
 
   // Helpers

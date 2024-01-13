@@ -1,5 +1,5 @@
 <template>
-  <div class="feed animate__animated animate__fadeIn">
+  <div class="feed">
     <FeedArticle
       v-for="(article, i) in articles"
       :key="i"
@@ -29,18 +29,27 @@
 
   export default {
     name: 'NewsFeed',
+
     components: {
       FeedArticle,
       Pagination,
     },
+
     props: {
       articles: {
         type: Array,
         default: () => [],
       },
     },
+
     computed: {
       ...mapGetters(['paginationItems', 'articlesLoading', 'perPage']),
+    },
+
+    watch: {
+      '$route.query.page'() {
+        this.loadCurrentArticles();
+      },
     },
 
     created() {
@@ -52,6 +61,7 @@
         this.loadCurrentArticles();
       }
     },
+
     methods: {
       ...mapActions(['loadArticles']),
       _loadArticles(page) {
@@ -60,6 +70,7 @@
           this.loadCurrentArticles();
         }
       },
+
       loadCurrentArticles() {
         let queryPage = +this.$route.query.page - 1 || 0;
 
@@ -95,7 +106,7 @@
   };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
   .feed {
     display: flex;
     flex-direction: column;

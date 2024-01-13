@@ -99,6 +99,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    max-width: 100vw;
     height: $header-height;
     background-color: $main-color;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 14%), 0 1px 5px 0 rgba(0, 0, 0, 12%),
@@ -117,11 +118,6 @@
     }
 
     &-navbar {
-      // display: grid;
-      // grid-template-rows: 1fr;
-      // grid-template-columns: 1fr 1fr;
-      // grid-gap: 15px;
-
       display: flex;
       gap: 15px;
       align-items: center;
@@ -134,7 +130,7 @@
 
         @include link;
 
-        font-size: 0.8em;
+        font-size: 13px;
       }
 
       &-new_article {

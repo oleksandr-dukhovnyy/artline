@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="paginationPages !== undefined && paginationPages > 0"
-    class="pagination animate__animated animate__slideInLeft"
+    class="pagination"
   >
     <div class="pagination-wrapper">
       <div class="pagination-wrapper-arrow-left">
@@ -95,7 +95,9 @@
         }
       },
       selectPage(page) {
-        this.$emit('selectPage', page);
+        if (page !== this.currentPage) {
+          this.$emit('selectPage', page);
+        }
       },
       setPages(start, pages) {
         const res = [];
