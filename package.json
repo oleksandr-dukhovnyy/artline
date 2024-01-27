@@ -10,7 +10,7 @@
     "stylelint": "npx stylelint ./ --config ./.stylelintrc.json"
   },
   "dependencies": {
-    "@sentry/vue": "^7.91.0",
+    "@sentry/vue": "^7.92.0",
     "animate.css": "^4.1.1",
     "core-js": "^3.35.0",
     "current-device": "^0.10.2",
